@@ -13,7 +13,7 @@ public class Main
     public static void main(String[] args)
     {
         final HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://" + System.getenv("POSTGRESQL_SERVICE_HOST") + ":5432/sampledb");
+        config.setJdbcUrl("jdbc:postgresql://" + System.getenv("POSTGRESQL_SERVICE_HOST") + ":" + System.getenv("POSTGRESQL_SERVICE_PORT") + "/sampledb");
         config.setUsername("postgresql");
         config.setPassword("postgresql");
         final HikariDataSource ds = new HikariDataSource(config);
