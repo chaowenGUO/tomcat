@@ -14,8 +14,8 @@ public class Main
     {
         final HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:postgresql://172.30.22.106:5432/sampledb");
-        config.setUsername("userPLI");
-        config.setPassword("jOfDNSJMbroGB1s7");
+        config.setUsername("postgresql");
+        config.setPassword("postgresql");
         final HikariDataSource ds = new HikariDataSource(config);
         SpringApplication.run(Main.class, args);
     }
