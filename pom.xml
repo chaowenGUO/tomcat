@@ -28,9 +28,6 @@
 	      		        <artifactId>spring-boot-maven-plugin</artifactId>
 		        </plugin>
 	        </plugins>
-        </build><dependency>
-    <groupId>com.zaxxer</groupId>
-    <artifactId>HikariCP</artifactId>
-    <version>2.7.1</version>
+        </build>
 </dependency>
 </project>
