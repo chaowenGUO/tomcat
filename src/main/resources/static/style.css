@@ -1,0 +1,10 @@
+table, th, td
+{
+    border-width: thin;
+    border-style: solid
+}
+
+th
+{
+    text-align: left
+}
