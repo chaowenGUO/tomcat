@@ -34,14 +34,16 @@ public class Main
                 //statement.executeUpdate("insert into productItem values (9543, 1234), (9532, 5678)");
                 try (final var resultSet = statement.executeQuery("select * from productItem"))
                 {
+                    final var objectMapper = new ObjectMapper();
+                    final var arrayNode = objectMapper.createArrayNode();
                     while (resultSet.next())
                     {
                         final var metaData = resultSet.getMetaData();
-                        final var objectMapper = new ObjectMapper();
                         final var objectNode = objectMapper.createObjectNode();
                         for (var column = 1; column != metaData.getColumnCount() + 1; ++column) objectNode.put(metaData.getColumnName(column), resultSet.getInt(column));
-                        System.out.println(objectMapper.writeValueAsString(objectNode));
+                        arrayNode.add(objectNode);
                     }
+                    System.out.println(objectMapper.writeValueAsString(arrayNode));
                 }
             }
         }
