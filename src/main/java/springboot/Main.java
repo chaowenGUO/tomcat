@@ -16,6 +16,9 @@ public class Main
     @PostMapping("/ajax")
     String ajax(@RequestBody final String body)
     {
+        var objectMapper = new ObjectMapper();
+        var jsonNode = objectMapper.readTree(json);
+        System.out.println(jsonNode.get("name").asText());
         return body + "index";
     }
     
