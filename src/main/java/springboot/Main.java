@@ -13,9 +13,9 @@ import com.zaxxer.hikari.HikariDataSource;
 public class Main
 {
     @PostMapping("/ajax")
-    String ajax(@RequestBody String body)
+    String ajax(@RequestBody final java.util.Map<String, Object> body)
     {
-        return "index";
+        return body.get("") + "index";
     }
     
     public static void main(String[] args)
