@@ -31,13 +31,13 @@ public class Main
             final var statement = connection.createStatement();
             statement.executeUpdate("create table if not exists productItem (image int primary key, description int not null)");
             statement.executeUpdate("insert into productItem values (9543, 1234), (9532, 5678)");
-            /*final var resultSet = statement.executeQuery("select * from productItem");
+            final var resultSet = statement.executeQuery("select * from productItem");
             while (resultSet.next())
             {
                 System.out.print(resultSet.getInt("image"));
-                System.out.print(resultSet.getString("description"));
+                System.out.print(resultSet.getInt("description"));
                 System.out.println();
-            }*/
+            }
         }
         SpringApplication.run(Main.class, args);
     }
