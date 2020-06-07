@@ -34,7 +34,7 @@ public class Main
                     {
                         final var metaData = resultSet.getMetaData();
                         final var objectNode = objectMapper.createObjectNode();
-                        for (var column = 1; column != metaData.getColumnCount() + 1; ++column) objectNode.putPOJO(metaData.getColumnName(column), resultSet.getObject(column));
+                        java.util.stream.IntStream.rangeClosed(1, metaData.getColumnCount()).forEach(column -> objectNode.putPOJO(metaData.getColumnName(column), resultSet.getObject(column)));
                         arrayNode.add(objectNode);
                     }
                 }
