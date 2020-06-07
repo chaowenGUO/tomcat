@@ -24,7 +24,7 @@ public class Main
         final var arrayNode = objectMapper.createArrayNode();
         try (final var connection = new HikariDataSource(config).getConnection())
         {
-            try (final var statement = connection.createStatement())
+            try (final var statement = connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE))
             {
                 statement.executeUpdate("create table if not exists productItem (image int primary key, description text not null, price money not null)");
                 System.out.println(statement.executeQuery("select true from productItem").first());
