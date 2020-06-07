@@ -11,8 +11,8 @@ import com.zaxxer.hikari.HikariDataSource;
 @SpringBootApplication
 public class Main
 {
-    @PostMapping("/db")
-    String db()
+    @PostMapping("/ajax")
+    String ajax()
     {
         return "index";
     }
