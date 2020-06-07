@@ -37,14 +37,9 @@ public class Main
                     while (resultSet.next())
                     {
                         final var metaData = resultSet.getMetaData();
-                        for (var column = 1; column != metaData.getColumnCount() + 1; ++column)
-                        {
-                            System.out.print(metaData.getColumnName(column));
-                            System.out.print(" ");
-                            System.out.print(resultSet.getInt(column));
-                            System.out.print(" ");
-                        }
-                        System.out.println();
+                        final var objectNode = new ObjectMapper().createObjectNode();
+                        for (var column = 1; column != metaData.getColumnCount() + 1; ++column) objectNode.put(metaData.getColumnName(column), resultSet.getInt(column));
+                        System.out.println(new ObjectMapper.writeValueAsString(objectNode););
                     }
                 }
             }
