@@ -16,9 +16,7 @@ public class Main
     @PostMapping("/ajax")
     String ajax(@RequestBody final String body) throws Exception
     {
-        var objectMapper = new ObjectMapper();
-        var jsonNode = objectMapper.readTree(body);
-        return jsonNode.get("name").asText() + "index";
+        return new ObjectMapper().readTree(body).get("name").asText() + "index";
     }
     
     public static void main(String[] args)
