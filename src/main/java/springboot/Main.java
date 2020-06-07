@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.MediaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -14,9 +15,9 @@ import com.zaxxer.hikari.HikariDataSource;
 public class Main
 {
     @PostMapping("/ajax")
-    String ajax(@RequestBody final java.util.Map<String, Object> body)
+    String ajax(@RequestBody final String body)
     {
-        return body.get("name").toString() + "index";
+        return new ObjectMapper().readTree(body).get("name").asText() + "index";
     }
     
     public static void main(String[] args)
