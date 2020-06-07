@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -12,7 +13,7 @@ import com.zaxxer.hikari.HikariDataSource;
 public class Main
 {
     @PostMapping("/ajax")
-    String ajax()
+    String ajax(@RequestBody String body)
     {
         return "index";
     }
