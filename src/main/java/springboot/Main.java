@@ -19,12 +19,12 @@ public class Main
         return new ObjectMapper().readTree(body).get("name").asText() + "index";
     }
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws Exception
     {
         final var config = new HikariConfig();
         config.setJdbcUrl("jdbc:postgresql://" + System.getenv("POSTGRESQL_SERVICE_HOST") + ":" + System.getenv("POSTGRESQL_SERVICE_PORT") + "/sampledb");
         config.setUsername("postgresql");
-        config.setPassword("postgresql");
+        config.setPassword("postgresql"); 
         final var dataSource = new HikariDataSource(config);
         dataSource.getConnection();
         //try (final var connection = dataSource.getConnection())
