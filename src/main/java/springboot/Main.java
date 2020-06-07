@@ -1,15 +1,22 @@
 package springboot;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @RestController
-@EnableAutoConfiguration
+@SpringBootApplication
 public class Main
 {
+    @PostMapping("/db")
+    String db()
+    {
+        return "index";
+    }
+    
     public static void main(String[] args)
     {
         final var config = new HikariConfig();
@@ -17,7 +24,7 @@ public class Main
         config.setUsername("postgresql");
         config.setPassword("postgresql");
         final var dataSource = new HikariDataSource(config);
-        dataSource.getConnection();
+        //dataSource.getConnection();
         //try (final var connection = dataSource.getConnection())
         /*{
             final var statement = connection.createStatement();
