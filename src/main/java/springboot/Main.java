@@ -16,7 +16,8 @@ public class Main
     //String ajax(@RequestBody final java.util.Map<String, Object> body)
     String ajax(@RequestBody final String body)
     {
-        return body.get("name").toString() + "index";
+        //return body.get("name").toString() + "index";
+        return body + "index";
     }
     
     public static void main(String[] args)
