@@ -36,8 +36,11 @@ public class Main
                 {
                     while (resultSet.next())
                     {
-                        for (var column = 1; column != resultSet.getMetaData().getColumnCount() + 1; ++column)
+                        final var metaData = resultSet.getMetaData();
+                        for (var column = 1; column != metaData.getColumnCount() + 1; ++column)
                         {
+                            System.out.print(metaData.getColumnName(column));
+                            System.out.print(" ");
                             System.out.print(resultSet.getInt(column));
                             System.out.print(" ");
                         }
