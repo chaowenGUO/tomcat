@@ -17,7 +17,7 @@ public class Main
     String ajax(@RequestBody final String body)
     {
         var objectMapper = new ObjectMapper();
-        var jsonNode = objectMapper.readTree(json);
+        var jsonNode = objectMapper.readTree(body);
         System.out.println(jsonNode.get("name").asText());
         return body + "index";
     }
