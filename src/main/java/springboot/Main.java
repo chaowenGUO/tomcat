@@ -27,7 +27,7 @@ public class Main
             try (final var statement = connection.createStatement())
             {
                 statement.executeUpdate("create table if not exists productItem (image int primary key, description text not null, price money not null)");
-                System.out.println(statement.executeQuery("select count(*) from productItem").getInt(1));
+                System.out.println(statement.executeQuery("select true from productItem").first());
                 statement.executeUpdate("insert into productItem values (9543, '好先生同款墨镜孙红雷偏光男士太阳镜韩明星', 97.50), (9532, '陌森太阳眼镜男女2016偏光定制驾驶近视', 518.70)");
                 try (final var resultSet = statement.executeQuery("select * from productItem"))
                 {                   
