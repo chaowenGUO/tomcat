@@ -26,7 +26,7 @@ public class Main
         config.setUsername("postgresql");
         config.setPassword("postgresql");
         final var dataSource = new HikariDataSource(config);
-        //dataSource.getConnection();
+        dataSource.getConnection();
         //try (final var connection = dataSource.getConnection())
         /*{
             final var statement = connection.createStatement();
