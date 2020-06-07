@@ -29,7 +29,7 @@ public class Main
         try (final var connection = dataSource.getConnection())
         {
             final var statement = connection.createStatement();
-            statement.executeUpdate("create table if not exists productItem (image int primary key, description text not null)");
+            /*statement.executeUpdate("create table if not exists productItem (image int primary key, description text not null)");
             statement.executeUpdate("insert into productItem values (9543, \"好先生同款墨镜孙红雷偏光男士太阳镜韩明星\"), (9532, \"陌森太阳眼镜男女2016偏光定制驾驶近视\")");
             final var resultSet = statement.executeQuery("select * from productItem");
             while (resultSet.next())
@@ -37,7 +37,7 @@ public class Main
                 System.out.print(resultSet.getInt("image"));
                 System.out.print(resultSet.getString("description"));
                 System.out.println();
-            }
+            }*/
         }
         SpringApplication.run(Main.class, args);
     }
