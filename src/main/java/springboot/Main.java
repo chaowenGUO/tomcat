@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.MediaType
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -12,7 +13,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @SpringBootApplication
 public class Main
 {
-    @PostMapping("/ajax")
+    @PostMapping("/ajax", consumes=MediaType.APPLICATION_JSON_VALUE)
     String ajax(@RequestBody final java.util.Map<String, Object> body)
     {
         return body.get("name").toString() + "index";
