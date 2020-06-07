@@ -13,7 +13,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @SpringBootApplication
 public class Main
 {
-    @PostMapping("/ajax", consumes=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/ajax", consumes=MediaType.APPLICATION_JSON_VALUE)
     String ajax(@RequestBody final java.util.Map<String, Object> body)
     {
         return body.get("name").toString() + "index";
