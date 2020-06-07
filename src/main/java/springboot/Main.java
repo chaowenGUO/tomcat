@@ -39,7 +39,7 @@ public class Main
                         final var metaData = resultSet.getMetaData();
                         final var objectNode = new ObjectMapper().createObjectNode();
                         for (var column = 1; column != metaData.getColumnCount() + 1; ++column) objectNode.put(metaData.getColumnName(column), resultSet.getInt(column));
-                        System.out.println(new ObjectMapper.writeValueAsString(objectNode););
+                        System.out.println(new ObjectMapper.writeValueAsString(objectNode));
                     }
                 }
             }
