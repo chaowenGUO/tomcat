@@ -14,13 +14,11 @@ import com.zaxxer.hikari.HikariDataSource;
 public class Main
 {
     @PostMapping("/ajax")
-    String ajax(@RequestBody final String body)
+    String ajax(@RequestBody final String body) throws Exception
     {
-        System.out.println(body);
-        //var objectMapper = new ObjectMapper();
-        //var jsonNode = objectMapper.readTree(body);
-        //System.out.println(jsonNode.get("name").asText());
-        return body + "index";
+        var objectMapper = new ObjectMapper();
+        var jsonNode = objectMapper.readTree(body);
+        return jsonNode.get("name").asText() + "index";
     }
     
     public static void main(String[] args)
