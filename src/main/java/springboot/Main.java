@@ -31,7 +31,7 @@ public class Main
             try (final var statement = connection.createStatement())
             {
                 statement.executeUpdate("create table if not exists productItem (image int primary key, description int not null)");
-                statement.executeUpdate("insert into productItem values (9543, 1234), (9532, 5678)");
+                //statement.executeUpdate("insert into productItem values (9543, 1234), (9532, 5678)");
                 try (final var resultSet = statement.executeQuery("select * from productItem"))
                 {
                     while (resultSet.next())
