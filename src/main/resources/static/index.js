@@ -30,7 +30,7 @@ new Vue({
     {
         async loadDoc()
         {
-            const response = await fetch('/ajax', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({name:this.name})})
+            const response = await fetch('/ajax', {method:'POST', body:JSON.stringify({name:this.name})})
             const text = response.ok ? await response.text() : ''
             this.name = text
         },
