@@ -15,7 +15,7 @@ public class Main
     @PostMapping("/ajax")
     String ajax(@RequestBody final java.util.Map<String, Object> body)
     {
-        return body.get("") + "index";
+        return body.get("name").toString() + "index";
     }
     
     public static void main(String[] args)
