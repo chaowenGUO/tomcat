@@ -26,9 +26,8 @@ public class Main
         config.setUsername("postgresql");
         config.setPassword("postgresql"); 
         final var dataSource = new HikariDataSource(config);
-        dataSource.getConnection();
-        //try (final var connection = dataSource.getConnection())
-        /*{
+        try (final var connection = dataSource.getConnection())
+        {
             final var statement = connection.createStatement();
             statement.executeUpdate("create table if not exists productItem (image int primary key, description text not null, price money not null)");
             statement.executeUpdate("insert into productItem values (9543, \"好先生同款墨镜孙红雷偏光男士太阳镜韩明星\", 97.50), (9532, \"陌森太阳眼镜男女2016偏光定制驾驶近视\", 518.70)");
@@ -40,7 +39,7 @@ public class Main
                 System.out.print(resultSet.getBigDecimal("price"));
                 System.out.println();
             }
-        }*/
+        }
         SpringApplication.run(Main.class, args);
     }
 }
