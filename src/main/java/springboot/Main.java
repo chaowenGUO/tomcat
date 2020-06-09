@@ -13,16 +13,31 @@ import com.zaxxer.hikari.HikariDataSource;
 @SpringBootApplication
 public class Main
 {
-    @PostMapping("/ajax")
+    private static enum DataSource
+    {
+        singleton;
+        private HikariDataSource dataSource;
+        private DataSource()
+        {
+            final var config = new HikariConfig();
+            config.setJdbcUrl(String.join("", "jdbc:postgresql://", System.getenv("POSTGRESQL_SERVICE_HOST"), ":", System.getenv("POSTGRESQL_SERVICE_PORT"), "/sampledb"));
+            config.setUsername("postgresql");
+            config.setPassword("postgresql");
+            this.dataSource = new HikariDataSource(config);    
+        }
+        public HikariDataSource get()
+        {
+            return this.dataSource;
+        }
+    }
+    
+    @PostMapping("/ajax") 
     String ajax(@RequestBody final String body) throws Exception
     {
-        final var config = new HikariConfig();
-        config.setJdbcUrl(String.join("", "jdbc:postgresql://", System.getenv("POSTGRESQL_SERVICE_HOST"), ":", System.getenv("POSTGRESQL_SERVICE_PORT"), "/sampledb"));
-        config.setUsername("postgresql");
-        config.setPassword("postgresql"); 
+        
         final var objectMapper = new ObjectMapper();
         final var arrayNode = objectMapper.createArrayNode();
-        try (final var connection = new HikariDataSource(config).getConnection())
+        try (final var connection = DataSource.singleton.get().getConnection())
         {
             try (final var statement = connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY))
             {
