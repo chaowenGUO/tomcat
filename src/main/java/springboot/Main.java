@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
     
 @RestController
 @SpringBootApplication
-public final class Main
+public class Main
 {
     @Component
     private static final class DataSource
