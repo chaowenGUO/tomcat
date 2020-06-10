@@ -18,7 +18,6 @@ public final class Main
     @Component
     private static final class DataSource
     {
-        singleton;
         private HikariDataSource dataSource;
         private DataSource() throws Exception
         {
