@@ -20,7 +20,7 @@ public final class Main
     {
         singleton;
         private HikariDataSource dataSource;
-        private DataSource()
+        private DataSource() throws Exception
         {
             final var config = new HikariConfig();
             config.setJdbcUrl(String.join("", "jdbc:postgresql://", System.getenv("POSTGRESQL_SERVICE_HOST"), ":", System.getenv("POSTGRESQL_SERVICE_PORT"), "/sampledb"));
@@ -42,7 +42,7 @@ public final class Main
         }
         
         @PreDestroy
-        private void shutdown()
+        private void shutdown() throws Exception
         {
             try (final var connection = this.dataSource.getConnection())
             {
