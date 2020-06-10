@@ -58,7 +58,7 @@ public class Main
     @Autowired private DataSource dataSource;
     
     @PostMapping("/ajax") 
-    String ajax(@RequestBody final String body) throws Exception
+    private final String ajax(@RequestBody final String body) throws Exception
     {
         
         final var objectMapper = new ObjectMapper();
