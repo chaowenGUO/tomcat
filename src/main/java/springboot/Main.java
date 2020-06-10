@@ -54,14 +54,15 @@ public final class Main
         }
     }
     
+    @Autowired private DataSource dataSource;
+    
     @PostMapping("/ajax") 
     String ajax(@RequestBody final String body) throws Exception
     {
         
         final var objectMapper = new ObjectMapper();
         final var arrayNode = objectMapper.createArrayNode();
-        DataSource dataSource;
-        try (final var connection = dataSource.get().getConnection())
+        try (final var connection = this.dataSource.get().getConnection())
         {
             try (final var statement = connection.createStatement())
             {
