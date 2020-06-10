@@ -31,7 +31,7 @@ public class Main
             {
                 try (final var statement = connection.createStatement())
                 {
-                    statement.executeUpdate(java.nio.file.Files.readString("database.sql"));
+                    statement.executeUpdate(java.nio.file.Files.readString(java.nio.file.Paths.get("database.sql")));
                 }
             }             
         }
