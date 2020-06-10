@@ -10,6 +10,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import javax.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
     
 @RestController
 @SpringBootApplication
