@@ -44,7 +44,7 @@ public final class Main
         @PreDestroy
         private void shutdown()
         {
-            try (final var connection = this.dataSource.get().getConnection())
+            try (final var connection = this.dataSource.getConnection())
             {
                 try (final var statement = connection.createStatement())
                 {
