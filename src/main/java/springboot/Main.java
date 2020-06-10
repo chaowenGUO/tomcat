@@ -32,7 +32,7 @@ public class Main
             {
                 try (final var statement = connection.createStatement())
                 {
-                    statement.executeUpdate(new java.io.BufferedReader(new java.io.InputStreamReader(new ClassPathResource("database.sql").getInputStream())).lines().collect(java.util.stream.Collectors.joining("\n"));
+                    statement.executeUpdate(new java.io.BufferedReader(new java.io.InputStreamReader(new ClassPathResource("database.sql").getInputStream())).lines().collect(java.util.stream.Collectors.joining("\n")));
                 }
             }             
         }
