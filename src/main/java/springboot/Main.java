@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public final class Main
 {
     @Component
-    private static enum DataSource
+    private static final class DataSource
     {
         singleton;
         private HikariDataSource dataSource;
