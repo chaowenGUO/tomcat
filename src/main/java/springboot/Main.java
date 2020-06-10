@@ -32,7 +32,7 @@ public class Main
             {
                 try (final var statement = connection.createStatement())
                 {
-                    statement.executeUpdate(java.nio.file.Files.readString(ClassPathResource("database.sql").getFile().toPath()));
+                    statement.executeUpdate(java.nio.file.Files.readString(new ClassPathResource("database.sql").getFile().toPath()));
                 }
             }             
         }
