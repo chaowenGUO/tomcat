@@ -11,6 +11,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import javax.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
     
 @RestController
 @SpringBootApplication
@@ -31,7 +32,7 @@ public class Main
             {
                 try (final var statement = connection.createStatement())
                 {
-                    statement.executeUpdate(java.nio.file.Files.readString(java.nio.file.Path.of("database.sql")));
+                    statement.executeUpdate(java.nio.file.Files.readString(ClassPathResource("database.sql").getFile().toPath()));
                 }
             }             
         }
