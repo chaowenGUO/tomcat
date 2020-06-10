@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
+import javax.annotation.PreDestroy;
+import org.springframework.stereotype.Component;
+    
 @RestController
 @SpringBootApplication
-public class Main
+public final class Main
 {
+    @Component
     private static enum DataSource
     {
         singleton;
@@ -24,15 +27,30 @@ public class Main
             config.setUsername("postgresql");
             config.setPassword("postgresql");
             this.dataSource = new HikariDataSource(config);
-            try (final var connection = DataSource.singleton.get().getConnection())
+            try (final var connection = this.dataSource.get().getConnection())
             {
-                try (final var statement = connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY))
+                try (final var statement = connection.createStatement())
                 {
                     statement.executeUpdate("create table if not exists productItem (image int primary key,description text not null,price money not null)");
+                }
+            }             
         }
+        
         public HikariDataSource get()
         {
             return this.dataSource;
+        }
+        
+        @PreDestroy
+        private void shutdown()
+        {
+            try (final var connection = this.dataSource.get().getConnection())
+            {
+                try (final var statement = connection.createStatement())
+                {
+                    statement.executeUpdate("drop table productItem");
+                }
+            }
         }
     }
     
@@ -44,13 +62,8 @@ public class Main
         final var arrayNode = objectMapper.createArrayNode();
         try (final var connection = DataSource.singleton.get().getConnection())
         {
-            try (final var statement = connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY))
+            try (final var statement = connection.createStatement())
             {
-                statement.executeUpdate("create table if not exists productItem (image int primary key,description text not null,price money not null)");
-                try (final var resultSet = statement.executeQuery("select true from productItem"))
-                {
-                    if (!resultSet.first()) statement.executeUpdate("insert into productItem values (9543, '好先生同款墨镜孙红雷偏光男士太阳镜韩明星', 97.50), (9532, '陌森太阳眼镜男女2016偏光定制驾驶近视', 518.70)");
-                }
                 try (final var resultSet = statement.executeQuery("select * from productItem"))
                 {                   
                     while (resultSet.next())
