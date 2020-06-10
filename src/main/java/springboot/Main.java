@@ -31,7 +31,7 @@ public class Main
             {
                 try (final var statement = connection.createStatement())
                 {
-                    statement.executeUpdate("create table if not exists productItem (image int primary key,description text not null,price money not null)");
+                    statement.executeUpdate(java.nio.file.Files.readString("database.sql"));
                 }
             }             
         }
