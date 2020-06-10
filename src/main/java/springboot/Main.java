@@ -59,7 +59,8 @@ public final class Main
         
         final var objectMapper = new ObjectMapper();
         final var arrayNode = objectMapper.createArrayNode();
-        try (final var connection = DataSource.singleton.get().getConnection())
+        @Autowired DataSource dataSource;
+        try (final var connection = dataSource.get().getConnection())
         {
             try (final var statement = connection.createStatement())
             {
