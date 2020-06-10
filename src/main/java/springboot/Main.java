@@ -23,7 +23,12 @@ public class Main
             config.setJdbcUrl(String.join("", "jdbc:postgresql://", System.getenv("POSTGRESQL_SERVICE_HOST"), ":", System.getenv("POSTGRESQL_SERVICE_PORT"), "/sampledb"));
             config.setUsername("postgresql");
             config.setPassword("postgresql");
-            this.dataSource = new HikariDataSource(config);    
+            this.dataSource = new HikariDataSource(config);
+            try (final var connection = DataSource.singleton.get().getConnection())
+            {
+                try (final var statement = connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY))
+                {
+                    statement.executeUpdate("create table if not exists productItem (image int primary key,description text not null,price money not null)");
         }
         public HikariDataSource get()
         {
