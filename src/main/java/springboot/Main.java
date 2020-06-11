@@ -60,7 +60,7 @@ public class Main
     @PostMapping("/ajax") 
     private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final String body) throws Exception
     {
-        final var list = new java.util.ArrayList<java.util.Map<String, Object>>();
+        final var array = new java.util.ArrayList<java.util.Map<String, Object>>();
         try (final var connection = this.dataSource.get().getConnection())
         {
             try (final var statement = connection.createStatement())
@@ -70,9 +70,9 @@ public class Main
                     while (resultSet.next())
                     {
                         final var metaData = resultSet.getMetaData();
-                        final var map = new java.util.HashMap<String, Object>();
-                        for (final var column: (Iterable<Integer>)java.util.stream.IntStream.rangeClosed(1, metaData.getColumnCount())::iterator) map.putIfAbsent(metaData.getColumnName(column), resultSet.getObject(column));
-                        list.add(map);
+                        final var object = new java.util.HashMap<String, Object>();
+                        for (final var column: (Iterable<Integer>)java.util.stream.IntStream.rangeClosed(1, metaData.getColumnCount())::iterator) object.putIfAbsent(metaData.getColumnName(column), resultSet.getObject(column));
+                        array.add(object);
                     }
                 }
             }
