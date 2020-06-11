@@ -77,7 +77,7 @@ public class Main
                 }
             }
         }
-        return list;
+        return array;
         //return new ObjectMapper().readTree(body).get("name").asText() + "index";
     }
     
