@@ -1,6 +1,6 @@
 create table if not exists productItem (image int primary key,
                                         description text not null,
-                                        price double precision not null);
+                                        price money not null);
 insert into productItem values (9543, '好先生同款墨镜孙红雷偏光男士太阳镜韩明星', 97.50),
                                (9532, '陌森太阳眼镜男女2016偏光定制驾驶近视', 518.70),
                                (9521, '帕莎Prsr太阳镜女偏光镜潮范冰冰同款女', 624.00),
