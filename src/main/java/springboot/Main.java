@@ -73,7 +73,7 @@ public class Main
                     {
                         final var metaData = resultSet.getMetaData();
                         final var objectNode = objectMapper.createObjectNode();
-                        for (final var column: (Iterable<Integer>)java.util.stream.IntStream.rangeClosed(1, metaData.getColumnCount())::iterator) objectNode.putPOJO(metaData.getColumnName(column), resultSet.getObject(column, java.util.Map.ofEntries(java.util.Map.Entry("money", java.math.BigDecimal.class))));
+                        for (final var column: (Iterable<Integer>)java.util.stream.IntStream.rangeClosed(1, metaData.getColumnCount())::iterator) objectNode.putPOJO(metaData.getColumnName(column), resultSet.getObject(column, java.util.Map.ofEntries(java.util.Map.entry("money", java.math.BigDecimal.class))));
                         arrayNode.add(objectNode);
                     }
                 }
