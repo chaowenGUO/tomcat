@@ -58,12 +58,9 @@ public class Main
     @Autowired private DataSource dataSource;
     
     @PostMapping("/ajax") 
-    private final java.util.ArrayList<java.util.HashMap<String, Object>> ajax(@RequestBody final String body) throws Exception
+    private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final String body) throws Exception
     {
-        
-        //final var objectMapper = new ObjectMapper();
-        //final var arrayNode = objectMapper.createArrayNode();
-        final var list = new java.util.ArrayList<java.util.HashMap<String, Object>>();
+        final var list = new java.util.ArrayList<java.util.Map<String, Object>>();
         try (final var connection = this.dataSource.get().getConnection())
         {
             try (final var statement = connection.createStatement())
@@ -73,16 +70,13 @@ public class Main
                     while (resultSet.next())
                     {
                         final var metaData = resultSet.getMetaData();
-                        //final var objectNode = objectMapper.createObjectNode();
                         final var map = new java.util.HashMap<String, Object>();
-                        for (final var column: (Iterable<Integer>)java.util.stream.IntStream.rangeClosed(1, metaData.getColumnCount())::iterator) //objectNode.putPOJO(metaData.getColumnName(column), resultSet.getObject(column));
-                            map.putIfAbsent(metaData.getColumnName(column), resultSet.getObject(column));
+                        for (final var column: (Iterable<Integer>)java.util.stream.IntStream.rangeClosed(1, metaData.getColumnCount())::iterator) map.putIfAbsent(metaData.getColumnName(column), resultSet.getObject(column));
                         list.add(map);
                     }
                 }
             }
         }
-        //return objectMapper.writeValueAsString(arrayNode);
         return list;
         //return new ObjectMapper().readTree(body).get("name").asText() + "index";
     }
