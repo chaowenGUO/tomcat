@@ -8,5 +8,5 @@ jobs:
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
           rm -rf src/main/resources/static
-          git subtree add --prefix=src/main/resources/static https://github.com/chaowenGUO/aiohttp master --square
+          git subtree add --prefix=src/main/resources/static https://github.com/chaowenGUO/aiohttp master --squash
           git push
