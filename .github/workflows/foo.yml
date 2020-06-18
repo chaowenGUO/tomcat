@@ -1,17 +1,17 @@
 on: repository_dispatch
 jobs:
-  report:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: |
-          git config user.email "you@example.com"
-          git config user.name "Your Name"
-          git rm -rf src/main/resources/static
-          git commit --allow-empty-message -m ''
-          git subtree add --prefix=src/main/resources/static https://github.com/chaowenGUO/aiohttp master --squash
-          cd src/main/resources/static
-          git rm -rf .github/workflows Procfile requirements.txt runtime.txt server.py
-          git mv -f database.sql ..
-          git commit --allow-empty-message -m ''
-          git push
+    report:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - run: |
+            git config user.email "you@example.com"
+            git config user.name "Your Name"
+            git rm -rf src/main/resources/static
+            git commit --allow-empty-message -m ''
+            git subtree add --prefix=src/main/resources/static https://github.com/chaowenGUO/aiohttp master --squash
+            cd src/main/resources/static
+            git rm -rf .github/workflows Procfile requirements.txt runtime.txt server.py
+            git mv -f database.sql ..
+            git commit --allow-empty-message -m ''
+            git push
