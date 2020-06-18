@@ -7,5 +7,5 @@ jobs:
       - run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
-          git subtree add --prefix=src/main/resources/static/ https://github.com/chaowenGUO/aiohttp master --squash       
+          git subtree pull --prefix=src/main/resources/static/ https://github.com/chaowenGUO/aiohttp master --squash       
           git push
