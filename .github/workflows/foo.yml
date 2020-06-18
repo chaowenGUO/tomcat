@@ -5,9 +5,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          date +%s > report.txt
-          git add report.txt
-          git config user.email "action@github.com"
-          git config user.name "GitHub Action"
-          git commit -am "Automated report"
+          git subtree add --prefix=sub/libpng https://github.com/chaowenGUO/aiohttp master --squash
           git push
