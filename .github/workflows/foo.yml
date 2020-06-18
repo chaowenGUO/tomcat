@@ -7,6 +7,7 @@ jobs:
       - run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
-          git merge -s ours --no-commit --allow-unrelated-histories https://github.com/chaowenGUO/aiohttp/master
-          git read-tree --prefix=src/main/resources/static/ -u https://github.com/chaowenGUO/aiohttp/master    
+          git remote add -f aiohttp https://github.com/chaowenGUO/aiohttp
+          git merge -s ours --no-commit --allow-unrelated-histories aiohttp/master
+          git read-tree --prefix=src/main/resources/static/ -u aiohttp/master    
           git push
