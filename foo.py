@@ -1,3 +1,3 @@
 import git
-repo = Repo('.')
-print(repo.bare)
+with git.Repo('.') as a
+print(a.bare)
