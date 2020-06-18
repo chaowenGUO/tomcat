@@ -1,6 +1,0 @@
-on: push
-jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-        - run: curl -X POST https://api.github.com/repos/chaowenGUO/springboot/dispatches -d '{"event_type":"ping}'
