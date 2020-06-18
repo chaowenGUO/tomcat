@@ -5,7 +5,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          git subtree add --prefix=sub/libpng https://github.com/chaowenGUO/aiohttp master --squash
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
+          git subtree add --prefix=sub/libpng https://github.com/chaowenGUO/aiohttp master --squash       
           git push
