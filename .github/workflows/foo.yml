@@ -11,7 +11,7 @@ jobs:
             git commit --allow-empty-message -m ''
             git subtree add --prefix=src/main/resources/static https://github.com/chaowenGUO/aiohttp master --squash
             cd src/main/resources/static
-            git rm -rf .github/workflows Procfile requirements.txt runtime.txt server.py
+            git rm -rf .github/workflows Procfile *.txt *.py
             git mv -f database.sql ..
             git commit --allow-empty-message -m ''
             git push
