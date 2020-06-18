@@ -1,0 +1,11 @@
+on: repository_dispatch
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: date +%s > report.txt
+      - name: Commit report
+        run: |
+          git commit -am "Automated report"
+          git push
