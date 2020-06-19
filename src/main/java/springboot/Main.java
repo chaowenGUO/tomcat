@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -56,6 +57,12 @@ public class Main
     }
     
     @Autowired private DataSource dataSource;
+    
+    @GetMapping("/") 
+    private final ModelAndView main()
+    {
+        return new ModelAndView('login.html');
+    }
     
     @PostMapping("/ajax") 
     private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final String body) throws Exception
