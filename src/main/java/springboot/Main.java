@@ -49,7 +49,7 @@ public class Main
             {
                 try (final var statement = connection.createStatement())
                 {
-                    statement.executeUpdate("drop table productItem");
+                    statement.executeUpdate("drop table productItem, productUnit, productReview");
                 }
             }
         }
@@ -70,7 +70,7 @@ public class Main
                     while (resultSet.next())
                     {
                         final var metaData = resultSet.getMetaData();
-                        final var object = new java.util.HashMap<String, Object>();
+                        final var object = new java.util.LinkedHashMap<String, Object>();
                         for (final var column: (Iterable<Integer>)java.util.stream.IntStream.rangeClosed(1, metaData.getColumnCount())::iterator) object.putIfAbsent(metaData.getColumnName(column), resultSet.getObject(column));
                         array.add(object);
                     }
