@@ -60,7 +60,7 @@ public class Main
     @Autowired private DataSource dataSource;
     
     @GetMapping("/") 
-    private final ModelAndView main()
+    private static ModelAndView main()
     {
         return new ModelAndView("login.html");
     }
