@@ -60,6 +60,7 @@ public class Main
     @PostMapping("/ajax") 
     private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final String body) throws Exception
     {
+        System.out.println(body);
         final var array = new java.util.ArrayList<java.util.Map<String, Object>>();
         try (final var connection = this.dataSource.get().getConnection())
         {
