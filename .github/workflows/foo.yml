@@ -10,7 +10,6 @@ jobs:
         - run: |
             pip install gitpython
             python foo.py
-            git subtree add --prefix=src/main/resources/static https://github.com/chaowenGUO/aiohttp master --squash
             cd src/main/resources/static
             git rm -rf .github/workflows Procfile *.txt *.py README.md
             git mv -f database.sql ..
