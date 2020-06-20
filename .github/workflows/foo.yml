@@ -10,7 +10,5 @@ jobs:
         - run: |
             pip install gitpython
             python foo.py
-            cd src/main/resources/static
-            git rm -rf .github/workflows Procfile *.txt *.py README.md
             git commit --allow-empty-message -m ''
             git push
