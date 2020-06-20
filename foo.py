@@ -9,6 +9,5 @@ with git.Repo(pathlib.Path(__file__).resolve().parent) as repository:
     print([str(_) for _  in pathlib.Path('src/main/resources/static').iterdir() if _.suffix == 'html' or _.suffix == 'js'])
             #cd src/main/resources/static
             #git rm -rf .github/workflows Procfile *.txt *.py README.md
-            #git mv -f database.sql ..
             #git commit --allow-empty-message -m ''
             #git push
