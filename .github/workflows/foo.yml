@@ -12,6 +12,5 @@ jobs:
             python foo.py
             cd src/main/resources/static
             git rm -rf .github/workflows Procfile *.txt *.py README.md
-            git mv -f database.sql ..
             git commit --allow-empty-message -m ''
             git push
