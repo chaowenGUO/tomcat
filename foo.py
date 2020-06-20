@@ -6,6 +6,6 @@ with git.Repo(pathlib.Path(__file__).resolve().parent) as repository:
     repository.index.commit('eve') #git commit --allow-empty-message -m ''
     repository.git.subtree('add', '--prefix=src/main/resources/static', 'https://github.com/chaowenGUO/aiohttp', 'master', '--squash')
     repository.index.move(['src/main/resources/static/database.sql', 'src/main/resources'], f=True)
-    repository.index.remove([str(_) for _  in pathlib.Path('src/main/resources/static').iterdir() if _.suffix != '.html' or _.suffix != '.js'], True, r=True)
-            #git commit --allow-empty-message -m ''
+    repository.index.remove([str(_) for _  in pathlib.Path('src/main/resources/static').iterdir() if _.suffix != '.html' and _.suffix != '.js'], True, r=True)
+    repository.index.commit('eve')
             #git push
