@@ -1,7 +1,7 @@
 import git, pathlib
 with git.Repo(pathlib.Path(__file__).resolve().parent) as repository:
-    #repository.config_writer().set_value('user', 'name', 'Your Name').release()
-    #repository.config_writer().set_value('user', 'email', 'you@example.com').release()
+    repository.config_writer().set_value('user', 'name', 'Your Name').release()
+    repository.config_writer().set_value('user', 'email', 'you@example.com').release()
     repository.index.remove(['src/main/resources/static'], True, r=True)
     repository.index.commit('') #git commit --allow-empty-message -m ''
     repository.git.subtree('add', '--prefix=src/main/resources/static', 'https://github.com/chaowenGUO/aiohttp', 'master', '--squash')
