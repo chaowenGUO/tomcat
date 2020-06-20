@@ -8,4 +8,4 @@ with git.Repo(pathlib.Path(__file__).resolve().parent) as repository:
     repository.index.move(['src/main/resources/static/database.sql', 'src/main/resources'], f=True)
     repository.index.remove([str(_) for _  in pathlib.Path('src/main/resources/static').iterdir() if _.suffix != '.html' and _.suffix != '.js'], True, r=True)
     repository.index.commit('eve')
-            #git push
+    repository.remote().push()
