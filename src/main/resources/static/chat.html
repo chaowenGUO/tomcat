@@ -6,8 +6,16 @@
         <script type='module' src='chat.js'></script>
     </head>
     <body>
-        <input placeholder='name'><button type='button'>Connect</button>   
-        <div style='overflow:auto; border:1px solid black'></div>
-        <input disabled><button type='button' disabled>Send</button>  
+        <input placeholder='name'><button type='button'>Connect</button>
+        
+<script>
+globalThis.document.querySelector('button').addEventListener('click', () =>
+{
+    const websocket = new globalThis.WebSocket(globalThis.location.origin.replace('http', 'ws') + '/ws')
+    websocket.onopen = () => websocket.send('fuck')
+    websocket.onmessage = event => globalThis.querySelector('input').value = event.data
+})
+</script>
+        
     </body>
 </html>
