@@ -16,6 +16,7 @@ import org.springframework.core.io.ClassPathResource;
 import javax.websocket.server.ServerEndpoint;
 import javax.websocket.OnMessage;
 import javax.websocket.Session;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
     
 @RestController
 @SpringBootApplication
@@ -99,6 +100,12 @@ public class Main
         {
             session.getBasicRemote().sendText("fuck");
         }
+    }
+    
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter()
+    {
+        return new ServerEndpointExporter();
     }
     
     public static void main(String[] args)
