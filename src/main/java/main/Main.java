@@ -66,9 +66,9 @@ public class Main
     }
     
     @PostMapping("/ajax") 
-    private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final String body) throws Exception
+    private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final java.util.Map<String, Object> body) throws Exception
     {
-        System.out.println(new ObjectMapper().readValue(body, java.util.Map.class).entrySet().stream().map($ -> $.getKey() + " " + $.getValue()).collect(java.util.stream.Collectors.joining(" ")).replace("table", ""));
+        System.out.println(body);
         final var array = new java.util.ArrayList<java.util.Map<String, Object>>();
         try (final var connection = this.dataSource.get().getConnection())
         {
