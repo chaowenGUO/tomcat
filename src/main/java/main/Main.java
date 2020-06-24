@@ -13,6 +13,9 @@ import javax.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import javax.websocket.server.ServerEndpoint;
+import javax.websocket.OnMessage;
+import javax.websocket.Session;
     
 @RestController
 @SpringBootApplication
@@ -86,6 +89,16 @@ public class Main
             }
         }
         return array;
+    }
+    
+    @ServerEndpoint("/ws")
+    private static final class Websocket
+    {
+        @OnMessage
+        public void onMessage(Session session, String jsonStr)
+        {
+            session.getBasicRemote().sendText("fuck");
+        }
     }
     
     public static void main(String[] args)
