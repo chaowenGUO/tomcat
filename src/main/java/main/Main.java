@@ -67,13 +67,13 @@ public class Main
     @PostMapping("/ajax") 
     private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final java.util.Map<String, String> body) throws Exception
     {
-        System.out.println(body.entrySet().stream().map($ -> String.join(" ", $.getKey(), $.getValue())).collect(java.util.stream.Collectors.joining(" ")).replace("table", ""));
+   
         final var array = new java.util.ArrayList<java.util.Map<String, Object>>();
         try (final var connection = this.dataSource.get().getConnection())
         {
             try (final var statement = connection.createStatement())
             {
-                try (final var resultSet = statement.executeQuery("select * from productItem"))
+                try (final var resultSet = statement.executeQuery("select * from" + body.entrySet().stream().map($ -> String.join(" ", $.getKey(), $.getValue())).collect(java.util.stream.Collectors.joining(" ")).replace("table", "")))
                 {                   
                     while (resultSet.next())
                     {
@@ -86,7 +86,6 @@ public class Main
             }
         }
         return array;
-        //return new ObjectMapper().readTree(body).get("name").asText() + "index";
     }
     
     public static void main(String[] args)
