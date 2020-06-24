@@ -95,7 +95,7 @@ public class Main
     private static final class Websocket
     {
         @OnMessage
-        public void onMessage(Session session, String jsonStr)
+        public void onMessage(Session session, String jsonStr) throws Exception
         {
             session.getBasicRemote().sendText("fuck");
         }
