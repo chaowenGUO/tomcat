@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import javax.annotation.PreDestroy;
@@ -66,7 +65,7 @@ public class Main
     }
     
     @PostMapping("/ajax") 
-    private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final java.util.Map<String, Object> body) throws Exception
+    private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final java.util.Map<String, String> body) throws Exception
     {
         System.out.println(body.entrySet().stream().map($ -> String.join(" ", $.getKey(), $.getValue())).collect(java.util.stream.Collectors.joining(" ")).replace("table", ""));
         final var array = new java.util.ArrayList<java.util.Map<String, Object>>();
