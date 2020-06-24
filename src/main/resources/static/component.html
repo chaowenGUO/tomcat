@@ -149,7 +149,7 @@ import * as lodash from 'https://cdn.jsdelivr.net/npm/lodash-es/lodash.min.js'
 (async function()
 {
     let parent = globalThis.document.getElementById('productItem').children[1]
-    let response = await globalThis.fetch('/ajax', {method:'POST', body:globalThis.JSON.stringify({table:parent.parentElement.id, limit:5, offset:0})})
+    let response = await globalThis.fetch('/ajax', {method:'POST', headers:{'Content-Type':'application/json'}, body:globalThis.JSON.stringify({table:parent.parentElement.id, limit:5, offset:0})})
     let json = response.ok ? await response.json() : []
     json.forEach(_ => {
 	    const component = globalThis.document.createElement(lodash.kebabCase(parent.parentElement.id))
@@ -161,7 +161,7 @@ import * as lodash from 'https://cdn.jsdelivr.net/npm/lodash-es/lodash.min.js'
                     component.lastElementChild.textContent = value})
 	    parent.appendChild(component)})
     parent = globalThis.document.getElementById('productItem').children[3]
-    response = await globalThis.fetch('/ajax', {method:'POST', body:globalThis.JSON.stringify({table:parent.parentElement.id, limit:5, offset:5})})
+    response = await globalThis.fetch('/ajax', {method:'POST', headers:{'Content-Type':'application/json'}, body:globalThis.JSON.stringify({table:parent.parentElement.id, limit:5, offset:5})})
     json = response.ok ? await response.json() : []
     json.forEach(_ => {
 	    const component = globalThis.document.createElement(lodash.kebabCase(parent.parentElement.id))
@@ -238,7 +238,7 @@ import * as lodash from 'https://cdn.jsdelivr.net/npm/lodash-es/lodash.min.js'
 (async function()
 {
     const parent = globalThis.document.getElementById('productUnit')
-    const response = await globalThis.fetch('/ajax', {method:'POST', body:globalThis.JSON.stringify({table:parent.id, limit:'all', offset:0})})
+    const response = await globalThis.fetch('/ajax', {method:'POST', headers:{'Content-Type':'application/json'}, body:globalThis.JSON.stringify({table:parent.id, limit:'all', offset:0})})
     const json = response.ok ? await response.json() : []
     json.forEach(_ => {
 	    const component = globalThis.document.createElement(lodash.kebabCase(parent.id))
@@ -346,7 +346,7 @@ import * as lodash from 'https://cdn.jsdelivr.net/npm/lodash-es/lodash.min.js'
 (async function()
 {
     const parent = globalThis.document.getElementById('productReview')
-    const response = await globalThis.fetch('/ajax', {method:'POST', body:globalThis.JSON.stringify({table:parent.id, limit:'all', offset:0})})
+    const response = await globalThis.fetch('/ajax', {method:'POST', headers:{'Content-Type':'application/json'}, body:globalThis.JSON.stringify({table:parent.id, limit:'all', offset:0})})
     const json = response.ok ? await response.json() : []
     json.forEach(_ => {
 	    const component = globalThis.document.createElement(lodash.kebabCase(parent.id))
