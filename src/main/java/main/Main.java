@@ -105,8 +105,8 @@ public class Main
             registry.addHandler(
                 new TextWebSocketHandler()
                 {
-                    private static final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
-                    private static final ObjectMapper objectMapper = new ObjectMapper();
+                    private final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
+                    private final ObjectMapper objectMapper = new ObjectMapper();
                     @Override
                     public void afterConnectionClosed(WebSocketSession session, CloseStatus status)
                     {
