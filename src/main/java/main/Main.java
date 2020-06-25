@@ -126,7 +126,7 @@ public class Main
                         if ($.getId() != session.getId()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
             }
             @Override
-            protected void close()
+            public void close()
             {
                 this.sessions.values().stream.forEach(session -> session.close());
             }
