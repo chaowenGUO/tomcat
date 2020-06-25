@@ -124,7 +124,7 @@ public class Main
                         }
                         else
                             for (final var $: this.sessions.values())
-                                if ($ -> $.getId() != session.getId()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
+                                if ($.getId() != session.getId()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
                     }
                 }, "/ws");
         }
