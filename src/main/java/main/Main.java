@@ -102,34 +102,42 @@ public class Main
     @EnableWebSocket
     private static final class WebSocketConfig implements WebSocketConfigurer
     {
+        private static final class WebSocker extends TextWebSocketHandler implements AutoCloseable
+        {
+            private final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
+            private final ObjectMapper objectMapper = new ObjectMapper();
+            @Override
+            public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception
+            {
+                this.sessions.remove(session.getId());
+                for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "disconnect"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+            }
+            @Override
+            protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
+            {
+                if (!this.sessions.containsKey(session.getId()))
+                {
+                    session.getAttributes().put("name", message.getPayload());
+                    for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                    this.sessions.put(session.getId(), session);
+                }
+                else
+                    for (final var $: this.sessions.values())
+                        if ($.getId() != session.getId()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
+            }
+            @Override
+            protected void close()
+            {
+                this.sessions.values().stream.forEach(session -> session.close());
+            }
+        }
         @Override
         public void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
         {
-            registry.addHandler(
-                new TextWebSocketHandler()
-                {
-                    private final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
-                    private final ObjectMapper objectMapper = new ObjectMapper();
-                    @Override
-                    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception
-                    {
-                        this.sessions.remove(session.getId());
-                        for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "disconnect"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
-                    }
-                    @Override
-                    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
-                    {
-                        if (!this.sessions.containsKey(session.getId()))
-                        {
-                            session.getAttributes().put("name", message.getPayload());
-                            for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
-                            this.sessions.put(session.getId(), session);
-                        }
-                        else
-                            for (final var $: this.sessions.values())
-                                if ($.getId() != session.getId()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
-                    }
-                }, "/ws");
+            try (final var webSocker = new WebSocker())
+            {
+                registry.addHandler(webSocker, "/ws");
+            }
         }
     }
     
