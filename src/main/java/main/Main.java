@@ -98,13 +98,24 @@ public class Main
     private static final class WebSocketConfig implements WebSocketConfigurer
     {
         @Override
-        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
+        private void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
         {
             registry.addHandler(
                 new TextWebSocketHandler()
                 {
+                    private static final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
                     @Override
-                    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
+                    private void afterConnectionEstablished(WebSocketSession session)
+                    {
+                        this.sessions.put(session.getId(), session);
+                    }
+                    @Override
+                    private void afterConnectionClosed(WebSocketSession session, CloseStatus status)
+                    {
+                         this.sessions.remove(session.getId());
+                    }
+                    @Override
+                    private void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
                     {
                         session.sendMessage(new TextMessage("fuck you"));
                     }
