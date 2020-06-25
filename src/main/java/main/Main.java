@@ -128,7 +128,7 @@ public class Main
             @Override
             public void close()
             {
-                this.sessions.values().stream.forEach(session -> session.close());
+                this.sessions.values().stream().forEach(session -> session.close());
             }
         }
         @Override
