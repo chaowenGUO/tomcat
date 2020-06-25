@@ -128,7 +128,7 @@ public class Main
         }
     }
     
-    public static void main(String[] args)this.sessions.values().stream().forEach(session -> session.sendMessage(new TextMessage({'action':'join', 'name':name})));
+    public static void main(String[] args)
     {
         SpringApplication.run(Main.class, args);
     }
