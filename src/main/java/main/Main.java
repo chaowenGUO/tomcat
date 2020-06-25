@@ -108,7 +108,7 @@ public class Main
                     private final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
                     private final ObjectMapper objectMapper = new ObjectMapper();
                     @Override
-                    public void afterConnectionClosed(WebSocketSession session, CloseStatus status)
+                    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception
                     {
                         this.sessions.remove(session.getId());
                         for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "disconnect"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
@@ -122,7 +122,9 @@ public class Main
                             for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                             this.sessions.put(session.getId(), session);
                         }
-                        else this.sessions.values().stream().filter($ -> $.getId() != session.getId()).forEach($ -> $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload()))))));
+                        else
+                            for (final var $: this.sessions.values())
+                                if ($ -> $.getId() != session.getId()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
                     }
                 }, "/ws");
         }
