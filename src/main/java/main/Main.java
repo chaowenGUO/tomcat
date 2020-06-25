@@ -41,7 +41,10 @@ public class Main
             {
                 try (final var statement = connection.createStatement())
                 {
-                    statement.executeUpdate(new java.io.BufferedReader(new java.io.InputStreamReader(new ClassPathResource("database.sql").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)).lines().collect(java.util.stream.Collectors.joining("\n")));
+                    try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new ClassPathResource("database.sql").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
+                    {
+                        statement.executeUpdate(reader.lines().collect(java.util.stream.Collectors.joining("\n")));
+                    }
                 }
             }             
         }
