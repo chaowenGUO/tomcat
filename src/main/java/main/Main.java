@@ -138,6 +138,7 @@ public class Main
             {
                 registry.addHandler(webSocker, "/ws");
             }
+            catch (Exception error){}
         }
     }
     
