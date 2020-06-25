@@ -111,7 +111,7 @@ public class Main
                     public void afterConnectionClosed(WebSocketSession session, CloseStatus status)
                     {
                         this.sessions.remove(session.getId());
-                        this.sessions.values().stream().forEach(session -> session.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "disconnect"), java.util.Map.entry("name", session.getAttributes().get("name")))))));
+                        this.sessions.values().stream().forEach($ -> $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "disconnect"), java.util.Map.entry("name", session.getAttributes().get("name")))))));
                     }
                     @Override
                     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
@@ -119,7 +119,7 @@ public class Main
                         if (!this.sessions.containsKey(session.getId()))
                         {
                             session.getAttributes().put("name", message.getPayload());
-                            this.sessions.values().stream().forEach(session -> session.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", session.getAttributes().get("name")))))));
+                            this.sessions.values().stream().forEach($ -> $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", session.getAttributes().get("name")))))));
                             this.sessions.put(session.getId(), session);
                         }
                         else this.sessions.values().stream().filter($ -> $.getId() != session.getId()).forEach($ -> $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload()))))));
