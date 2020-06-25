@@ -11,10 +11,13 @@
 globalThis.document.querySelector('button').addEventListener('click', () =>
 {
     const websocket = new globalThis.WebSocket(globalThis.location.origin.replace('http', 'ws') + '/ws')
-    websocket.onopen = () => websocket.send('fuck')
+    websocket.onopen = () => 
+    {
+        websocket.send('fuck')
+        websocket.send('fuck')
+        websocket.send('fuck')
+    }
     websocket.onmessage = event => globalThis.document.querySelector('input').value = event.data
-    websocket.send('fuck')
-    websocket.send('fuck')
 })
 </script>
         
