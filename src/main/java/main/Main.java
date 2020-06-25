@@ -95,7 +95,7 @@ public class Main
     }
     
     @EnableWebSocket
-    public class WebSocketConfig implements WebSocketConfigurer
+    private static final class WebSocketConfig implements WebSocketConfigurer
     {
         @Override
         public void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
