@@ -19,6 +19,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.TextMessage;
+import com.fasterxml.jackson.databind.ObjectMapper;
     
 @RestController
 @SpringBootApplication
@@ -107,7 +108,9 @@ public class Main
                     @Override
                     private void afterConnectionEstablished(WebSocketSession session)
                     {
-                        this.sessions.put(session.getId(), session);
+                        
+                        this.sessions.values().stream().forEach(session -> session.sendMessage(new TextMessage({'action':'join', 'name':name})));
+                        
                     }
                     @Override
                     private void afterConnectionClosed(WebSocketSession session, CloseStatus status)
@@ -117,13 +120,15 @@ public class Main
                     @Override
                     private void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
                     {
-                        session.sendMessage(new TextMessage("fuck you"));
+                        final String name = message.getPayload();                      
+                        this.sessions.values().stream().forEach(session -> session.sendMessage(new TextMessage(new ObjectMapper().writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", name))))));
+                        this.sessions.put(session.getId(), session);
                     }
                 }, "/ws");
         }
     }
     
-    public static void main(String[] args)
+    public static void main(String[] args)this.sessions.values().stream().forEach(session -> session.sendMessage(new TextMessage({'action':'join', 'name':name})));
     {
         SpringApplication.run(Main.class, args);
     }
