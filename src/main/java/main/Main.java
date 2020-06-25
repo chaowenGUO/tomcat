@@ -132,7 +132,7 @@ public class Main
             }
         }
         @Override
-        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) throws Exception
+        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
         {
             try (final var webSocker = new WebSocker())
             {
