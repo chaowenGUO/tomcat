@@ -99,7 +99,7 @@ public class Main
     private static final class WebSocketConfig implements WebSocketConfigurer
     {
         @Override
-        private void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
+        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
         {
             registry.addHandler(
                 new TextWebSocketHandler()
@@ -113,7 +113,7 @@ public class Main
                     //    this.sessions.values().stream().forEach(session -> session.sendMessage(new TextMessage(new ObjectMapper().writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "disconnect"), java.util.Map.entry("name", this.name))))));
                     //}
                     @Override
-                    private void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
+                    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
                     {
                     //    if (!this.sessions.containsKey(session.getId()))
                     //     {
