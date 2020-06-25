@@ -13,10 +13,11 @@ import javax.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-import javax.websocket.server.ServerEndpoint;
-import javax.websocket.OnMessage;
-import javax.websocket.Session;
-import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.TextMessage;
     
 @RestController
 @SpringBootApplication
@@ -92,20 +93,22 @@ public class Main
         return array;
     }
     
-    @ServerEndpoint("/ws")
-    private static final class Websocket
+    @EnableWebSocket
+    public class WebSocketConfig implements WebSocketConfigurer
     {
-        @OnMessage
-        public void onMessage(Session session, String jsonStr) throws Exception
+        @Override
+        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
         {
-            session.getBasicRemote().sendText("fuck");
+            registry.addHandler(
+                new TextWebSocketHandler()
+                {
+                    @Override
+                    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
+                    {
+                        session.sendMessage(new TextMessage("fuck you"));
+                    }
+                }, "/ws");
         }
-    }
-    
-    @Bean
-    public ServerEndpointExporter serverEndpointExporter()
-    {
-        return new ServerEndpointExporter();
     }
     
     public static void main(String[] args)
