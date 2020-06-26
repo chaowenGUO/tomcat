@@ -104,8 +104,8 @@ public class Main
     {
         private static final class WebSocker extends TextWebSocketHandler implements AutoCloseable
         {
-            private final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
-            private final ObjectMapper objectMapper = new ObjectMapper();
+            private static final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
+            private static final ObjectMapper objectMapper = new ObjectMapper();
             @Override
             public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception
             {
