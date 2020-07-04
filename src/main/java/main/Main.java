@@ -116,7 +116,7 @@ public class Main
             @Override
             protected void handleTextMessage(final WebSocketSession session, final TextMessage message) throws Exception
             {
-                if (!this.sessions.containsKey(session.getId()))
+                if (Objects.isNull(session.getAttributes().get("name")))
                 {
                     session.getAttributes().put("name", message.getPayload());
                     for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
