@@ -116,7 +116,7 @@ public class Main
             @Override
             protected void handleTextMessage(final WebSocketSession session, final TextMessage message) throws Exception
             {
-                if (java.utils.Objects.isNull(session.getAttributes().get("name")))
+                if (java.util.Objects.isNull(session.getAttributes().get("name")))
                 {
                     session.getAttributes().put("name", message.getPayload());
                     for (final var $: this.sessions) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
@@ -129,7 +129,7 @@ public class Main
             @Override
             public void close() throws Exception
             {
-                for (final var $: this.sessions.values()) $.close();
+                for (final var $: this.sessions) $.close();
             }
         }
         @Override
