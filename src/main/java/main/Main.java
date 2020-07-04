@@ -105,7 +105,6 @@ public class Main
     {
         private static final class WebSocker extends TextWebSocketHandler implements AutoCloseable
         {
-            Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>())
             private static final java.util.Set<WebSocketSession> sessions = java.util.Collections.newSetFromMap(new java.util.concurrent.ConcurrentHashMap<>());
             private static final ObjectMapper objectMapper = new ObjectMapper();
             @Override
