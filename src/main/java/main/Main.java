@@ -108,13 +108,13 @@ public class Main
             private static final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
             private static final ObjectMapper objectMapper = new ObjectMapper();
             @Override
-            public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception
+            public void afterConnectionClosed(final WebSocketSession session, final CloseStatus status) throws Exception
             {
                 this.sessions.remove(session.getId());
                 for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "disconnect"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
             }
             @Override
-            protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception
+            protected void handleTextMessage(final WebSocketSession session, final TextMessage message) throws Exception
             {
                 if (!this.sessions.containsKey(session.getId()))
                 {
@@ -133,7 +133,7 @@ public class Main
             }
         }
         @Override
-        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
+        public void registerWebSocketHandlers(final WebSocketHandlerRegistry registry)
         {
             try (final var webSocker = new WebSocker())
             {
@@ -143,7 +143,7 @@ public class Main
         }
     }
     
-    public static void main(String[] args)
+    public static void main(final String[] args)
     {
         SpringApplication.run(Main.class, args);
     }
