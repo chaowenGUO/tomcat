@@ -33,9 +33,10 @@ public class Main
         private DataSource() throws Exception
         {
             final var config = new HikariConfig();
-            config.setJdbcUrl(String.join("", "jdbc:postgresql://", System.getenv("POSTGRESQL_SERVICE_HOST"), ":", System.getenv("POSTGRESQL_SERVICE_PORT"), "/sampledb"));
-            config.setUsername("postgresql");
-            config.setPassword("postgresql");
+            //config.setJdbcUrl(String.join("", "jdbc:postgresql://", System.getenv("POSTGRESQL_SERVICE_HOST"), ":", System.getenv("POSTGRESQL_SERVICE_PORT"), "/sampledb"));
+            //config.setUsername("postgresql");
+            //config.setPassword("postgresql");
+            config.setJdbcUrl(System.getenv("JDBC_DATABASE_URL"));
             this.dataSource = new HikariDataSource(config);
             try (final var connection = this.dataSource.getConnection())
             {
