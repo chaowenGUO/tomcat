@@ -105,13 +105,14 @@ public class Main
     {
         private static final class WebSocker extends TextWebSocketHandler implements AutoCloseable
         {
-            private static final java.util.Map<String, WebSocketSession> sessions = new java.util.concurrent.ConcurrentHashMap<>();
+            Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>())
+            private static final java.util.Set<WebSocketSession> sessions = java.util.Collections.newSetFromMap(new java.util.concurrent.ConcurrentHashMap<>());
             private static final ObjectMapper objectMapper = new ObjectMapper();
             @Override
             public void afterConnectionClosed(final WebSocketSession session, final CloseStatus status) throws Exception
             {
-                this.sessions.remove(session.getId());
-                for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "disconnect"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                this.sessions.remove(session);
+                for (final var $: this.sessions) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "disconnect"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
             }
             @Override
             protected void handleTextMessage(final WebSocketSession session, final TextMessage message) throws Exception
@@ -119,12 +120,12 @@ public class Main
                 if (Objects.isNull(session.getAttributes().get("name")))
                 {
                     session.getAttributes().put("name", message.getPayload());
-                    for (final var $: this.sessions.values()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
-                    this.sessions.put(session.getId(), session);
+                    for (final var $: this.sessions) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "join"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                    this.sessions.add(session);
                 }
                 else
-                    for (final var $: this.sessions.values())
-                        if ($.getId() != session.getId()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
+                    for (final var $: this.sessions)
+                        if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("action", "sent"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
             }
             @Override
             public void close() throws Exception
