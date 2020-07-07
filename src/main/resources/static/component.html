@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+        <style>
+            span.hover:hover{color:red}
+	    @keyframes switch
+	    {
+	        from { transform: translateX(0);}
+	        to { transform: translateX(-80%);}
+	    }
+	    input[type=number]::-webkit-inner-spin-button {opacity: 1}
+        </style>
+    </head>
+    <body> 
+    <nav style='display:flex; background-color:lightgray'>
+        <a class='hover' style='display:grid; grid-auto-flow:column; justify-content:start'><span class='material-icons' style='color:red'>home</span>天猫首页</a>
+        <span>喵，欢迎来天猫</span>
+     　　<a class='hover'>请登录</a>
+     　　<a class='hover'>免费注册</a>
+        <a class='hover' style='margin-left:auto'>我的订单</a>
+	<a class='hover' style='display:grid; grid-auto-flow:column; justify-content:start'><span class='material-icons' style='color:red'>shopping_cart</span>购物车<strong>0</strong>件</a>
+    </nav>
+<div>
+    <a href="#nowhere"> <img class="logo" src="https://how2j.cn/tmall/img/site/logo.gif"
+        id="logo">
+    </a>
+   
+        <div class="searchDiv">
+            <input placeholder="时尚男鞋  太阳镜 " name="keyword">
+            <button class="searchButton" type="submit">搜索</button>
+            <div class="searchBelow">
+                <span> <a href="#nowhere"> 平衡车 </a> <span>|</span>
+                </span> <span> <a href="#nowhere"> 扫地机器人 </a> <span>|</span>
+                </span> <span> <a href="#nowhere"> 原汁机 </a> <span>|</span>
+                </span> <span> <a href="#nowhere"> 冰箱 </a></span>
+            </div>
+        </div>
+</div>
+        
+<div style='display:grid; grid-auto-flow:column; justify-content:space-between'>
+    <img src='https://how2j.cn/tmall/img/site/simpleLogo.png'> 
+    <div style='display:grid; grid-template-columns:repeat(2, auto); justify-content:start'>
+        <input placeholder='平衡车 原汁机' style='border-style:solid; border-color:red'><button type='button' style='color:white; background-color:red; border-style:solid; border-color:red'>搜天猫</button>
+        <nav style='grid-column-start:1; grid-column-end:-1; display:grid; grid-auto-flow:column'><a>冰箱</a> | <a>空调</a> | <a>女表</a> | <a>男表</a></nav>
+    </div>
+</div>
+
+<div style='position:relative'>
+    <nav style='display:grid; grid-auto-flow:column; justify-content:start; column-gap:1em;  background-color:red; color:white; height:2em; align-items:center'>
+        <strong style='display:grid; grid-auto-flow:column; justify-content:start'><span class='material-icons'>list</span>商品分类</strong>
+        <a style='display:contents'><img src='https://how2j.cn/tmall/img/site/chaoshi.png' style='height:100%'></a>
+        <a style='display:contents'><img src='https://how2j.cn/tmall/img/site/guoji.png' style='height:100%'></a>
+        <a>马桶</a>
+        <a>沙发</a>
+        <a>平板电视</a>
+        <a>电热水器</a>        
+    </nav>
+    <img src='https://how2j.cn/tmall/img/site/catear.png' style='display:none; position:absolute; width:2em'>
+</div>
+	    
+<script type='module'>
+const catear = globalThis.document.querySelector('img[src="https://how2j.cn/tmall/img/site/catear.png"]')
+catear.previousElementSibling.querySelectorAll('a').forEach(_ => {
+	_.addEventListener('mouseenter', () => {
+		catear.style.display = ''
+                catear.style.left = _.offsetLeft + (_.clientWidth - catear.clientWidth) / 2 + 'px'
+                catear.style.top = -catear.clientHeight + 'px'})
+	_.addEventListener('mouseleave', () => catear.style.display = 'none')})
+</script>
+
+<div style='position:relative'>
+    <div style='display:grid; grid-auto-flow:column; justify-items:stretch; width:500%; animation-name:switch; animation-duration:5s; animation-timing-function:linear; animation-iteration-count:infinite'>
+        <img src='https://how2j.cn/tmall/img/lunbo/1.jpg'>
+        <img src='https://how2j.cn/tmall/img/lunbo/2.jpg'>
+        <img src='https://how2j.cn/tmall/img/lunbo/3.jpg'>
+        <img src='https://how2j.cn/tmall/img/lunbo/4.jpg'>
+        <img src='https://how2j.cn/tmall/img/lunbo/1.jpg'>
+    </div>
+    <div style='position:absolute; top:0; left:0; display:grid; height:100%'>
+        <a id='from'>平板电视</a> <a>马桶</a> <a>沙发</a> <a>电热水器</a> <a>平衡车</a> <a>扫地机器人</a> <a>原汁机</a> <a>冰箱</a> <a>空调</a> <a>女表</a> <a>男表</a> <a>男士手拿包</a> <a>男士西服</a> <a>时尚男鞋</a> <a>品牌女装</a> <a>太阳镜</a> <a>安全座椅</a>
+    </div>
+    <div id='to' style='position:absolute; top:0; left:6em; display:grid; display:none; height:100%'>
+	<div style='display:grid; grid-auto-flow:column; justify-content:start; column-gap:1em'>
+            <a>屏大影院</a> <a>周末</a> <a>新品特惠</a> <a>32吋电视机</a> <a>智能网络</a>
+        </div>
+	<div style='display:grid; grid-auto-flow:column; justify-content:start; column-gap:1em'>
+	    <a>USB高清解</a> <a>芒果TV在线</a> <a>抢购价</a> <a>USB解码</a> <a>32英吋</a> <a>10核</a> <a>TCL品牌日</a>
+        </div>
+	<div style='display:grid; grid-auto-flow:column; justify-content:start; column-gap:1em'>
+	    <a>不要赠品</a> <a>新品上市</a> <a>4K硬屏</a> <a>领100元券</a> <a>智能高清</a> <a>8月，酷暑</a> <a>8月大促</a> <a>天猫定制</a>
+        </div>
+	<div style='display:grid; grid-auto-flow:column; justify-content:start; column-gap:1em'>
+            <a>YUNOS</a> <a>微信电视</a> <a>4k超清</a> <a>64位真4K</a> <a>10核机芯</a> <a>V字黑釉底座</a> <a>4K超清</a>
+	</div>
+	<div style='display:grid; grid-auto-flow:column; justify-content:start; column-gap:1em'>
+	    <a>64位14核</a> <a>海量影视</a> <a>人气爆款</a> <a>限时特惠</a> <a>真4K屏</a> <a>65吋巨屏</a> <a>4K超清视界</a> <a>限时特惠</a>
+	</div>
+	<div style='display:grid; grid-auto-flow:column; justify-content:start; column-gap:1em'>
+	    <a>55寸旗舰</a> <a>4K机皇</a> <a>曲面机皇</a> <a>轻薄4K</a>
+        </div>        
+    </div>
+</div>
+	    
+<script type='module'>
+globalThis.document.getElementById('from').onmouseenter = () => globalThis.document.getElementById('to').style.display = ''
+globalThis.document.getElementById('from').onmouseleave = () => globalThis.document.getElementById('to').style.display = 'none'
+globalThis.document.getElementById('to').onmouseenter = () => globalThis.document.getElementById('to').style.display = ''
+globalThis.document.getElementById('to').onmouseleave = () => globalThis.document.getElementById('to').style.display = 'none'
+</script>
+	    	    
+<div id='productItem' style='background-color:whitesmoke'>
+    <div style='border-left-style:solid; border-left-width:1em; border-left-color:lime'>太阳镜</div>
+    <div style='display:grid; grid-auto-flow:column; column-gap:1em'></div>
+    <div style='border-left-style:solid; border-left-width:1em; border-left-color:lime'>安全座椅</div>
+    <div style='display:grid; grid-auto-flow:column; column-gap:1em'></div>
+    <img src='https://how2j.cn/tmall/img/site/end.png' style='display:block; margin:auto'>
+</div>
+
+<template>
+    <style>
+        :host {background-color:white}
+    </style>
+    <img>
+    [热销]<slot></slot>
+    <div style='color:red'><slot name='price'></slot></div>
+</template>
+	    
+<script type='module'>
+globalThis.customElements.define('product-item',
+    class extends globalThis.HTMLElement
+    {
+	static get observedAttributes()
+	{
+            return ['image']
+        }
+        constructor()
+	{
+            super()
+            this.attachShadow({mode:'open'}).appendChild(globalThis.document.getElementById('productItem').nextElementSibling.content.cloneNode(true))
+	}
+	attributeChangedCallback(name, oldValue, newValue)
+	{
+	    this.shadowRoot.querySelector('img').src = ['https://how2j.cn/tmall/img/productSingle_middle/', this.getAttribute('image'), '.jpg'].join('')
+        }
+    })
+import * as lodash from 'https://cdn.jsdelivr.net/npm/lodash-es/lodash.min.js'
+(async () =>
+{
+    let parent = globalThis.document.getElementById('productItem').children[1]
+    let response = await globalThis.fetch('/ajax', {method:'POST', headers:{'Content-Type':'application/json'}, body:globalThis.JSON.stringify({table:parent.parentElement.id, limit:5, offset:0})})
+    let json = response.ok ? await response.json() : []
+    json.forEach(_ => {
+	    const component = globalThis.document.createElement(lodash.kebabCase(parent.parentElement.id))
+	    component.setAttribute('image', _.image)
+	    delete _.image
+	    globalThis.Object.entries(_).forEach(([key, value]) => {
+		    component.appendChild(globalThis.document.createElement('span'))
+                    component.lastElementChild.slot = globalThis.Object.is(key, 'description') ? '' : key
+                    component.lastElementChild.textContent = value})
+	    parent.appendChild(component)})
+    parent = globalThis.document.getElementById('productItem').children[3]
+    response = await globalThis.fetch('/ajax', {method:'POST', headers:{'Content-Type':'application/json'}, body:globalThis.JSON.stringify({table:parent.parentElement.id, limit:5, offset:5})})
+    json = response.ok ? await response.json() : []
+    json.forEach(_ => {
+	    const component = globalThis.document.createElement(lodash.kebabCase(parent.parentElement.id))
+	    component.setAttribute('image', _.image)
+	    delete _.image
+	    globalThis.Object.entries(_).forEach(([key, value]) => {
+		    component.appendChild(globalThis.document.createElement('span'))
+                    component.lastElementChild.slot = globalThis.Object.is(key, 'description') ? '' : key
+                    component.lastElementChild.textContent = value})
+	    parent.appendChild(component)})
+})()
+</script>
+
+<div>
+    <img src='https://how2j.cn/tmall/img/category/72.jpg'>
+	<table class="categorySortBarTable categorySortTable">
+		<tbody><tr>
+			<td class="grayColumn"><a href="#nowhere">综合<span class="glyphicon glyphicon-arrow-down"></span></a></td>
+			<td><a href="#nowhere">人气<span class="glyphicon glyphicon-arrow-down"></span></a></td>
+			<td><a href="#nowhere">新品<span class="glyphicon glyphicon-arrow-down"></span></a></td>
+			<td><a href="#nowhere">销量<span class="glyphicon glyphicon-arrow-down"></span></a></td>
+			<td><a href="#nowhere">价格<span class="glyphicon glyphicon-resize-vertical"></span></a></td>
+		</tr>
+	</tbody></table>
+	<table class="categorySortBarTable">
+		<tbody><tr>
+			<td><input type="text" placeholder="请输入" class="sortBarPrice beginPrice"></td>
+			<td class="grayColumn priceMiddleColumn">-</td>
+			<td><input type="text" placeholder="请输入" class="sortBarPrice endPrice"></td>
+		</tr>
+	</tbody></table>
+</div>
+	    
+<div id='productUnit' style='display:grid; grid-template-columns:repeat(4,1fr); column-gap:1em; row-gap:1em'></div>
+	    
+<template>
+    <style>
+        :host
+	{
+            border-style: solid;
+	    border-width: thin
+	}
+    </style>
+    <img>
+    <div style='color:red'><slot name='price'></slot></div>
+    <slot></slot>
+    <div style='color:gray'>天猫专卖</div>
+    <div style='display:grid; grid-template-columns:repeat(2, 4fr) 1fr; border-top-style:solid; border-top-width:thin'>
+	<div style='border-right-style:solid; border-right-width:thin'>月成交 <strong style='color:brown'><slot name='deal'></slot>笔</strong></div>
+	<div style='border-right-style:solid; border-right-width:thin'>评价<strong style='color:blue'><slot name='review'></slot></strong></div>
+	<img src='https://how2j.cn/tmall/img/site/wangwang.png'>
+    </div>
+</template>
+	    
+<script type='module'>
+globalThis.customElements.define('product-unit',
+    class extends globalThis.HTMLElement
+    {
+	static get observedAttributes()
+	{
+            return ['image']
+        }
+        constructor()
+	{
+            super()
+            this.attachShadow({mode:'open'}).appendChild(globalThis.document.getElementById('productUnit').nextElementSibling.content.cloneNode(true))
+	}	    
+	attributeChangedCallback(name, oldValue, newValue)
+	{
+	    this.shadowRoot.querySelector('img').src = ['https://how2j.cn/tmall/img/productSingle_middle/', this.getAttribute('image'), '.jpg'].join('')
+        }
+    })
+import * as lodash from 'https://cdn.jsdelivr.net/npm/lodash-es/lodash.min.js'
+(async () =>
+{
+    const parent = globalThis.document.getElementById('productUnit')
+    const response = await globalThis.fetch('/ajax', {method:'POST', headers:{'Content-Type':'application/json'}, body:globalThis.JSON.stringify({table:parent.id, limit:'all', offset:0})})
+    const json = response.ok ? await response.json() : []
+    json.forEach(_ => {
+	    const component = globalThis.document.createElement(lodash.kebabCase(parent.id))
+	    component.setAttribute('image', _.image)
+	    delete _.image
+	    globalThis.Object.entries(_).forEach(([key, value]) => {
+		    component.appendChild(globalThis.document.createElement('span'))
+                    component.lastElementChild.slot = globalThis.Object.is(key, 'description') ? '' : key
+                    component.lastElementChild.textContent = value})
+	    parent.appendChild(component)})
+})()
+</script>
+	    
+<div style='display:grid; grid-template-columns:1fr 4fr'>
+    <div>
+        <img src="https://how2j.cn/tmall/img/productSingle/8619.jpg" style='width:100%'>
+        <div style='display:grid; grid-auto-flow:column; justify-content:space-around'>
+            <img src='https://how2j.cn/tmall/img/productSingle_small/8620.jpg'>
+	    <img src='https://how2j.cn/tmall/img/productSingle_small/8619.jpg'>
+	    <img src='https://how2j.cn/tmall/img/productSingle_small/8618.jpg'>
+	    <img src='https://how2j.cn/tmall/img/productSingle_small/8617.jpg'>
+	    <img src='https://how2j.cn/tmall/img/productSingle_small/8616.jpg'>
+        </div>
+    </div>
+    <div>
+        <strong>名媛2016新款女装夏两件套裤韩版雪纺七分裤阔腿裤休闲时尚套装女</strong>
+        <nav style='display:grid; grid-auto-flow:column; justify-content:start; column-gap:1em; color:red; font-size:small'><span>高端定制</span> <span>高档棉麻</span> <span>现货即发</span> <span>加购物车</span> <span>领优惠卷</span></nav>
+        <div style='display:grid; grid-auto-flow:column; justify-content:center; align-items:baseline; background-color:green; color:white; height:2em; margin-top:1em'><strong style='font-size:large'>聚划算</strong>此商品即将参加聚划算，<strong style='color:orange'>1天19小时</strong>后开始，</div>
+        <div style='background-image:url(https://how2j.cn/tmall/img/site/priceBackground.png); box-sizing:border-box; height:6em; padding:1em'>
+            <img src='https://how2j.cn/tmall/img/site/gouwujuan.png' style='height:1em'>全天猫实物商品通用
+            <div>价格￥<del>399.00</del></div>
+            <div style='display:grid; grid-auto-flow:column; justify-content:start'>促销价<strong style='color:red; font-size:xx-large'>￥379.05</strong></div>
+        </div>
+        <div style='display:grid; grid-auto-flow:column; justify-content:space-around; border-top-style:dotted; border-top-width:thin; border-bottom-style:dotted; border-bottom-width:thin; height:3em; align-content:center; margin-top:1em; margin-bottom:1em'>
+            <div>销量 <strong style='color:red'>50</strong></div>	
+	    <div>累计评价 <strong style='color:red'>19</strong></div>	
+        </div>
+        <div>数量<input type='number' style='width:5em'>件 库存66件</div>
+        <nav style='display:grid; grid-auto-flow:column; justify-content:start; column-gap:1em; margin-top:1em; margin-bottom:1em'><span>服务承诺</span> <a>正品保证</a> <a>极速退款</a> <a>赠运费险</a> <a>七天无理由退换</a></nav>
+        <div style='display:grid; grid-template-columns:repeat(2, 15em); justify-content:center; height:3em; column-gap:1em'>
+            <button style='background-color:pink; color:red; border-style:solid; border-color:red'>立即购买</button>
+	    <button style='background-color:red; color:white; border-width:0'>加入购物车</button>
+        </div>
+    </div>
+</div>
+
+<div class="productDetailDiv" style="display: block;">
+    <div style='border: 1px solid #DFDFDF; border-left-width:0px'>
+        <a class="productDetailTopPartSelectedLink selected" href="#nowhere">商品详情</a>
+        <a style='padding: 0px 20px;
+	border-right: 1px dotted #D2D2D2;
+	color: #333333'>累计评价 <span style='color:cyan'>19</span></a>
+    </div>
+    <div style='border-style:solid; border-width:thin'>
+        <strong>产品参数：</strong>
+        <div style='display:grid; grid-template-columns:repeat(3, 1fr); row-gap:1em'>
+	    <div>材质成分:  聚酯纤维100%</div>
+            <div>品牌:  Emyche/艾米秋</div>
+            <div>货号:  129668</div>
+            <div>尺码:  L M S XL X</div>
+            <div>上市年份季节:  2016年夏季</div>
+            <div>颜色分类:  白色 黑色 浅蓝</div>
+            <div>适用年龄:  18-25周岁</div>
+        </div>
+    </div>
+    <img src='https://how2j.cn/tmall/img/productDetail/8626.jpg'>
+</div>
+
+	<div class="productReviewTopPart">
+		<a class="productReviewTopPartSelectedLink" href="#nowhere">商品详情</a>
+		<a class="selected" href="#nowhere">累计评价 <span class="productReviewTopReviewLinkNumber">19</span> </a>
+	</div>
+<div id='productReview'></div>
+	
+<template>
+    <style>
+        :host
+        {
+            display: grid;
+	    grid-auto-flow: column; 
+	    column-gap: 1em; 
+	    justify-content: space-between; 
+	    border-bottom-style: solid; 
+	    border-bottom-width: thin
+        }
+    </style>
+    <div>
+        <slot></slot>
+	<div style='color:lightgray'><slot name='date'>/slot></div>
+    </div>
+    <div><slot name='user'></slot><span style='color:lightgray'>（匿名）</span></div>
+</template>
+	
+<script type='module'>
+globalThis.customElements.define('product-review',
+    class extends globalThis.HTMLElement
+    {
+        constructor()
+	{
+            super()
+            this.attachShadow({mode:'closed'}).appendChild(globalThis.document.getElementById('productReview').nextElementSibling.content.cloneNode(true))
+	}
+    })
+import * as lodash from 'https://cdn.jsdelivr.net/npm/lodash-es/lodash.min.js'
+(async () =>
+{
+    const parent = globalThis.document.getElementById('productReview')
+    const response = await globalThis.fetch('/ajax', {method:'POST', headers:{'Content-Type':'application/json'}, body:globalThis.JSON.stringify({table:parent.id, limit:'all', offset:0})})
+    const json = response.ok ? await response.json() : []
+    json.forEach(_ => {
+	    const component = globalThis.document.createElement(lodash.kebabCase(parent.id))
+	    globalThis.Object.entries(_).forEach(([key, value]) => {
+		    component.appendChild(globalThis.document.createElement('span'))
+                    component.lastElementChild.slot = globalThis.Object.is(key, 'description') ? '' : key
+                    component.lastElementChild.textContent = value})
+	    parent.appendChild(component)})
+})()
+</script>
+	
+<div>
+    <div style='display:grid; grid-auto-flow:column; justify-content:end; column-gap:1em'>
+        <div>已选商品  (不含运费)</div>
+	<div style='color:red'>￥0.00</div>
+	<button style='background-color:gray; color:white; border-width:0; border-radius:1em'>结 算</button>
+    </div>
+    <table style='margin:auto'>
+        <thead>
+	    <tr>
+                <th><input type='radio'>全选</th>
+                <th>商品信息</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>金额</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type='radio'><img src='https://how2j.cn/tmall/img/productSingle_middle/3665.jpg'></td>
+                <td>美国iRobot扫地机器人吸尘器全自动家用智能扫地机650 天猫电器城
+		    <div>
+                        <img title='支持信用卡支付' src='https://how2j.cn/tmall/img/site/creditcard.png'>
+                        <img title='消费者保障服务,承诺7天退货' src='https://how2j.cn/tmall/img/site/7day.png'>
+                        <img title='消费者保障服务,承诺如实描述' src='https://how2j.cn/tmall/img/site/promise.png'>
+                    </div>
+                </td>
+                <td><strong style='color:gray; text-decoration:line-through'>￥7580.0</strong><br><strong style='color:red'>￥5306.0</strong></td>
+                <td><input></td>
+                <td style='font-weight:bold; color:red'>￥5,306.00</td>
+                <td>删除</td>
+            </tr>
+            <tr>
+                <td><input type='radio'><img src='https://how2j.cn/tmall/img/productSingle_middle/8510.jpg'></td>
+                <td>阔腿裤三件套装女夏装2016新款大码雪纺时尚休闲气质棉麻九分裤潮
+	            <div>
+	                <img title='支持信用卡支付' src='https://how2j.cn/tmall/img/site/creditcard.png'>
+                        <img title='消费者保障服务,承诺7天退货' src='https://how2j.cn/tmall/img/site/7day.png'>
+                        <img title='消费者保障服务,承诺如实描述' src='https://how2j.cn/tmall/img/site/promise.png'>
+	            </div>
+                </td>
+                <td><strong style='color:gray; text-decoration:line-through'>￥235.0</strong><br><strong style='color:red'>￥152.75</strong></td>
+                <td><input></td>
+                <td style='font-weight:bold; color:red'>￥152.75</td>
+                <td>删除</td>
+            </tr>
+        </tbody>
+    </table>
+    <div style='display:grid; grid-auto-flow:column; justify-content:space-between; background-color:lightgray'>
+        <div><input type='radio'>全选</div>
+	<div>
+	    已选商品 <strong class='color:red'>0</strong> 件
+	    合计 (不含运费): <strong style='color:red'>￥0.00</strong>
+	    <button style='background-color:gray; color:white; border-style:solid; border-color:gray'>结  算</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div style='display:grid; grid-auto-flow:column; border-bottom-style:solid; border-bottom-width:thin'>
+        <strong style=''>所有订单</strong>
+	<strong>待付款</strong>
+	<strong>待发货</strong>
+	<strong>待收货</strong>
+	<strong>待评价</strong>
+    </div>
+    <table>
+        <thead>
+	    <tr>
+	        <th colspan='2'>宝贝</td>
+		<td>单价</td>
+		<td>数量</td>
+	        <td>实付款</td>
+		<td>交易操作</td>
+	    </tr>
+	</thead>
+	<tbody>
+	    <tr>
+	        <td colspan='2'><strong>2016-09-12 17:00:41</strong>订单号: 20160912170041674794</td>
+		<td colspan='2'><img src='https://how2j.cn/tmall/img/site/orderItemTmall.png'>天猫商场</td>
+		<td><img src='https://how2j.cn/tmall/img/site/wangwang.gif'></td>
+		<td class='material-icons'>delete</td>
+	    </tr>
+	    <tr>
+	        <td><img src='https://how2j.cn/tmall/img/productSingle_middle/3796.jpg'></td>
+		<td>公众智能扫地机器人家用全自动电动清洁地毯擦拖地一体机吸尘器
+		    <div>
+		        <img title='支持信用卡支付' src='https://how2j.cn/tmall/img/site/creditcard.png'>
+			<img title='消费者保障服务,承诺7天退货' src='https://how2j.cn/tmall/img/site/7day.png'>
+			<img title='消费者保障服务,承诺如实描述' src='https://how2j.cn/tmall/img/site/promise.png'>						
+		    </div>
+		</td>
+		<td><span style='color:gray'>￥2,499.00</span><br>￥2,124.15</td>
+		<td>1</td>
+		<td>￥2,124.15<br>(含运费：￥0.00)</td>
+		<td><button>评价</button></td>						
+	    </tr>
+	</tbody>
+	<tbody>
+	    <tr>
+	        <td colspan='2'><strong>2016-09-12 17:00:33</strong>订单号: 201609121700333128784</td>
+		<td colspan='2'><img src='https://how2j.cn/tmall/img/site/orderItemTmall.png'>天猫商场</td>
+		<td><img src='https://how2j.cn/tmall/img/site/wangwang.gif'></td>
+		<td class='material-icons'>delete</td>
+	    </tr>
+	    <tr>
+	        <td><img src='https://how2j.cn/tmall/img/productSingle_middle/6651.jpg'></td>
+		<td>ULIFE原创信封包男个性真皮手包男士手拿包休闲男包手抓包拉链潮
+		    <div>
+		        <img title='支持信用卡支付' src='https://how2j.cn/tmall/img/site/creditcard.png'>
+		        <img title='消费者保障服务,承诺7天退货' src='https://how2j.cn/tmall/img/site/7day.png'>
+		        <img title='消费者保障服务,承诺如实描述' src='https://how2j.cn/tmall/img/site/promise.png'>						
+		    </div>
+	        </td>
+	        <td><span style="orderListItemProductOriginalPrice">￥1,188.00</span><br>￥1,128.60</td>
+	        <td>1</td>
+	        <td>￥1,128.60<br>(含运费：￥0.00)</td>
+	        <td><button>确认收货</button></td>						
+	    </tr>
+	</tbody>
+    </table>
+</div>
+
+<div>
+    <div style='display:grid; grid-auto-flow:column; justify-content:space-between'>
+        <img src='https://how2j.cn/tmall/img/site/simpleLogo.png'>
+	<img src='https://how2j.cn/tmall/img/site/buyflow.png'>
+    </div>
+    输入收货地址
+    <div style='display:grid; grid-template-columns:repeat(2, auto); justify-content:start; column-gap:1em'>
+        <div>详细地址<span style='color:red'>*</span></div><textarea placeholder='建议您如实填写详细收货地址，例如接到名称，门牌好吗，楼层和房间号等信息'></textarea>
+	<div>邮政编码</div><input placeholder='如果您不清楚邮递区号，请填写000000'>
+        <div>收货人姓名<span style='color:red'>*</span></div><input placeholder='长度不超过25个字符'>
+        <div>手机号码<span style='color:red'>*</span></div><input placeholder='请输入11位手机号码'>
+    </div>
+</div>
+
+<div class="payedDiv">
+	<div class="payedTextDiv">
+		<img src="https://how2j.cn/tmall/img/site/paySuccess.png">
+		<span>您已成功付款</span> 
+	</div>
+	<div class="payedAddressInfo">
+		<ul>
+			<li>收货地址： 北京市 朝阳区 天安门 3栋 2单元 402室 </li>
+			<li>实付款：<span class="payedInfoPrice">
+			￥2,124.15
+			</span></li>
+			<li>预计08月08日送达	</li>
+		</ul>
+		<div class="paedCheckLinkDiv">
+			您可以
+			<a href="#nowhere" class="payedCheckLink">查看已买到的宝贝</a>
+			<a href="#nowhere" class="payedCheckLink">查看交易详情 </a>
+		</div>
+	</div>
+	<div class="payedSeperateLine">
+	</div>
+	<div class="warningDiv">
+		<img src="https://how2j.cn/tmall/img/site/warning.png">
+		<b>安全提醒：</b>下单后，<span class="redColor boldWord">用QQ给您发送链接办理退款的都是骗子！</span>天猫不存在系统升级，订单异常等问题，谨防假冒客服电话诈骗！
+	</div>
+</div>
+	
+<div class="buyPageDiv">
+	<div class="productList">
+		<div class="productListTip">确认订单信息</div>
+		<table class="productListTable">
+			<thead>
+				<tr>
+					<th class="productListTableFirstColumn" colspan="2">
+						<img src="https://how2j.cn/tmall/img/site/tmallbuy.png" class="tmallbuy">
+						<a href="#nowhere" class="marketLink">店铺：天猫店铺</a>
+						<a href="#nowhere" class="wangwanglink"> <span class="wangwangGif"></span> </a>
+					</th>
+					<th>单价</th>
+					<th>数量</th>
+					<th>小计</th>
+					<th>配送方式</th>
+				</tr>
+				<tr class="rowborder">
+					<td colspan="2"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody class="productListTableTbody">
+					<tr class="orderItemTR">
+						<td class="orderItemFirstTD"><img width="20px"  src="https://how2j.cn/tmall/img/productSingle_middle/4206.jpg" class="orderItemImg"></td>
+						<td class="orderItemProductInfo">
+						<a class="orderItemProductLink" href="#nowhere">
+							Philips/飞利浦 HR1897/30破壁微榨原汁机 多功能家用果汁榨汁机
+						</a>
+							<img title="支持信用卡支付" src="https://how2j.cn/tmall/img/site/creditcard.png">
+							<img title="消费者保障服务,承诺7天退货" src="https://how2j.cn/tmall/img/site/7day.png">
+							<img title="消费者保障服务,承诺如实描述" src="https://how2j.cn/tmall/img/site/promise.png">
+						</td>
+						<td>
+						<span class="orderItemProductPrice">￥3,514.05</span>
+						</td>
+						<td>
+						<span class="orderItemProductNumber">2</span>
+						</td>
+						<td><span class="orderItemUnitSum">
+						￥7,028.10
+						</span></td>
+						<td class="orderItemLastTD" rowspan="5">
+						<label class="orderItemDeliveryLabel">
+							<input type="radio" checked="checked" value="">
+							普通配送
+						</label>
+						<select class="orderItemDeliverySelect">
+							<option>快递 免邮费</option>
+						</select>
+						</td>
+					</tr>
+					<tr class="orderItemTR">
+						<td class="orderItemFirstTD"><img width="20px"  src="https://how2j.cn/tmall/img/productSingle_middle/3796.jpg" class="orderItemImg"></td>
+						<td class="orderItemProductInfo">
+						<a class="orderItemProductLink" href="#nowhere">
+							公众智能扫地机器人家用全自动电动清洁地毯擦拖地一体机吸尘器
+						</a>
+							<img title="支持信用卡支付" src="https://how2j.cn/tmall/img/site/creditcard.png">
+							<img title="消费者保障服务,承诺7天退货" src="https://how2j.cn/tmall/img/site/7day.png">
+							<img title="消费者保障服务,承诺如实描述" src="https://how2j.cn/tmall/img/site/promise.png">
+						</td>
+						<td>
+						<span class="orderItemProductPrice">￥2,124.15</span>
+						</td>
+						<td>
+						<span class="orderItemProductNumber">1</span>
+						</td>
+						<td><span class="orderItemUnitSum">
+						￥2,124.15
+						</span></td>
+					</tr>
+			</tbody>
+		</table>
+		<div class="orderItemSumDiv">
+			<div class="pull-left">
+				<span class="leaveMessageText">给卖家留言:</span>
+				<span>
+					<img src="https://how2j.cn/tmall/img/site/leaveMessage.png" class="leaveMessageImg">
+				</span>
+				<span class="leaveMessageTextareaSpan" style="display: none;">
+					<textarea class="leaveMessageTextarea" name="userMessage"></textarea>
+					<div>
+						<span>还可以输入200个字符</span>
+					</div>
+				</span>
+			</div>
+			<span class="pull-right">店铺合计(含运费): ￥9,152.25</span>
+		</div>
+	</div>
+	<div class="orderItemTotalSumDiv">
+		<div class="pull-right"> 
+			<span>实付款：</span>
+			<span class="orderItemTotalSumSpan">￥9,152.25</span>
+		</div>
+	</div>
+	<div class="submitOrderDiv">
+			<button class="submitOrderButton" type="button">提交订单</button>
+	</div>
+</div>
+
+	
+    </body>
+</html>
