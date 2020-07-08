@@ -16,11 +16,16 @@ apply plugin: 'io.spring.dependency-management'
 
 version = '1.0'
 
+configurations {
+    compile.exclude module: 'spring-boot-starter-tomcat'
+}
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-jetty'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'com.zaxxer:HikariCP'
