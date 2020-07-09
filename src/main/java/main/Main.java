@@ -145,6 +145,7 @@ public class Main
     
     public static void main(final String[] args)
     {
+        System.out.println(System.getenv("JDBC_DATABASE_URL"));
         final var app = new SpringApplication(Main.class);
         app.setDefaultProperties(java.util.Collections.singletonMap("server.port", System.getenv("PORT")));
         app.run(args);
