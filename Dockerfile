@@ -1,4 +1,4 @@
-FROM python:3
+FROM openjdk:latest
 COPY . /app
 WORKDIR /app
 RUN ["pip", "install", "-r", "requirements.txt"]
