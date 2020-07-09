@@ -34,7 +34,7 @@ public class Main
         {
             //config.setJdbcUrl(String.join("", "jdbc:postgresql://", System.getenv("POSTGRESQL_SERVICE_HOST"), ":", System.getenv("POSTGRESQL_SERVICE_PORT"), "/sampledb"));
             //config.setUsername("postgresql");
-            //config.setPassword("postgresql");"jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath()
+            //config.setPassword("postgresql");
             final var config = new HikariConfig();
             final var dbUri = java.net.URI.create(System.getenv("DATABASE_URL"));
             config.setJdbcUrl(String.join("", "jdbc:postgresql://", dbUri.getHost(), ":", String.valueOf(dbUri.getPort()), dbUri.getPath()));
