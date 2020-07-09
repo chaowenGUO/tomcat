@@ -31,10 +31,12 @@ public class Main
     {
         private HikariDataSource dataSource;
         private DataSource() throws Exception
-        {                    
+        {
+            System.out.println("jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath());
+            System.out.println(String.join("", "jdbc:postgresql://", dbUri.getHost(), ":", dbUri.getPort(), dbUri.getPath()));
             //config.setJdbcUrl(String.join("", "jdbc:postgresql://", System.getenv("POSTGRESQL_SERVICE_HOST"), ":", System.getenv("POSTGRESQL_SERVICE_PORT"), "/sampledb"));
             //config.setUsername("postgresql");
-            //config.setPassword("postgresql");
+            //config.setPassword("postgresql");"jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath()
             final var config = new HikariConfig();
             final var dbUri = java.net.URI.create(System.getenv("DATABASE_URL"));
             config.setJdbcUrl("jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath());
