@@ -31,12 +31,15 @@ public class Main
     {
         private HikariDataSource dataSource;
         private DataSource() throws Exception
-        {
-            final var config = new HikariConfig();
+        {                    
             //config.setJdbcUrl(String.join("", "jdbc:postgresql://", System.getenv("POSTGRESQL_SERVICE_HOST"), ":", System.getenv("POSTGRESQL_SERVICE_PORT"), "/sampledb"));
             //config.setUsername("postgresql");
             //config.setPassword("postgresql");
-            config.setJdbcUrl(System.getenv("JDBC_DATABASE_URL"));
+            final var config = new HikariConfig();
+            final var dbUri = new java.net.URI(System.getenv("DATABASE_URL"));
+            config.setJdbcUrl(String.join("", "jdbc:postgresql://", dbUri.getHost(), ":", dbUri.getPort(), dbUri.getPath()));
+            config.setUsername(dbUri.getUserInfo().split(":")[0]);
+            config.setPassword(dbUri.getUserInfo().split(":")[1]);
             this.dataSource = new HikariDataSource(config);
             try (final var connection = this.dataSource.getConnection())
             {
@@ -145,7 +148,6 @@ public class Main
     
     public static void main(final String[] args)
     {
-        System.out.println(System.getenv("JDBC_DATABASE_URL"));
         final var app = new SpringApplication(Main.class);
         app.setDefaultProperties(java.util.Collections.singletonMap("server.port", System.getenv("PORT")));
         app.run(args);
