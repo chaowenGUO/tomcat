@@ -15,3 +15,4 @@ jobs:
               heroku_api_key: ${{secrets.HEROKU}}
               heroku_app_name: 'sspringboot'
               heroku_email: 'chaowen.guo1@gmail.com'
+              usedocker: true
