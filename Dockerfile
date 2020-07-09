@@ -1,5 +1,5 @@
-FROM openjdk:latest
+FROM gradle:jdk14
 COPY . /app
 WORKDIR /app
-RUN ["pip", "install", "-r", "requirements.txt"]
-CMD ["python", "server.py"]
+RUN ["gradle", "build"]
+CMD ["java", "-Dserver.port=$PORT", "$JAVA_OPTS", "-jar", "build/libs/*.jar"]
