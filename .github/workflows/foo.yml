@@ -28,3 +28,4 @@ jobs:
               cmd: | 
                   'project sspringboot'
                   'new-app chaowenguo/springboot'
+                  'expose svc/frontend'
