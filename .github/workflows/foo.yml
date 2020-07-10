@@ -16,6 +16,11 @@ jobs:
               heroku_app_name: 'sspringboot'
               heroku_email: 'chaowen.guo1@gmail.com'
               usedocker: true
+        - uses: docker/build-push-action@1.1.0
+          with:
+              username: 'chaowenguo'
+              password: ${{ secrets.DOCKER }}
+              repository: chaowenguo/springboot
         - uses: redhat-developer/openshift-actions@v2.1.0
           with:
               openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
