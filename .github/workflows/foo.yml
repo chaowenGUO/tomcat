@@ -28,4 +28,4 @@ jobs:
               cmd: | 
                   'project sspringboot'
                   'new-app chaowenguo/springboot'
-                  'create route edge --service=frontend'
+                  'create route edge --service=frontend --port=8080'
