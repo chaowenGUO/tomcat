@@ -16,7 +16,7 @@ jobs:
               heroku_app_name: 'sspringboot'
               heroku_email: 'chaowen.guo1@gmail.com'
               usedocker: true
-        - uses: redhat-developer/openshift-action@v1.1
+        - uses: redhat-developer/openshift-actions@v2.1.0
           with:
               openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
               parameters: '{"apitoken": "${{ secrets.OPENSHIFT }}", "acceptUntrustedCerts": "true"}'
