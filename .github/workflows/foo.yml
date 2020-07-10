@@ -1,0 +1,25 @@
+on: push
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-python@v2
+          with:
+              python-version: '3.x'
+        - uses: akhileshns/heroku-deploy@v3.2.6
+          with:
+              heroku_api_key: ${{secrets.HEROKU}}
+              heroku_app_name: aiohttpp
+              heroku_email: chaowen.guo1@gmail.com
+              usedocker: true
+        - uses: docker/build-push-action@v1.1.0
+          with:
+              username: chaowenguo
+              password: ${{ secrets.DOCKER }}
+              repository: chaowenguo/aiohttp
+        - env:
+              GITHUB: ${{secrets.GITHUB}}
+          run: |
+              pip install aiohttp
+              python foo.py
