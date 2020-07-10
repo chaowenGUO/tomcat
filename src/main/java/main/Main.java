@@ -34,9 +34,9 @@ public class Main
         {
             final var config = new HikariConfig();
             final var dbUri = java.net.URI.create(System.getenv("DATABASE_URL"));
-            config.setJdbcUrl(System.getenv().containsKey("DATABASE_URL") ? String.join("", "jdbc:postgresql://", dbUri.getHost(), ":", String.valueOf(dbUri.getPort()), dbUri.getPath()) : "");
-            config.setUsername(System.getenv().containsKey("DATABASE_URL") ? dbUri.getUserInfo().split(":")[0] : "postgresql");
-            config.setPassword(System.getenv().containsKey("DATABASE_URL") ? dbUri.getUserInfo().split(":")[1] : "postgresql");
+            config.setJdbcUrl(String.join("", "jdbc:postgresql://", dbUri.getHost(), ":", String.valueOf(dbUri.getPort()), dbUri.getPath()));
+            config.setUsername(dbUri.getUserInfo().split(":")[0]);
+            config.setPassword(dbUri.getUserInfo().split(":")[1]);
             this.dataSource = new HikariDataSource(config);
             try (final var connection = this.dataSource.getConnection())
             {
