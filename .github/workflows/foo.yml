@@ -21,5 +21,4 @@ jobs:
               openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
               parameters: '{"apitoken": "${{ secrets.OPENSHIFT }}", "acceptUntrustedCerts": "true"}'
               cmd: | 
-                  'get pods'
-                  'new-project name':  
+                  'get projects'
