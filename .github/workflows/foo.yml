@@ -21,11 +21,11 @@ jobs:
               username: chaowenguo
               password: ${{secrets.DOCKER}}
               repository: chaowenguo/springboot
-        - uses: redhat-developer/openshift-actions@v2.1.0
-          with:
-              openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
-              parameters: '{"apitoken": "${{ secrets.OPENSHIFT }}", "acceptUntrustedCerts": "true"}'
-              cmd: | 
-                  project sspringboot
-                  new-app chaowenguo/springboot
-                  expose service/springboot
+        #- uses: redhat-developer/openshift-actions@v2.1.0
+        #  with:
+        #      openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+        #      parameters: '{"apitoken": "${{ secrets.OPENSHIFT }}", "acceptUntrustedCerts": "true"}'
+        #      cmd: | 
+        #          project sspringboot
+        #          new-app chaowenguo/springboot
+        #          expose service/springboot
