@@ -23,6 +23,7 @@ jobs:
         #      repository: chaowenguo/springboot
         - run: |
               git rm -rf Dockerfile
+              git commit --allow-empty-message -m ''
         - uses: redhat-developer/openshift-actions@v2.1.0
           with:
               openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
