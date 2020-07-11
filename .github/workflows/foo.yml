@@ -25,8 +25,8 @@ jobs:
           with:
               openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
               parameters: '{"apitoken": "${{ secrets.OPENSHIFT }}", "acceptUntrustedCerts": "true"}'
-          run: | 
-              oc project sspringboot
-              oc new-app https://github.com/chaowenGUO/springboot
-              oc expose service/springboot
-              oc describe buildConfig springboot
+          cmd: | 
+              project sspringboot
+              new-app https://github.com/chaowenGUO/springboot
+              expose service/springboot
+              describe buildConfig springboot
