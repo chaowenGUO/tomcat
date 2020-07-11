@@ -21,6 +21,7 @@ jobs:
               username: chaowenguo
               password: ${{secrets.DOCKER}}
               repository: chaowenguo/springboot
+              tags: latest
         #- uses: redhat-developer/openshift-actions@v2.1.0
         #  with:
         #      openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
