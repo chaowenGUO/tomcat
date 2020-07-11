@@ -21,11 +21,12 @@ jobs:
         #      username: chaowenguo
         #      password: ${{secrets.DOCKER}}
         #      repository: chaowenguo/springboot
-        #- uses: redhat-developer/openshift-actions@v2.1.0
-        #  with:
-        #      openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
-        #      parameters: '{"apitoken": "${{ secrets.OPENSHIFT }}", "acceptUntrustedCerts": "true"}'
-        #      cmd: | 
-        #          'project sspringboot'
-        #          'new-app chaowenguo/springboot'
-        #          'create route edge --service=frontend --port=8080'
+        - uses: redhat-developer/openshift-actions@v2.1.0
+          with:
+              openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+              parameters: '{"apitoken": "${{ secrets.OPENSHIFT }}", "acceptUntrustedCerts": "true"}'
+          run: | 
+              oc project sspringboot
+              oc new-app https://github.com/chaowenGUO/springboot
+              oc expose service/springboot
+              oc describe buildConfig springboot
