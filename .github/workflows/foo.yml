@@ -27,7 +27,7 @@ jobs:
               ibmcloud cf install
               ibmcloud login -r us-south -g chaowenGuo --apikey Mz1jI_Ik1iTufnPP-_fof_ERP9GJG16IoWkQqy_QLhZD
               ibmcloud target --cf-api api.us-south.cf.cloud.ibm.com  -o chaowen.guo1@gmail.com -s chaowenGuo
-              ibmcloud resource service-alias-delete Db2-3s
+              ibmcloud resource service-alias-delete Db2-3s -f
               ibmcloud resource service-alias-create Db2-3s --instance-name Db2-3s
               ibmcloud cf push
               ibmcloud logout
