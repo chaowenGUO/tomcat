@@ -9,5 +9,5 @@ applications:
   memory: 256M
   routes:
   - route: java-spring-app-qfxpb.mybluemix.net
-  env:
-    JAVA_OPTS: '-XX:ReservedCodeCacheSize=32M -XX:MaxDirectMemorySize=32M'
+  services:
+  - Db2-3s
