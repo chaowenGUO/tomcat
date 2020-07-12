@@ -1,0 +1,34 @@
+on: push
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-python@v2
+          with:
+              python-version: '3.x'
+        - uses: akhileshns/heroku-deploy@v3.2.6
+          with:
+              heroku_api_key: ${{secrets.HEROKU}}
+              heroku_app_name: aiohttpp
+              heroku_email: chaowen.guo1@gmail.com
+              usedocker: true
+        - uses: docker/build-push-action@v1.1.0
+          with:
+              username: chaowenguo
+              password: ${{secrets.DOCKER}}
+              repository: chaowenguo/aiohttp
+              tags: latest
+        #- uses: redhat-developer/openshift-actions@v2.1.0
+        #  with:
+        #      openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+        #      parameters: '{"apitoken": "${{ secrets.OPENSHIFT }}", "acceptUntrustedCerts": "true"}'
+        #      cmd: | 
+        #          project sspringboot
+        #          new-app chaowenguo/springboot
+        #          expose service/springboot
+        - env:
+              GITHUB: ${{secrets.GITHUB}}
+          run: |
+              pip install aiohttp
+              python foo.py
