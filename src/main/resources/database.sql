@@ -5,8 +5,7 @@ CREATE TABLE stores(
 	address_line_2 VARCHAR(100),
 	city_id INT NOT NULL,
 	state_id INT NOT NULL,
-	zip_code VARCHAR(6),
-	PRIMARY KEY (store_id)
+	zip_code VARCHAR(6)
 );
 --insert into productItem values (9543, '好先生同款墨镜孙红雷偏光男士太阳镜韩明星', 97.50),
 --                               (9532, '陌森太阳眼镜男女2016偏光定制驾驶近视', 518.70),
