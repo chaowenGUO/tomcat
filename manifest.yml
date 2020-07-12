@@ -8,4 +8,4 @@ applications:
   disk_quota: 1G
   memory: 256M
   routes:
-  - route: springboot.mybluemix.net
+  - route: sspringboot.mybluemix.net
