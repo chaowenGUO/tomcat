@@ -25,7 +25,7 @@ jobs:
         - run: |
               curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
               ibmcloud cf install
-              ibmcloud login -r us-south -g chaowenGuo --apikey Mz1jI_Ik1iTufnPP-_fof_ERP9GJG16IoWkQqy_QLhZD
+              ibmcloud login -r us-south -g chaowenGuo --apikey ${{secrets.IBM}}
               ibmcloud target --cf-api api.us-south.cf.cloud.ibm.com  -o chaowen.guo1@gmail.com -s chaowenGuo
               ibmcloud cf push
               ibmcloud logout
