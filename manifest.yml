@@ -9,5 +9,3 @@ applications:
   memory: 256M
   routes:
   - route: springboot.mybluemix.net
-  services:
-  - Db2-3s
