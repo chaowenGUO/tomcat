@@ -2,9 +2,15 @@
 applications:
 - instances: 1
   timeout: 180
-  buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git#v1.7.24
-  name: koa
+  name: javaspringappqfxpb
+  docker:
+    image: chaowenguo/springboot
   disk_quota: 1G
-  memory: 128MB
-  domain: mybluemix.net
-  host: koaa
+  memory: 256M
+  routes:
+  - route: java-spring-app-qfxpb.mybluemix.net
+  services:
+    - java-spring-app-qfxp-db2oncloud-1594538970656-7708
+  env:
+    JAVA_OPTS: '-XX:ReservedCodeCacheSize=32M -XX:MaxDirectMemorySize=32M'
+    JBP_CONFIG_OPEN_JDK_JRE: '[memory_calculator: {stack_threads: 30}]'
