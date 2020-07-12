@@ -4,7 +4,7 @@ applications:
   timeout: 180
   name: javaspringappqfxpb
   docker:
-    image: chaowenguo/aiohttp
+    image: chaowenguo/test
   disk_quota: 1G
   memory: 256M
   routes:
