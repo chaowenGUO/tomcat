@@ -30,5 +30,5 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'com.zaxxer:HikariCP'
 	runtimeOnly 'org.postgresql:postgresql'
-	runtimeOnly 'com.ibm.db2:jcc'
+	runtimeOnly 'mysql：mysql-connector-java'
 }
