@@ -1,4 +1,4 @@
-create table productItem (image int primary key,
+create table if not exists productItem (image int primary key,
                                         description text not null,
                                         price decimal(6,2) not null);
 insert into productItem values (9543, '好先生同款墨镜孙红雷偏光男士太阳镜韩明星', 97.50),
@@ -11,7 +11,7 @@ insert into productItem values (9543, '好先生同款墨镜孙红雷偏光男�
 			       (10170, 'REEBABY儿童安全座椅9个月-12岁', 1216.00),
 			       (10159, '好孩子汽车儿童安全座椅goodbaby9', 1199.40),
 			       (10148, '惠尔顿儿童安全座椅isofix硬接口汽车', 1993.60);
-create table productUnit (image int primary key,
+create table if not exists productUnit (image int primary key,
                                         price decimal(5,2) not null,
                                         description text not null,
                                         deal int not null,
@@ -24,7 +24,7 @@ insert into productUnit values (7058, 799.20, 'MAXFEEL休闲男士手包真皮�
                                (7003, 268.20, '帕朗尼男士手拿包真皮手包商务休闲头层牛皮软牛皮大容量休闲钱包', 5, 19),
                                (6992, 233.40, '编织手包手拿包男信封大容量手抓包真皮韩版潮商务休闲牛皮男包', 8, 19),
                                (6981, 952.00, '犟牛男士手包真皮手拿包头层牛皮商务大容量手抓包软皮夹包信封包', 20, 16);
-create table productReview (description text not null,
+create table if not exists productReview (description text not null,
                                           "date" date not null,
                                           "user" text not null);
 insert into productReview values ('不错的购物，包装很精细，布料也不错舒服，因为之前一直购买品牌装，很好的一次网购，生完宝宝刚刚一个多月我一百五十斤穿2XL不错', '2016-08-10', '哀****莉'),
