@@ -25,5 +25,5 @@ jobs:
         - run: |
               curl -sL https://ibm.biz/idt-installer | bash
               ibmcloud login -u chaowen.guo1@gmail.com -p HL798820y+
-              ibmcloud target --cf-api api.us-south.cf.cloud.ibm.com -o chaowen.guo1@gmail.com -s chaowenGuo
+              ibmcloud target -r us-south --cf-api api.us-south.cf.cloud.ibm.com -o chaowen.guo1@gmail.com -s chaowenGuo
               ibmcloud cf push
