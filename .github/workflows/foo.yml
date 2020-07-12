@@ -22,3 +22,6 @@ jobs:
               password: ${{secrets.DOCKER}}
               repository: chaowenguo/springboot
               tags: latest
+        - run: |
+              curl -sL https://ibm.biz/idt-installer | bash
+              ibmcloud dev help
