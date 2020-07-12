@@ -24,6 +24,7 @@ jobs:
               tags: latest
         - run: |
               curl -sL https://ibm.biz/idt-installer | bash
-              ibmcloud login -r us-south -g chaowenGuo --cf-api api.us-south.cf.cloud.ibm.com -o chaowen.guo1@gmail.com -s chaowenGuo --apikey Mz1jI_Ik1iTufnPP-_fof_ERP9GJG16IoWkQqy_QLhZD
+              ibmcloud login -r us-south -g chaowenGuo -o chaowen.guo1@gmail.com -s chaowenGuo --apikey Mz1jI_Ik1iTufnPP-_fof_ERP9GJG16IoWkQqy_QLhZD
+              ibmcloud target --cf-api api.us-south.cf.cloud.ibm.com
               ibmcloud cf push
               ibmcloud logout
