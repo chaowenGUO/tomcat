@@ -8,5 +8,3 @@ applications:
   memory: 128MB
   domain: mybluemix.net
   host: koaa
-  env:
-    OPTIMIZE_MEMORY: true
