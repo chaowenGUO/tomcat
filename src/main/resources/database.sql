@@ -1,6 +1,6 @@
 create table if not exists productItem (image int primary key,
                                         description text not null,
-                                        price decimal(6,2) not null);
+                                        price decimal not null);
 insert into productItem values (9543, '好先生同款墨镜孙红雷偏光男士太阳镜韩明星', 97.50),
                                (9532, '陌森太阳眼镜男女2016偏光定制驾驶近视', 518.70),
                                (9521, '帕莎Prsr太阳镜女偏光镜潮范冰冰同款女', 624.00),
@@ -12,7 +12,7 @@ insert into productItem values (9543, '好先生同款墨镜孙红雷偏光男�
 			       (10159, '好孩子汽车儿童安全座椅goodbaby9', 1199.40),
 			       (10148, '惠尔顿儿童安全座椅isofix硬接口汽车', 1993.60);
 create table if not exists productUnit (image int primary key,
-                                        price decimal(5,2) not null,
+                                        price decimal not null,
                                         description text not null,
                                         deal int not null,
                                         review int not null);
@@ -45,4 +45,4 @@ insert into productReview values ('不错的购物，包装很精细，布料也
 				 ('衣服裤子都很合身，同事笑我说这是我买得最好看最时尚的一套衣服，衣服上身效果也不错，很是满意，还送了隐形带，正好用上，质量很好穿着凉快，唯一不足的就是洗了后需要烫一下才不皱，不过不影响衣服的美，很满意。上传两张没P的照片', '2016-08-08', '乱**型'),
 				 ('不好意思好久才来评价  质量好  上身效果好  主要有胖子穿的漂亮衣服啦   赞赞赞', '2016-07-11', 'l******1'),
 				 ('网购以来为数不多的质量好到超乎意料，穿上特别舒服，大小也正合适，超赞！这个店里值得好好逛逛！', '2016-07-10', '盗**记'),
-				 ('宝贝面料很舒服，一字领也非常美，说实话是充上衣买的！犹豫了很长时间才下定决心的，很喜欢，很满意！喜欢就是最值的！', '2016-07-24', '贤*闲');
+				 ('宝贝面料很舒服，一字领也非常美，说实话是充上衣买的！犹豫了很长时间才下定决心的，很喜欢，很满意！喜欢就是最值的！', '2016-07-24', '贤*闲')
