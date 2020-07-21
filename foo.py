@@ -1,6 +1,5 @@
 import git, pathlib
 with git.Repo(pathlib.Path(__file__).resolve().parent) as repository:
-    repository.config_writer().set_value('user', 'name', 'Your Name').release()
     repository.config_writer().set_value('user', 'email', 'you@example.com').release()
     static = 'src/main/resources/static'
     repository.index.remove([static], True, r=True)
