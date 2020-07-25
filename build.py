@@ -4,6 +4,7 @@ with git.Repo(pathlib.Path(__file__).resolve().parent) as repository:
     repository.config_writer().set_value('user', 'email', 'you@example.com').release()
     static = pathlib.Path('src/main/resources/static')
     repository.git.subtree('add', '--prefix=' + str(static), 'https://github.com/chaowenGUO/aiohttp', 'master', '--squash')
+    static = static.resolve()
     shutil.move(str(static / 'database.sql'), static.parent)
     for _  in static.iterdir():
         if _.suffix != '.html' and _.suffix != '.js' and _.is_file(): _.unlink()
