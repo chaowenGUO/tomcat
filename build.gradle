@@ -32,3 +32,6 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 }
 
+bootJar {
+    destinationDirectory = '.'
+}
