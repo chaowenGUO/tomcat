@@ -7,4 +7,4 @@ with git.Repo(pathlib.Path(__file__).resolve().parent) as repository:
     repository.index.move([static + '/database.sql', str(pathlib.Path(static).resolve().parent)], f=True)    
     for _  in pathlib.Path(static).iterdir():
         if _.suffix != '.html' and _.suffix != '.js' and _.is_file(): _.unlink()
-        else if _.is_dir(): shutil.rmtree(_)
+        elif _.is_dir(): shutil.rmtree(_)
