@@ -33,5 +33,5 @@ dependencies {
 }
 
 bootJar {
-    destinationDirectory = file('.')
+    destinationDirectory = file('/usr/local/src')
 }
