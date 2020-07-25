@@ -33,5 +33,5 @@ dependencies {
 }
 
 bootJar {
-    destinationDirectory = '.'
+    destinationDirectory = file('.')
 }
