@@ -16,12 +16,12 @@ jobs:
               heroku_app_name: sspringboot
               heroku_email: chaowen.guo1@gmail.com
               usedocker: true
-        #- uses: docker/build-push-action@v1.1.0
-        #  with:
-        #      username: chaowenguo
-        #      password: ${{secrets.DOCKER}}
-        #      repository: chaowenguo/springboot
-        #      tags: latest
+        - uses: docker/build-push-action@v1.1.0
+          with:
+              username: chaowenguo
+              password: ${{secrets.DOCKER}}
+              repository: chaowenguo/springboot
+              tags: latest
         #- run: |
         #      curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
         #      ibmcloud cf install
