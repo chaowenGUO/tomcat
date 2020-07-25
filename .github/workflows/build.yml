@@ -1,6 +1,6 @@
 on: [push, repository_dispatch]
 jobs:
-    report:
+    build:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
