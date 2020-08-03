@@ -123,8 +123,11 @@ public class Main
                     this.sessions.add(session);
                 }
                 else
+                {
+                    
                     for (final var $: this.sessions)
                         if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", message.getPayload()), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                }
             }
             @Override
             public void close() throws Exception
