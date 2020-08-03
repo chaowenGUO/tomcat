@@ -124,11 +124,11 @@ public class Main
                 }
                 else
                 {
-                    final var message = objectMapper.readValue(message.getPayload(), java.util.Map.class);
-                    if (message.containsKey(""))
+                    final var map = objectMapper.readValue(message.getPayload(), java.util.Map.class);
+                    if (map.containsKey(""))
                         for (final var $: this.sessions)
-                            if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", message.get("")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
-                    else if (message.containsKey("offer"));
+                            if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", map.get("")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                    else if (map.containsKey("offer"));
                 }
             }
             @Override
