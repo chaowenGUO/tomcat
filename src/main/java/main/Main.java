@@ -111,7 +111,7 @@ public class Main
             public void afterConnectionClosed(final WebSocketSession session, final CloseStatus status) throws Exception
             {
                 this.sessions.remove(session);
-                for (final var $: this.sessions) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", "disconnect"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                for (final var $: this.sessions) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("disconnect", ""), java.util.Map.entry("name", session.getAttributes().get("name"))))));
             }
             @Override
             protected void handleTextMessage(final WebSocketSession session, final TextMessage message) throws Exception
@@ -119,12 +119,12 @@ public class Main
                 if (java.util.Objects.isNull(session.getAttributes().get("name")))
                 {
                     session.getAttributes().put("name", message.getPayload());
-                    for (final var $: this.sessions) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", "join"), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                    for (final var $: this.sessions) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("join", ""), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     this.sessions.add(session);
                 }
                 else
                     for (final var $: this.sessions)
-                        if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", "global"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
+                        if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("global", message.getPayload()), java.util.Map.entry("name", session.getAttributes().get("name"))))));
             }
             @Override
             public void close() throws Exception
