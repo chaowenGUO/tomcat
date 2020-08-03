@@ -10,12 +10,12 @@ jobs:
         - run: |
             pip install gitpython
             python build.py
-        #- uses: akhileshns/heroku-deploy@v3.2.6
-        #  with:
-        #      heroku_api_key: ${{secrets.HEROKU}}
-        #      heroku_app_name: sspringboot
-        #      heroku_email: chaowen.guo1@gmail.com
-        #      usedocker: true
+        - uses: akhileshns/heroku-deploy@v3.2.6
+          with:
+              heroku_api_key: ${{secrets.HEROKU}}
+              heroku_app_name: sspringboot
+              heroku_email: chaowen.guo1@gmail.com
+              usedocker: true
         - uses: docker/build-push-action@v1.1.0
           with:
               username: chaowenguo
