@@ -124,7 +124,7 @@ public class Main
                 }
                 else
                     for (final var $: this.sessions)
-                        if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", "send"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
+                        if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", "global"), java.util.Map.entry("name", session.getAttributes().get("name")), java.util.Map.entry("text", message.getPayload())))));
             }
             @Override
             public void close() throws Exception
