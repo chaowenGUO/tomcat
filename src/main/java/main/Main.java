@@ -128,22 +128,22 @@ public class Main
                     if (map.containsKey(""))
                     {
                         for (final var $: this.sessions)
-                            if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", map.get("")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                            if (session.getAttributes().get("name") != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", map.get("")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
                     else if (map.containsKey("offer"))
                     {
                         for (final var $: this.sessions)
-                            if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                            if (session.getAttributes().get("name") == map.get("name")) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
                     else if (map.containsKey("answer"))
                     {
                         for (final var $: this.sessions)
-                            if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("answer", map.get("answer"))))));
+                            if (session.getAttributes().get("name") == map.get("name")) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("answer", map.get("answer"))))));
                     }
                     else if (map.containsKey("candidate"))
                     {
                         for (final var $: this.sessions)
-                            if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("candidate", map.get("candidate"))))));
+                            if (session.getAttributes().get("name") == map.get("name")) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("candidate", map.get("candidate"))))));
                     }   
                 }
             }
