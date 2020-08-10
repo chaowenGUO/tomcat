@@ -125,6 +125,7 @@ public class Main
                 else
                 {
                     final var map = objectMapper.readValue(message.getPayload(), java.util.Map.class);
+                    System.out.println(map);
                     if (map.containsKey(""))
                     {
                         for (final var $: this.sessions)
