@@ -132,7 +132,7 @@ public class Main
                     }
                     else if (map.containsKey("offer"))
                     {
-                        System.out.println(map);
+                        System.out.println(map.get("offer"));
                         for (final var $: this.sessions)
                             if ($.getAttributes().get("name") == map.get("name")) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
