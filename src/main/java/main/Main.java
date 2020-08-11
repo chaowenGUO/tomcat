@@ -132,6 +132,7 @@ public class Main
                     }
                     else if (json.has("offer"))
                     {
+                        System.out.println(json.get("name").asText());
                         for (final var $: this.sessions)
                             if ($.getAttributes().get("name") == json.get("name").asText()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", json.get("offer").asText()), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
