@@ -131,10 +131,13 @@ public class Main
                             if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", map.get("")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
                     else if (map.containsKey("offer"))
-                    {
-                        System.out.println(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name")))));
+                    {               
                         for (final var $: this.sessions)
-                            if ($.getAttributes().get("name") == map.get("name")) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                            if ($.getAttributes().get("name") == map.get("name"))
+                            {
+                                System.out.println(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name")))));
+                                $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                            }
                     }
                     else if (map.containsKey("answer"))
                     {
