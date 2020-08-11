@@ -124,30 +124,30 @@ public class Main
                 }
                 else
                 {
-                    final var json = objectMapper.readTree(message.getPayload());
-                    if (json.has(""))
+                    final var map = objectMapper.readValue(message.getPayload(), java.util.Map.class);
+                    if (map.containsKey(""))
                     {
                         for (final var $: this.sessions)
-                            if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", json.get("").asText()), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                            if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", map.get("")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
-                    else if (json.has("offer"))
+                    else if (map.containsKey("offer"))
                     {
                         for (final var $: this.sessions)
-                            if ($.getAttributes().get("name").equals(json.get("name").asText()))
+                            if ($.getAttributes().get("name").equals(map.get("name")))
                             {
-                                System.out.println(json.get("offer").asText());
-                                $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", json.get("offer").asText()), java.util.Map.entry("name", session.getAttributes().get("name"))))));
+                                System.out.println(map.get("offer"));
+                                $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                             }
                     }
-                    else if (json.has("answer"))
+                    else if (map.containsKey("answer"))
                     {
                         for (final var $: this.sessions)
-                            if ($.getAttributes().get("name").equals(json.get("name").asText())) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("answer", json.get("answer").asText())))));
+                            if ($.getAttributes().get("name").equals(map.get("name"))) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("answer", map.get("answer"))))));
                     }
-                    else if (json.has("candidate"))
+                    else if (map.containsKey("candidate"))
                     {
                         for (final var $: this.sessions)
-                            if ($.getAttributes().get("name").equals(json.get("name").asText())) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("candidate", json.get("candidate").asText())))));
+                            if ($.getAttributes().get("name").equals(map.get("name"))) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("candidate", map.get("candidate"))))));
                     }   
                 }
             }
