@@ -133,7 +133,7 @@ public class Main
                     else if (json.has("offer"))
                     {
                         for (final var $: this.sessions)
-                            if ($.getAttributes().get("name") == json.get("name").asText())
+                            if ($.getAttributes().get("name").equals(json.get("name").asText()))
                             {
                                 System.out.println(json.get("name").asText());
                                 $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", json.get("offer").asText()), java.util.Map.entry("name", session.getAttributes().get("name"))))));
@@ -142,12 +142,12 @@ public class Main
                     else if (json.has("answer"))
                     {
                         for (final var $: this.sessions)
-                            if ($.getAttributes().get("name") == json.get("name").asText()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("answer", json.get("answer").asText())))));
+                            if ($.getAttributes().get("name").equals(json.get("name").asText())) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("answer", json.get("answer").asText())))));
                     }
                     else if (json.has("candidate"))
                     {
                         for (final var $: this.sessions)
-                            if ($.getAttributes().get("name") == json.get("name").asText()) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("candidate", json.get("candidate").asText())))));
+                            if ($.getAttributes().get("name").equals(json.get("name").asText())) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("candidate", json.get("candidate").asText())))));
                     }   
                 }
             }
