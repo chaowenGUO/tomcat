@@ -131,7 +131,8 @@ public class Main
                             if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", map.get("")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
                     else if (map.containsKey("offer"))
-                    {               
+                    {
+                        for (final var $: this.sessions) System.out.println($.getAttributes().get("name"));
                         for (final var $: this.sessions)
                             if ($.getAttributes().get("name") == map.get("name"))
                             {
