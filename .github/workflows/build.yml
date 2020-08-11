@@ -22,10 +22,10 @@ jobs:
               password: ${{secrets.DOCKER}}
               repository: chaowenguo/springboot
               tags: latest
-        - run: |
-              curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
-              ibmcloud cf install
-              ibmcloud login -r us-south -g chaowenGuo --apikey ${{secrets.IBM}}
-              ibmcloud target --cf-api api.us-south.cf.cloud.ibm.com  -o chaowen.guo1@gmail.com -s chaowenGuo
-              ibmcloud cf push
-              ibmcloud logout
+        #- run: |
+        #     curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+        #      ibmcloud cf install
+        #      ibmcloud login -r us-south -g chaowenGuo --apikey ${{secrets.IBM}}
+        #      ibmcloud target --cf-api api.us-south.cf.cloud.ibm.com  -o chaowen.guo1@gmail.com -s chaowenGuo
+        #      ibmcloud cf push
+        #      ibmcloud logout
