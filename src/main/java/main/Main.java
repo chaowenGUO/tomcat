@@ -133,24 +133,17 @@ public class Main
                     else if (map.has("offer"))
                     {
                         for (final var $: this.sessions)
-                        {
-                            System.out.println($.getAttributes().get("name").equals(map.get("name").asText()));
-                            if ($.getAttributes().get("name").equals(map.get("name")))
-                            {
-                                System.out.println(map.get("offer"));
-                                $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
-                            }
-                        }
+                            if ($.getAttributes().get("name").equals(map.get("name").asText())) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
                     else if (map.has("answer"))
                     {
                         for (final var $: this.sessions)
-                            if ($.getAttributes().get("name").equals(map.get("name"))) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("answer", map.get("answer"))))));
+                            if ($.getAttributes().get("name").equals(map.get("name").asText())) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("answer", map.get("answer"))))));
                     }
                     else if (map.has("candidate"))
                     {
                         for (final var $: this.sessions)
-                            if ($.getAttributes().get("name").equals(map.get("name"))) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("candidate", map.get("candidate"))))));
+                            if ($.getAttributes().get("name").equals(map.get("name").asText())) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("candidate", map.get("candidate"))))));
                     }   
                 }
             }
