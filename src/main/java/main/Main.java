@@ -132,6 +132,7 @@ public class Main
                     }
                     else if (map.has("offer"))
                     {
+                        System.out.println(map.get("name"));
                         for (final var $: this.sessions)
                             if ($.getAttributes().get("name").equals(map.get("name")))
                             {
