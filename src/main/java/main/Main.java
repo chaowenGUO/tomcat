@@ -124,23 +124,23 @@ public class Main
                 }
                 else
                 {
-                    final var map = objectMapper.readValue(message.getPayload(), java.util.Map.class);
-                    if (map.containsKey(""))
+                    final var map = objectMapper.readTree(message.getPayload());
+                    if (map.has(""))
                     {
                         for (final var $: this.sessions)
                             if ($ != session) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("", map.get("")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
-                    else if (map.containsKey("offer"))
+                    else if (map.has("offer"))
                     {
                         for (final var $: this.sessions)
                             if ($.getAttributes().get("name").equals(map.get("name"))) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                     }
-                    else if (map.containsKey("answer"))
+                    else if (map.has("answer"))
                     {
                         for (final var $: this.sessions)
                             if ($.getAttributes().get("name").equals(map.get("name"))) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("answer", map.get("answer"))))));
                     }
-                    else if (map.containsKey("candidate"))
+                    else if (map.has("candidate"))
                     {
                         for (final var $: this.sessions)
                             if ($.getAttributes().get("name").equals(map.get("name"))) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("candidate", map.get("candidate"))))));
