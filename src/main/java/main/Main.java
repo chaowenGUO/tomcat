@@ -134,7 +134,7 @@ public class Main
                     {
                         for (final var $: this.sessions)
                         {
-                            System.out.println($.getAttributes().get("name").equals(map.get("name")));
+                            System.out.println($.getAttributes().get("name").equals(map.get("name").asText()));
                             if ($.getAttributes().get("name").equals(map.get("name")))
                             {
                                 System.out.println(map.get("offer"));
