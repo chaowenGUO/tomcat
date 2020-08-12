@@ -133,12 +133,14 @@ public class Main
                     else if (map.has("offer"))
                     {
                         for (final var $: this.sessions)
+                        {
                             System.out.println($.getAttributes().get("name").equals(map.get("name")));
                             if ($.getAttributes().get("name").equals(map.get("name")))
                             {
                                 System.out.println(map.get("offer"));
                                 $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("offer", map.get("offer")), java.util.Map.entry("name", session.getAttributes().get("name"))))));
                             }
+                        }
                     }
                     else if (map.has("answer"))
                     {
