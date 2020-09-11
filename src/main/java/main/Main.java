@@ -28,9 +28,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class Main
 {
     @Component
-    private static final class DataSource
+    private static final class Jdbc
     {
-        private HikariDataSource dataSource;
+        private JdbcTemplate jdbcTemplate;
         private DataSource() throws Exception
         {
             final var config = new HikariConfig();
@@ -38,38 +38,26 @@ public class Main
             config.setJdbcUrl(System.getenv().containsKey("DATABASE_URL") ? String.join("", "jdbc:postgresql://", dbUri.getHost(), ":", String.valueOf(dbUri.getPort()), dbUri.getPath()) : "jdbc:postgresql://echo.db.elephantsql.com:5432/yhsgqmtv");
             config.setUsername(System.getenv().containsKey("DATABASE_URL") ? dbUri.getUserInfo().split(":")[0] : "yhsgqmtv");
             config.setPassword(System.getenv().containsKey("DATABASE_URL") ? dbUri.getUserInfo().split(":")[1] : "TNksBpYp-8oJnWg2xIG_56zoDuDJ7y06");
-            this.dataSource = new HikariDataSource(config);
-            try (final var connection = this.dataSource.getConnection())
+            this.jdbcTemplate = new JdbcTemplate(new HikariDataSource(config));
+            try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new ClassPathResource("database.sql").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
             {
-                try (final var statement = connection.createStatement())
-                {
-                    try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new ClassPathResource("database.sql").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
-                    {
-                        statement.executeUpdate(reader.lines().collect(java.util.stream.Collectors.joining("\n")));
-                    }
-                }
-            }             
+                this.jdbcTemplate.update(reader.lines().collect(java.util.stream.Collectors.joining("\n")));
+            }
         }
         
-        public HikariDataSource get()
+        public JdbcTemplate get()
         {
-            return this.dataSource;
+            return this.jdbcTemplate;
         }
         
         @PreDestroy
         private void shutdown() throws Exception
         {
-            try (final var connection = this.dataSource.getConnection())
-            {
-                try (final var statement = connection.createStatement())
-                {
-                    statement.executeUpdate("drop table productItem, productUnit, productReview");
-                }
-            }
+            this.jdbcTemplate.update("drop table productItem, productUnit, productReview");
         }
     }
     
-    @Autowired private DataSource dataSource;
+    @Autowired private Jdbc jdbcTemplate;
     
     @GetMapping("/") 
     private static ModelAndView main()
@@ -80,25 +68,7 @@ public class Main
     @PostMapping("/ajax") 
     private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final java.util.Map<String, String> body) throws Exception
     {
-   
-        final var array = new java.util.ArrayList<java.util.Map<String, Object>>();
-        try (final var connection = this.dataSource.get().getConnection())
-        {
-            try (final var statement = connection.createStatement())
-            {
-                try (final var resultSet = statement.executeQuery("select * from" + body.entrySet().stream().map($ -> String.join(" ", $.getKey(), $.getValue())).collect(java.util.stream.Collectors.joining(" ")).replace("table", "")))
-                {                   
-                    while (resultSet.next())
-                    {
-                        final var metaData = resultSet.getMetaData();
-                        final var object = new java.util.LinkedHashMap<String, Object>();
-                        for (final var column: (Iterable<Integer>)java.util.stream.IntStream.rangeClosed(1, metaData.getColumnCount())::iterator) object.putIfAbsent(metaData.getColumnName(column), resultSet.getObject(column));
-                        array.add(object);
-                    }
-                }
-            }
-        }
-        return array;
+        this.jdbcTemplate.queryForList("select * from" + body.entrySet().stream().map($ -> String.join(" ", $.getKey(), $.getValue())).collect(java.util.stream.Collectors.joining(" ")).replace("table", ""));
     }
     
     @EnableWebSocket
