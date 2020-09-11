@@ -31,7 +31,7 @@ public class Main
     private static final class Jdbc
     {
         private JdbcTemplate jdbcTemplate;
-        private DataSource() throws Exception
+        private Jdbc() throws Exception
         {
             final var config = new HikariConfig();
             final var dbUri = java.net.URI.create(System.getenv().containsKey("DATABASE_URL") ? System.getenv("DATABASE_URL") : "");
