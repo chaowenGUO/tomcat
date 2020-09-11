@@ -8,10 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
-import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
-import org.springframework.web.socket.handler.TextWebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.CloseStatus;
@@ -66,10 +63,10 @@ public class Main
         return this.jdbcTemplate.get().queryForList("select * from" + body.entrySet().stream().map($ -> String.join(" ", $.getKey(), $.getValue())).collect(java.util.stream.Collectors.joining(" ")));
     }
     
-    @EnableWebSocket
-    private static final class WebSocketConfig implements WebSocketConfigurer
+    @org.springframework.web.socket.config.annotation.EnableWebSocket
+    private static final class WebSocketConfig implements org.springframework.web.socket.config.annotation.WebSocketConfigurer
     {
-        private static final class WebSocker extends TextWebSocketHandler implements AutoCloseable
+        private static final class WebSocker extends org.springframework.web.socket.handler.TextWebSocketHandler implements AutoCloseable
         {
             private static final java.util.Set<WebSocketSession> sessions = java.util.Collections.newSetFromMap(new java.util.concurrent.ConcurrentHashMap<>());
             private static final ObjectMapper objectMapper = new ObjectMapper();
