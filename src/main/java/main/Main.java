@@ -25,6 +25,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
     
 @RestController
 @SpringBootApplication
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class Main
 {
     @Component
