@@ -11,7 +11,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.CloseStatus;
+import ;
 import com.fasterxml.jackson.databind.ObjectMapper;
     
 @org.springframework.web.bind.annotation.RestController
@@ -71,7 +71,7 @@ public class Main
             private static final java.util.Set<WebSocketSession> sessions = java.util.Collections.newSetFromMap(new java.util.concurrent.ConcurrentHashMap<>());
             private static final ObjectMapper objectMapper = new ObjectMapper();
             @Override
-            public void afterConnectionClosed(final WebSocketSession session, final CloseStatus status) throws Exception
+            public void afterConnectionClosed(final WebSocketSession session, final org.springframework.web.socket.CloseStatus status) throws Exception
             {
                 this.sessions.remove(session);
                 for (final var $: this.sessions) $.sendMessage(new TextMessage(objectMapper.writeValueAsString(java.util.Map.ofEntries(java.util.Map.entry("disconnect", ""), java.util.Map.entry("name", session.getAttributes().get("name"))))));
