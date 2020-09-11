@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
     
 @org.springframework.web.bind.annotation.RestController
 @org.springframework.boot.autoconfigure.SpringBootApplication
-@org.springframework.boot.autoconfigure.EnableAutoConfiguration.EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
+@org.springframework.boot.autoconfigure.EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
 public class Main
 {
     @Component
