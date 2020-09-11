@@ -11,7 +11,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.TextMessage;
-import ;
 import com.fasterxml.jackson.databind.ObjectMapper;
     
 @org.springframework.web.bind.annotation.RestController
