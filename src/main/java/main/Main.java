@@ -1,9 +1,5 @@
 package main;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
-import javax.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -24,15 +19,15 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.CloseStatus;
 import com.fasterxml.jackson.databind.ObjectMapper;
     
-@RestController
-@SpringBootApplication
-@EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
+@org.springframework.web.bind.annotation.RestController
+@org.springframework.boot.autoconfigure.SpringBootApplication
+@org.springframework.boot.autoconfigure.EnableAutoConfiguration.EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
 public class Main
 {
     @Component
     private static final class Jdbc
     {
-        private JdbcTemplate jdbcTemplate;
+        private org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
         private Jdbc() throws Exception
         {
             final var config = new HikariConfig();
@@ -52,7 +47,7 @@ public class Main
             return this.jdbcTemplate;
         }
         
-        @PreDestroy
+        @javax.annotation.PreDestroy
         private void shutdown() throws Exception
         {
             this.jdbcTemplate.update("drop table productItem, productUnit, productReview");
@@ -139,7 +134,7 @@ public class Main
     
     public static void main(final String[] args)
     {
-        final var app = new SpringApplication(Main.class);
+        final var app = new org.springframework.boot.SpringApplication(Main.class);
         app.setDefaultProperties(java.util.Collections.singletonMap("server.port", System.getenv("PORT")));
         app.run(args);
     }
