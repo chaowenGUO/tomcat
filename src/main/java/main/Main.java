@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.TextMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -116,7 +115,7 @@ public class Main
             }
         }
         @Override
-        public void registerWebSocketHandlers(final WebSocketHandlerRegistry registry)
+        public void registerWebSocketHandlers(final org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry registry)
         {
             try (final var webSocker = new WebSocker())
             {
