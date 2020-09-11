@@ -27,7 +27,7 @@ public class Main
     @Component
     private static final class Jdbc
     {
-        private org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
+        private JdbcTemplate jdbcTemplate;
         private Jdbc() throws Exception
         {
             final var config = new HikariConfig();
