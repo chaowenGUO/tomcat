@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.TextMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,7 +28,7 @@ public class Main
             config.setUsername(System.getenv().containsKey("DATABASE_URL") ? dbUri.getUserInfo().split(":")[0] : "yhsgqmtv");
             config.setPassword(System.getenv().containsKey("DATABASE_URL") ? dbUri.getUserInfo().split(":")[1] : "TNksBpYp-8oJnWg2xIG_56zoDuDJ7y06");
             this.jdbcTemplate = new JdbcTemplate(new com.zaxxer.hikari.HikariDataSource(config));
-            try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new ClassPathResource("database.sql").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
+            try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new org.springframework.core.io.ClassPathResource("database.sql").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
             {
                 this.jdbcTemplate.update(reader.lines().collect(java.util.stream.Collectors.joining("\n")));
             }
