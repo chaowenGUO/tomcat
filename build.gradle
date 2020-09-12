@@ -7,9 +7,9 @@ apply plugin: 'io.spring.dependency-management'
 
 version = '1.0'
 
-configurations {
+/*configurations {
     compile.exclude module: 'spring-boot-starter-tomcat'
-}
+}*/
 
 repositories {
 	mavenCentral()
