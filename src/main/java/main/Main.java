@@ -132,8 +132,6 @@ public class Main
     }
 }*/
 
-import reactor.ipc.netty.http.server.HttpServer;
-
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.HttpHandler;
 import org.springframework.http.server.reactive.ReactorHttpHandlerAdapter;
@@ -156,7 +154,6 @@ public class Main
     {
         final var httpHandler = org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler(org.springframework.web.reactive.function.server.RouterFunctions.route().GET("/", this::helloCity).build());
         ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
-        HttpServer server = HttpServer.create(String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com"), Integer.parseInt(System.getenv("PORT")));
-        server.newHandler(adapter).block();
+	reactor.netty.http.server.HttpServer.create().host(String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com")).port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
     }
 }
