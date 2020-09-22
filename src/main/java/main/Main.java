@@ -152,7 +152,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @org.springframework.boot.autoconfigure.SpringBootApplication
 public class Main
 {
-    public Mono<ServerResponse> hello(ServerRequest request)
+    public Mono<ServerResponse> hello(final ServerRequest request) throws Exception
     {
         try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new org.springframework.core.io.ClassPathResource("static/login.html").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
         {
