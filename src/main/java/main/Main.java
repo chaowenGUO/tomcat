@@ -148,7 +148,7 @@ public class Main
     @Bean
     private org.springframework.web.reactive.function.server.RouterFunction<ServerResponse> routers()
     {
-        return RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", new Main()::helloCity).build())
+        return RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", new Main()::helloCity).build());
     }
 	
     public static void main(final String[] args)
