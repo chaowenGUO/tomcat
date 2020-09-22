@@ -145,7 +145,7 @@ public class Main
         return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).bodyValue("Hello, City!");
     }
 	
-    @Bean
+    @org.springframework.context.annotation.Bean
     private org.springframework.web.reactive.function.server.RouterFunction<ServerResponse> routers()
     {
         return RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", new Main()::helloCity).build());
