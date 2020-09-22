@@ -153,6 +153,11 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 import static org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler;
 
 public class Server {
+	
+	public Mono<ServerResponse> helloCity(ServerRequest request)
+	{
+            return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromObject("Hello, City!"));
+        }
 
 	public static final String HOST = String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com");
 
@@ -167,21 +172,8 @@ public class Server {
 		System.in.read();
 	}
 
-	public RouterFunction<ServerResponse> routingFunction() {
-		import static org.springframework.web.reactive.function.server.RouterFunctions.route;
-
-PersonRepository repository = ...
-PersonHandler handler = new PersonHandler(repository);
-
-RouterFunction<ServerResponse> route = route()
-    .GET("/person/{id}", accept(APPLICATION_JSON), handler::getPerson)
-    .GET("/person", accept(APPLICATION_JSON), handler::listPeople)
-    .POST("/person", handler::createPerson)
-    .build();
-	}
-
 	public void startReactorServer() throws InterruptedException {
-		RouterFunction<ServerResponse> route = routingFunction();
+		RouterFunction<ServerResponse> route = RouterFunction<ServerResponse> route = route().GET("/", accept(APPLICATION_JSON), handler::getPerson).build();
 		HttpHandler httpHandler = toHttpHandler(route);
 
 		ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
