@@ -161,7 +161,7 @@ class GreetingHandler {
 class GreetingRouter {
 
   @Bean
-  public RouterFunction<ServerResponse> route(GreetingHandler greetingHandler) {
+  public RouterFunction<ServerResponse> route() {
 
     return RouterFunctions
       .route(RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), greetingHandler::hello);
