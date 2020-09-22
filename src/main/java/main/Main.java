@@ -134,7 +134,7 @@ public class Main
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.HttpHandler;
-import org.springframework.http.server.reactive.ReactorHttpHandlerAdapter;
+import ;
 import org.springframework.http.server.reactive.ServletHttpHandlerAdapter;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -153,7 +153,7 @@ public class Main
     public static void main(final String[] args)
     {
         final var httpHandler = org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler(org.springframework.web.reactive.function.server.RouterFunctions.route().GET("/", this::helloCity).build());
-        ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
+        final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(httpHandler);
 	reactor.netty.http.server.HttpServer.create().host(String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com")).port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
     }
 }
