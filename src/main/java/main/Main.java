@@ -141,7 +141,7 @@ import org.springframework.http.server.reactive.ServletHttpHandlerAdapter;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
+import org.springframework.http.MediaType;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
@@ -173,7 +173,7 @@ public class Server {
 	}
 
 	public void startReactorServer() throws InterruptedException {
-		RouterFunction<ServerResponse> route = route().GET("/", accept(APPLICATION_JSON), this::helloCity).build();
+		RouterFunction<ServerResponse> route = route().GET("/", this::helloCity).build();
 		HttpHandler httpHandler = toHttpHandler(route);
 
 		ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
