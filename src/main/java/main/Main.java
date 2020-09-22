@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 public class Main
 {
     /*@Component
-    private static final class Jdbc
+    private static final class R2dbc
     {
         private JdbcTemplate jdbcTemplate;
         private Jdbc() throws Exception
@@ -48,9 +48,9 @@ public class Main
         }
     }
     
-    @Autowired private Jdbc jdbcTemplate;
+    @Autowired private Jdbc jdbcTemplate;*/
     
-    @PostMapping("/ajax") 
+    /*@PostMapping("/ajax") 
     private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final java.util.Map<String, String> body) throws Exception
     {
         return this.jdbcTemplate.get().queryForList("select * from" + body.entrySet().stream().map($ -> String.join(" ", $.getKey(), $.getValue())).collect(java.util.stream.Collectors.joining(" ")));
