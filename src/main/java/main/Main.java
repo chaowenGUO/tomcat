@@ -149,7 +149,7 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 @Component
-public class GreetingHandler {
+class GreetingHandler {
 
   public Mono<ServerResponse> hello(ServerRequest request) {
     return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
@@ -158,7 +158,7 @@ public class GreetingHandler {
 }
 
 @Configuration
-public class GreetingRouter {
+class GreetingRouter {
 
   @Bean
   public RouterFunction<ServerResponse> route(GreetingHandler greetingHandler) {
