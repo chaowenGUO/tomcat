@@ -142,33 +142,21 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import org.springframework.http.MediaType;
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
-import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
-import static org.springframework.web.reactive.function.server.RequestPredicates.contentType;
-import static org.springframework.web.reactive.function.server.RequestPredicates.method;
-import static org.springframework.web.reactive.function.server.RequestPredicates.path;
-import static org.springframework.web.reactive.function.server.RouterFunctions.nest;
-import static org.springframework.web.reactive.function.server.RouterFunctions.route;
-import static org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler;
+import reactor.core.publisher.Mono;
+import org.springframework.web.reactive.function.BodyInserters;
 
-public class Main {
+public class Main
+{
+    public Mono<ServerResponse> helloCity(ServerRequest request)
+    {
+        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromObject("Hello, City!"));
+    }
 	
-	public Mono<ServerResponse> helloCity(ServerRequest request)
-	{
-            return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromObject("Hello, City!"));
-        }
-
-	public static final String HOST = String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com");
-
-	public static final int PORT = Integer.parseInt(System.getenv("PORT"));
-
-	public static void main(String[] args) throws Exception {
-		RouterFunction<ServerResponse> route = route().GET("/", this::helloCity).build();
-		HttpHandler httpHandler = toHttpHandler(route);
-
-		ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
-		HttpServer server = HttpServer.create(HOST, PORT);
-		server.newHandler(adapter).block();
-	}
+    public static void main(final String[] args)
+    {
+        final var httpHandler = org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler(org.springframework.web.reactive.function.server.RouterFunctions.route().GET("/", this::helloCity).build());
+        ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
+        HttpServer server = HttpServer.create(String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com"), Integer.parseInt(System.getenv("PORT")));
+        server.newHandler(adapter).block();
+    }
 }
