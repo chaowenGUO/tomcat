@@ -132,33 +132,49 @@ public class Main
     }
 }*/
 
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.server.ServerRequest;
+import org.springframework.web.reactive.function.server.ServerResponse;
+
+import reactor.core.publisher.Mono;
+
+@Component
+public class GreetingHandler {
+
+  public Mono<ServerResponse> hello(ServerRequest request) {
+    return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
+      .body(BodyInserters.fromValue("Hello, Spring!"));
+  }
+}
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.server.RequestPredicates;
+import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import org.springframework.http.MediaType;
+@Configuration
+public class GreetingRouter {
 
-//@org.springframework.boot.autoconfigure.SpringBootApplication
-//@org.springframework.boot.autoconfigure.EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
+  @Bean
+  public RouterFunction<ServerResponse> route(GreetingHandler greetingHandler) {
+
+    return RouterFunctions
+      .route(RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), greetingHandler::hello);
+  }
+}
+
+@org.springframework.boot.autoconfigure.SpringBootApplication
 public class Main
-{
-    public reactor.core.publisher.Mono<ServerResponse> helloCity(final org.springframework.web.reactive.function.server.ServerRequest request)
-    {
-        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).bodyValue("Hello, City!");
-    }
-	
-    /*@org.springframework.context.annotation.Bean
-    public org.springframework.web.reactive.function.server.RouterFunction<ServerResponse> routers()
-    {
-        return RouterFunctions.route().GET("/", new Main()::helloCity).build();
-    }*/
-	
+{   
     public static void main(final String[] args)
     {
-        final var httpHandler = RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", new Main()::helloCity).build());
-        final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(httpHandler);
-	reactor.netty.http.server.HttpServer.create().host("0.0.0.0").port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
-	//final var app = new org.springframework.boot.SpringApplication(Main.class);
-        //app.setDefaultProperties(java.util.Collections.singletonMap("server.port", System.getenv("PORT")));
-        //app.run(args);
+        final var app = new org.springframework.boot.SpringApplication(Main.class);
+        app.setDefaultProperties(java.util.Collections.singletonMap("server.port", System.getenv("PORT")));
+        app.run(args);
     }
-}
+}*/
