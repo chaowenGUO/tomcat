@@ -154,7 +154,7 @@ public class Main
 {
     public Mono<ServerResponse> hello(ServerRequest request)
     {
-        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromValue("Hello, Spring!"));
+        return ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue("login.html");
     }
     @Bean
     public RouterFunction<ServerResponse> route()
