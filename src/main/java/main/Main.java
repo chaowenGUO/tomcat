@@ -164,15 +164,6 @@ public class Server {
 	public static final int PORT = Integer.parseInt(System.getenv("PORT"));
 
 	public static void main(String[] args) throws Exception {
-		Server server = new Server();
-		server.startReactorServer();
-//		server.startTomcatServer();
-
-		System.out.println("Press ENTER to exit.");
-		System.in.read();
-	}
-
-	public void startReactorServer() throws InterruptedException {
 		RouterFunction<ServerResponse> route = route().GET("/", this::helloCity).build();
 		HttpHandler httpHandler = toHttpHandler(route);
 
