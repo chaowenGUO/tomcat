@@ -162,7 +162,7 @@ public class Main
     @Bean
     public RouterFunction<ServerResponse> route()
     {
-        return RouterFunctions.route().GET("/", new Main()::hello)).build();
+        return RouterFunctions.route().GET("/", new Main()::hello).build();
     }
     public static void main(final String[] args)
     {
