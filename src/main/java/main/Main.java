@@ -132,10 +132,7 @@ public class Main
     }
 }*/
 
-import org.springframework.http.HttpMethod;
-import org.springframework.http.server.reactive.HttpHandler;
-import org.springframework.http.server.reactive.ServletHttpHandlerAdapter;
-import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import org.springframework.http.MediaType;
@@ -144,14 +141,14 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 public class Main
 {
-    public Mono<ServerResponse> helloCity()
+    public Mono<ServerResponse> helloCity(ServerRequest request)
     {
         return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromObject("Hello, City!"));
     }
 	
     public static void main(final String[] args)
     {
-        final var httpHandler = org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler(org.springframework.web.reactive.function.server.RouterFunctions.route().GET("/", Main::helloCity).build());
+        final var httpHandler = RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", Main::helloCity).build());
         final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(httpHandler);
 	reactor.netty.http.server.HttpServer.create().host(String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com")).port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
     }
