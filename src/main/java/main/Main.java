@@ -9,14 +9,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.TextMessage;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;*/
+
+import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
     
-@org.springframework.web.bind.annotation.RestController
 @org.springframework.boot.autoconfigure.SpringBootApplication
-@org.springframework.boot.autoconfigure.EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
+//@org.springframework.boot.autoconfigure.EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
 public class Main
 {
-    @Component
+    /*@Component
     private static final class Jdbc
     {
         private JdbcTemplate jdbcTemplate;
@@ -47,12 +49,6 @@ public class Main
     }
     
     @Autowired private Jdbc jdbcTemplate;
-    
-    @GetMapping("/") 
-    private static ModelAndView main()
-    {
-        return new ModelAndView("login.html");
-    }
     
     @PostMapping("/ajax") 
     private final java.util.List<java.util.Map<String, Object>> ajax(@RequestBody final java.util.Map<String, String> body) throws Exception
@@ -122,49 +118,23 @@ public class Main
             }
             catch (Exception error){}
         }
-    }
+    }*/
     
-    public static void main(final String[] args)
-    {
-        final var app = new org.springframework.boot.SpringApplication(Main.class);
-        app.setDefaultProperties(java.util.Collections.singletonMap("server.port", System.getenv("PORT")));
-        app.run(args);
-    }
-}*/
-
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.server.ServerRequest;
-import org.springframework.web.reactive.function.server.ServerResponse;
-
-import reactor.core.publisher.Mono;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.server.RequestPredicates;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.RouterFunctions;
-import org.springframework.web.reactive.function.server.ServerResponse;
-
-
-@org.springframework.boot.autoconfigure.SpringBootApplication
-public class Main
-{
-    public Mono<ServerResponse> hello(final ServerRequest request)
+    private static Mono<ServerResponse> main(final org.springframework.web.reactive.function.server.ServerRequest request)
     {
         try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new org.springframework.core.io.ClassPathResource("static/login.html").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
         {
-            return ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(reader.lines().collect(java.util.stream.Collectors.joining("\n")));
+            return ServerResponse.ok().contentType(org.springframework.http.MediaType.TEXT_HTML).bodyValue(reader.lines().collect(java.util.stream.Collectors.joining("\n")));
         }
         catch (Exception error){return Mono.empty();}
     }
-    @Bean
-    public RouterFunction<ServerResponse> route()
+    
+    @org.springframework.context.annotation.Bean
+    public org.springframework.web.reactive.function.server.RouterFunction<ServerResponse> route()
     {
-        return RouterFunctions.route().GET("/", new Main()::hello).build();
+        return org.springframework.web.reactive.function.server.RouterFunctions.route().GET("/", Main::main).build();
     }
+    
     public static void main(final String[] args)
     {
         final var app = new org.springframework.boot.SpringApplication(Main.class);
