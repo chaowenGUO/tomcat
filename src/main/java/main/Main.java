@@ -148,6 +148,6 @@ public class Main
     {
         final var httpHandler = RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", new Main()::helloCity).build());
         final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(httpHandler);
-	reactor.netty.http.server.HttpServer.create().host("https://sspringboot.herokuapp.com").port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
+	reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
     }
 }
