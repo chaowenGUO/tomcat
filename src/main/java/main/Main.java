@@ -148,12 +148,12 @@ public class Main
     @org.springframework.context.annotation.Bean
     private org.springframework.web.reactive.function.server.RouterFunction<ServerResponse> routers()
     {
-        return RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", new Main()::helloCity).build());
+        return RouterFunctions.route().GET("/", new Main()::helloCity).build();
     }
 	
     public static void main(final String[] args)
     {
-        //final var httpHandler = ;
+        //final var httpHandler = RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", new Main()::helloCity).build());
         //final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(httpHandler);
 	//reactor.netty.http.server.HttpServer.create().host("sspringboot.herokuapp.com").port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
 	final var app = new org.springframework.boot.SpringApplication(Main.class);
