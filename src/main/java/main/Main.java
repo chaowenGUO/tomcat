@@ -173,7 +173,7 @@ public class Server {
 	}
 
 	public void startReactorServer() throws InterruptedException {
-		RouterFunction<ServerResponse> route = RouterFunction<ServerResponse> route = route().GET("/", accept(APPLICATION_JSON), handler::getPerson).build();
+		RouterFunction<ServerResponse> route = route().GET("/", accept(APPLICATION_JSON), this::helloCity).build();
 		HttpHandler httpHandler = toHttpHandler(route);
 
 		ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
