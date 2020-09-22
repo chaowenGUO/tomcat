@@ -157,7 +157,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.t
 
 public class Server {
 
-	public static final String HOST = "localhost";
+	public static final String HOST = String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com");
 
 	public static final int PORT = Integer.parseInt(System.getenv("PORT"));
 
