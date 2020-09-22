@@ -152,12 +152,13 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @org.springframework.boot.autoconfigure.SpringBootApplication
 public class Main
 {
-    public Mono<ServerResponse> hello(final ServerRequest request) throws Exception
+    public Mono<ServerResponse> hello(final ServerRequest request)
     {
         try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new org.springframework.core.io.ClassPathResource("static/login.html").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
         {
             return ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(reader.lines().collect(java.util.stream.Collectors.joining("\n")));
         }
+        catch (Exception error){}
     }
     @Bean
     public RouterFunction<ServerResponse> route()
