@@ -144,14 +144,14 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 public class Main
 {
-    public Mono<ServerResponse> helloCity(ServerRequest request)
+    public Mono<ServerResponse> helloCity()
     {
         return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromObject("Hello, City!"));
     }
 	
     public static void main(final String[] args)
     {
-        final var httpHandler = org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler(org.springframework.web.reactive.function.server.RouterFunctions.route().GET("/", this::helloCity).build());
+        final var httpHandler = org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler(org.springframework.web.reactive.function.server.RouterFunctions.route().GET("/", Main::helloCity).build());
         final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(httpHandler);
 	reactor.netty.http.server.HttpServer.create().host(String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com")).port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
     }
