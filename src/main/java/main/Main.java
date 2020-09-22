@@ -148,29 +148,19 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-@Component
-class GreetingHandler {
-
-  public Mono<ServerResponse> hello(ServerRequest request) {
-    return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
-      .body(BodyInserters.fromValue("Hello, Spring!"));
-  }
-}
-
-@Configuration
-class GreetingRouter {
-
-  @Bean
-  public RouterFunction<ServerResponse> route() {
-
-    return RouterFunctions
-      .route(RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), greetingHandler::hello);
-  }
-}
 
 @org.springframework.boot.autoconfigure.SpringBootApplication
 public class Main
-{   
+{
+    public Mono<ServerResponse> hello(ServerRequest request)
+    {
+        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromValue("Hello, Spring!"));
+    }
+    @Bean
+    public RouterFunction<ServerResponse> route()
+    {
+        return RouterFunctions.route(RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), new Main()::hello);
+    }
     public static void main(final String[] args)
     {
         final var app = new org.springframework.boot.SpringApplication(Main.class);
