@@ -146,7 +146,7 @@ public class Main
 	
     public static void main(final String[] args)
     {
-        final var httpHandler = RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", Main::helloCity).build());
+        final var httpHandler = RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", new Main()::helloCity).build());
         final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(httpHandler);
 	reactor.netty.http.server.HttpServer.create().host(String.join("", "https://", System.getenv("HEROKU_APP_NAME"), ".herokuapp.com")).port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
     }
