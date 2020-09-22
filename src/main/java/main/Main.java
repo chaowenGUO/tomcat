@@ -132,9 +132,6 @@ public class Main
     }
 }*/
 
-import org.apache.catalina.Context;
-import org.apache.catalina.LifecycleException;
-import org.apache.catalina.startup.Tomcat;
 import reactor.ipc.netty.http.server.HttpServer;
 
 import org.springframework.http.HttpMethod;
@@ -171,14 +168,16 @@ public class Server {
 	}
 
 	public RouterFunction<ServerResponse> routingFunction() {
-		PersonRepository repository = new DummyPersonRepository();
-		PersonHandler handler = new PersonHandler(repository);
+		import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
-		return nest(path("/person"),
-				nest(accept(APPLICATION_JSON),
-						route(GET("/{id}"), handler::getPerson)
-						.andRoute(method(HttpMethod.GET), handler::listPeople)
-				).andRoute(POST("/").and(contentType(APPLICATION_JSON)), handler::createPerson));
+PersonRepository repository = ...
+PersonHandler handler = new PersonHandler(repository);
+
+RouterFunction<ServerResponse> route = route()
+    .GET("/person/{id}", accept(APPLICATION_JSON), handler::getPerson)
+    .GET("/person", accept(APPLICATION_JSON), handler::listPeople)
+    .POST("/person", handler::createPerson)
+    .build();
 	}
 
 	public void startReactorServer() throws InterruptedException {
