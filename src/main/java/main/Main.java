@@ -158,7 +158,7 @@ public class Main
         {
             return ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(reader.lines().collect(java.util.stream.Collectors.joining("\n")));
         }
-        catch (Exception error){return Mono.enpty();}
+        catch (Exception error){return Mono.empty();}
     }
     @Bean
     public RouterFunction<ServerResponse> route()
