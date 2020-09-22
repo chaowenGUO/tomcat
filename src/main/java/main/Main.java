@@ -146,7 +146,7 @@ public class Main
     }
 	
     @org.springframework.context.annotation.Bean
-    private org.springframework.web.reactive.function.server.RouterFunction<ServerResponse> routers()
+    public org.springframework.web.reactive.function.server.RouterFunction<ServerResponse> routers()
     {
         return RouterFunctions.route().GET("/", new Main()::helloCity).build();
     }
