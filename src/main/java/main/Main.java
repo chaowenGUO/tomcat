@@ -159,7 +159,7 @@ public class Server {
 
 	public static final String HOST = "localhost";
 
-	public static final int PORT = System.getenv("PORT");
+	public static final int PORT = Integer.parseInt(System.getenv("PORT"));
 
 	public static void main(String[] args) throws Exception {
 		Server server = new Server();
