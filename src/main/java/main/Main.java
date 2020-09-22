@@ -154,12 +154,15 @@ public class Main
 {
     public Mono<ServerResponse> hello(ServerRequest request)
     {
-        return ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue("login.html");
+        try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new org.springframework.core.io.ClassPathResource("static/login.html").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
+        {
+            return ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(reader.lines().collect(java.util.stream.Collectors.joining("\n")));
+        }
     }
     @Bean
     public RouterFunction<ServerResponse> route()
     {
-        return RouterFunctions.route(RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), new Main()::hello);
+        return RouterFunctions.route(RequestPredicates.GET("/", new Main()::hello));
     }
     public static void main(final String[] args)
     {
