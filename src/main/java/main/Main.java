@@ -152,7 +152,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.n
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler;
 
-public class Server {
+public class Main {
 	
 	public Mono<ServerResponse> helloCity(ServerRequest request)
 	{
