@@ -133,15 +133,15 @@ public class Main
 }*/
 
 import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.ServerResponse;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.BodyInserters;
 
 public class Main
 {
-    public reactor.core.publisher.Mono<org.springframework.web.reactive.function.server.ServerResponse> helloCity(final org.springframework.web.reactive.function.server.ServerRequest request)
+    public reactor.core.publisher.Mono<ServerResponse> helloCity(final org.springframework.web.reactive.function.server.ServerRequest request)
     {
-        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromObject("Hello, City!"));
+        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).bodyValue("Hello, City!");
     }
 	
     public static void main(final String[] args)
