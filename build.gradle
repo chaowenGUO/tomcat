@@ -20,6 +20,12 @@ dependencies {
 	runtimeOnly 'org.postgresql:r2dbc-postgresql'
 }
 
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.boot.experimental:spring-boot-bom-r2dbc:0.1.0.M3'
+	}
+}
+
 bootJar {
     destinationDirectory = file('.')
 }
