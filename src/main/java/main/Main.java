@@ -138,6 +138,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.http.MediaType;
 
 @org.springframework.boot.autoconfigure.SpringBootApplication
+@org.springframework.boot.autoconfigure.EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
 public class Main
 {
     public reactor.core.publisher.Mono<ServerResponse> helloCity(final org.springframework.web.reactive.function.server.ServerRequest request)
