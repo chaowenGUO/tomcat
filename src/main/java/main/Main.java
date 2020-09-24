@@ -144,19 +144,13 @@ import reactor.core.publisher.Mono;
 }*/
 
 import reactor.core.publisher.Mono;
-import org.springframework.web.reactive.function.server.RouterFunctions;
-import org.springframework.web.reactive.function.server.ServerResponse;
 
 public class Main
 {
-    private static Mono<ServerResponse> main(final org.springframework.web.reactive.function.server.ServerRequest request)
-    {
-        return ServerResponse.ok().contentType(org.springframework.http.MediaType.TEXT_PLAIN).bodyValue("Hello, City!");
-    }
-
     public static void main(final String[] args)
     {
-	final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).handle(new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", Main::main).build()))).bindNow();
+        final var server = reactor.netty.http.server.HttpServer.create().route(
+		routes -> routes.directory("/", java.nio.file.Paths.get(Main.class.getResource("/Resource").toURI()))).bindNow();
         server.onDispose().block();
     }
 }
