@@ -26,6 +26,14 @@ dependencyManagement {
 	}
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs = ['.']
+        }
+    }
+}
+
 bootJar {
     destinationDirectory = file('.')
 }
