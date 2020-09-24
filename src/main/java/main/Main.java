@@ -156,7 +156,7 @@ public class Main
 
     public static void main(final String[] args)
     {
-	final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", Main::main).build()));
-	reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
+	final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).handle(new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", Main::main).build()))).bindNow();
+        server.onDispose().block();
     }
 }
