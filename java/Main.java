@@ -143,13 +143,14 @@ import reactor.core.publisher.Mono;
 
 import reactor.core.publisher.Mono;
 
-public class Main
+public class Server
 {
     public static void main(final String[] args)
     {
+	final var current = java.nio.file.Paths.get("").toAbsolutePath();
         final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).route(
-		routes -> routes.file("/", java.nio.file.Paths.get(java.nio.file.Paths.get("").toAbsolutePath().toString(), "login.html").toAbsolutePath())
-		                .directory("/", java.nio.file.Paths.get("").toAbsolutePath())).bindNow();
+		routes -> routes.file("/", java.nio.file.Paths.get(current.toString(), "login.html").toAbsolutePath())
+		                .directory("/", current)).bindNow();
         server.onDispose().block();
     }
 }
