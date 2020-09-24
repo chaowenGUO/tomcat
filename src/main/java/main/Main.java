@@ -150,7 +150,7 @@ public class Main
     public static void main(final String[] args)
     {
         final var server = reactor.netty.http.server.HttpServer.create().route(
-		routes -> routes.directory("/", java.nio.file.Paths.get(Main.class.getResource("/Resource").toURI()))).bindNow();
+		routes -> routes.directory("/", java.nio.file.Paths.get(Main.class.getResource("/static").toURI()))).bindNow();
         server.onDispose().block();
     }
 }
