@@ -149,7 +149,7 @@ public class Main
     {
         final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).route(
 		routes -> routes.directory("/", java.nio.file.Paths.get("").toAbsolutePath())
-	                        .file("/", java.nio.file.Paths.get(java.nio.file.Paths.get(""), "login.html").toAbsolutePath())).bindNow();
+	                        .file("/", java.nio.file.Paths.get(java.nio.file.Paths.get("").toString(), "login.html").toAbsolutePath())).bindNow();
         server.onDispose().block();
     }
 }
