@@ -29,7 +29,7 @@ dependencyManagement {
 sourceSets {
     main {
         java {
-            srcDirs = ['.']
+            srcDirs = ['java']
         }
     }
 }
