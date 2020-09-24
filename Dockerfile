@@ -5,4 +5,4 @@ RUN ["gradle", "build"]
 RUN ["unzip", "app-1.0.jar"]
 WORKDIR /app/BOOT-INF/classes
 RUN ["ls"]
-ENTRYPOINT ["java", "-jar", "app-1.0.jar"]
+ENTRYPOINT ["java", "Main"]
