@@ -143,7 +143,7 @@ import reactor.core.publisher.Mono;
     }
 }*/
 
-import reactor.core.publisher.Mono;
+/*import reactor.core.publisher.Mono;
 
 public class Main
 {
@@ -153,5 +153,30 @@ public class Main
         final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("port"))).route(
 		routes -> routes.directory("/", resource)).bindNow();
         server.onDispose().block();
+    }
+}*/
+
+import reactor.core.publisher.Mono;
+import reactor.netty.DisposableServer;
+import reactor.netty.http.server.HttpServer;
+
+public class Main {
+
+    public static void main(String[] args) {
+        DisposableServer server =
+                HttpServer.create()
+                          .route(routes ->
+                              routes.get("/hello",        
+                                         (request, response) -> response.sendString(Mono.just("Hello World!")))
+                                    .post("/echo",        
+                                         (request, response) -> response.send(request.receive().retain()))
+                                    .get("/path/{param}", 
+                                         (request, response) -> response.sendString(Mono.just(request.param("param"))))
+                                    .ws("/ws",            
+                                         (wsInbound, wsOutbound) -> wsOutbound.send(wsInbound.receive().retain())))
+                          .bindNow();
+
+        server.onDispose()
+              .block();
     }
 }
