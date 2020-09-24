@@ -1,1 +1,1 @@
-web: java -jar app
+web: java -jar app-1.0.jar
