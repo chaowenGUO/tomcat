@@ -147,7 +147,7 @@ public class Main
 {
     public static void main(final String[] args) throws Exception
     {
-	System.out.println(Main.class.getResource("").getPath());
+	System.out.println(java.nio.file.Paths.get("").toAbsolutePath());
 	final var resource = java.nio.file.Paths.get(Main.class.getResource("").toURI());
         final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("port"))).route(
 		routes -> routes.directory("/", resource)).bindNow();
