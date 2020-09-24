@@ -142,12 +142,27 @@ import reactor.core.publisher.Mono;
         app.run(args);
     }
 }*/
-    
-import reactor.core.publisher.Mono;
-import reactor.netty.DisposableServer;
-import reactor.netty.http.server.HttpServer;
 
-public class Main {
+import reactor.core.publisher.Mono;
+import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.ServerResponse;
+
+public class Main
+{
+	public static Mono<ServerResponse> main(final org.springframework.web.reactive.function.server.ServerRequest request)
+	{
+        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).bodyValue("Hello, City!");
+    }
+
+	public static void main(final String[] args)
+    {
+		final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", Main::main).build()));
+		final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bindNow();
+        server.onDispose().block();
+	}
+}
+
+/*public class Main {
 
     public static void main(String[] args) {
         DisposableServer server =
@@ -167,4 +182,4 @@ public class Main {
         server.onDispose()
               .block();
     }
-}
+}*/
