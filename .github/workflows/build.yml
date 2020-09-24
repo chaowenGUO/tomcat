@@ -22,6 +22,7 @@ jobs:
               password: ${{secrets.DOCKER}}
               repository: chaowenguo/springboot
               tags: latest
+              no-cache: true
         #- run: |
         #     curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
         #      ibmcloud cf install
