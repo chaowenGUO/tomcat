@@ -149,17 +149,17 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 public class Main
 {
-	public static Mono<ServerResponse> main(final org.springframework.web.reactive.function.server.ServerRequest request)
-	{
-        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).bodyValue("Hello, City!");
+    private static Mono<ServerResponse> main(final org.springframework.web.reactive.function.server.ServerRequest request)
+    {
+        return ServerResponse.ok().contentType(org.springframework.http.MediaType.TEXT_PLAIN).bodyValue("Hello, City!");
     }
 
-	public static void main(final String[] args)
+    public static void main(final String[] args)
     {
-		final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", Main::main).build()));
-		final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bindNow();
+	final var adapter = new org.springframework.http.server.reactive.ReactorHttpHandlerAdapter(RouterFunctions.toHttpHandler(RouterFunctions.route().GET("/", Main::main).build()));
+	final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bindNow();
         server.onDispose().block();
-	}
+    }
 }
 
 /*public class Main {
