@@ -10,7 +10,7 @@ jobs:
         - run: |
             pip install gitpython
             python build.py
-            tree ~/.gradle
+            ls -R ~/.gradle
         - uses: akhileshns/heroku-deploy@v3.2.6
           with:
               heroku_api_key: ${{secrets.HEROKU}}
