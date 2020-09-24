@@ -145,7 +145,7 @@ import reactor.core.publisher.Mono;
 
 public class Main
 {
-    public static void main(final String[] args) throws Exception
+    public static void main(final String[] args)
     {
         final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("port"))).route(
 		routes -> routes.directory("/", java.nio.file.Paths.get("").toAbsolutePath())).bindNow();
