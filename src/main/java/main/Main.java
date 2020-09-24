@@ -11,10 +11,10 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.TextMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;*/
 
-import org.springframework.web.reactive.function.server.ServerResponse;
+/*import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
     
-@org.springframework.boot.autoconfigure.SpringBootApplication
+@org.springframework.boot.autoconfigure.SpringBootApplication*/
 //@org.springframework.boot.autoconfigure.EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
 public class Main
 {
@@ -120,7 +120,7 @@ public class Main
         }
     }*/
     
-    private static Mono<ServerResponse> main(final org.springframework.web.reactive.function.server.ServerRequest request)
+    /*private static Mono<ServerResponse> main(final org.springframework.web.reactive.function.server.ServerRequest request)
     {
         try (final var reader = new java.io.BufferedReader(new java.io.InputStreamReader(new org.springframework.core.io.ClassPathResource("static/login.html").getInputStream(), java.nio.charset.StandardCharsets.UTF_8)))
         {
@@ -140,5 +140,30 @@ public class Main
         final var app = new org.springframework.boot.SpringApplication(Main.class);
         app.setDefaultProperties(java.util.Collections.singletonMap("server.port", System.getenv("PORT")));
         app.run(args);
+    }
+}*/
+    
+import reactor.core.publisher.Mono;
+import reactor.netty.DisposableServer;
+import reactor.netty.http.server.HttpServer;
+
+public class Application {
+
+    public static void main(String[] args) {
+        DisposableServer server =
+                HttpServer.create()
+                          .route(routes ->
+                              routes.get("/hello",        
+                                         (request, response) -> response.sendString(Mono.just("Hello World!")))
+                                    .post("/echo",        
+                                         (request, response) -> response.send(request.receive().retain()))
+                                    .get("/path/{param}", 
+                                         (request, response) -> response.sendString(Mono.just(request.param("param"))))
+                                    .ws("/ws",            
+                                         (wsInbound, wsOutbound) -> wsOutbound.send(wsInbound.receive().retain())))
+                          .bindNow();
+
+        server.onDispose()
+              .block();
     }
 }
