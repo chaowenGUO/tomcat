@@ -26,6 +26,6 @@ dependencyManagement {
 	}
 }
 
-bootJar {
-    destinationDirectory = file('.')
-}
+//bootJar {
+//    destinationDirectory = file('.')
+//}
