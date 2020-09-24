@@ -160,25 +160,3 @@ public class Main
 	reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).handle(adapter).bind().block();
     }
 }
-
-/*public class Main {
-
-    public static void main(String[] args) {
-        DisposableServer server =
-                HttpServer.create()
-                          .port(Integer.parseInt(System.getenv("PORT")))
-                          .route(routes ->
-                              routes.get("/hello",        
-                                         (request, response) -> response.sendString(Mono.just("Hello World!")))
-                                    .post("/echo",        
-                                         (request, response) -> response.send(request.receive().retain()))
-                                    .get("/path/{param}", 
-                                         (request, response) -> response.sendString(Mono.just(request.param("param"))))
-                                    .ws("/ws",            
-                                         (wsInbound, wsOutbound) -> wsOutbound.send(wsInbound.receive().retain())))
-                          .bindNow();
-
-        server.onDispose()
-              .block();
-    }
-}*/
