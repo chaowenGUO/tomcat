@@ -23,7 +23,6 @@ jobs:
         - uses: docker/build-push-action@v2
           with:             
               tags: chaowenguo/springboot:latest
-              no-cache: true
         #- run: |
         #     curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
         #      ibmcloud cf install
