@@ -165,6 +165,7 @@ public class Main {
     public static void main(String[] args) {
         DisposableServer server =
                 HttpServer.create()
+		          .port(Integer.parseInt(System.getenv("PORT")))
                           .route(routes ->
                               routes.get("/hello",        
                                          (request, response) -> response.sendString(Mono.just("Hello World!")))
