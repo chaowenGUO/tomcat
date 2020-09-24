@@ -16,8 +16,8 @@ import reactor.core.publisher.Mono;
     
 @org.springframework.boot.autoconfigure.SpringBootApplication*/
 //@org.springframework.boot.autoconfigure.EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
-public class Main
-{
+/*public class Main
+{*/
     /*@Component
     private static final class R2dbc
     {
