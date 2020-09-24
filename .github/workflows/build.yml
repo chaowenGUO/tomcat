@@ -22,7 +22,7 @@ jobs:
               password: ${{secrets.DOCKER}}
         - uses: docker/build-push-action@v2
           with:
-              push: true            
+              #push: true            
               tags: chaowenguo/springboot:latest
         #- run: |
         #     curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
