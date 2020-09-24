@@ -16,7 +16,7 @@ jobs:
               heroku_app_name: sspringboot
               heroku_email: chaowen.guo1@gmail.com
               usedocker: true
-        - uses: docker/build-push-action@v1.1.1
+        - uses: docker/build-push-action@v2
           with:
               username: chaowenguo
               password: ${{secrets.DOCKER}}
