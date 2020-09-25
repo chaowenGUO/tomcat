@@ -24,6 +24,8 @@ jobs:
           with:
               #push: true            
               tags: chaowenguo/springboot:latest
+        - run: |
+              docker image push chaowenguo/springboot:latest
         #- run: |
         #     curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
         #      ibmcloud cf install
