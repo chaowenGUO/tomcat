@@ -1,4 +1,7 @@
 FROM gradle:jdk14
+RUN ["nproc", ">>", "/thread"]
+RUN ["cat", "/thread"]
+RUN ["rm", "-rf", "/thread"]
 COPY . /app
 WORKDIR /app
 RUN ["gradle", "build"]
