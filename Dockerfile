@@ -1,5 +1,5 @@
 FROM gradle:jdk14
-RUN ["nproc", ">>", "/thread"]
+RUN ["bash", "-c", "nproc >> /thread"]
 RUN ["cat", "/thread"]
 RUN ["rm", "-rf", "/thread"]
 COPY . /app
