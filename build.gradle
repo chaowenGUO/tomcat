@@ -27,5 +27,5 @@ dependencyManagement {
 }
 
 task copyDependencies(type: Copy) {
-        from configurations.default into 'lib'
+        from configurations.default into 'copyDependencies'
 }
