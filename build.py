@@ -6,5 +6,5 @@ with git.Repo(pathlib.Path(__file__).resolve().parent) as repository:
     repository.git.subtree('add', '--prefix=' + str(static), 'https://github.com/chaowenGUO/aiohttp', 'master', '--squash')
     static = static.resolve()
     for _  in static.iterdir():
-        if _.is_file() and _.suffix != '.html' and _.suffix != '.js' and _.suffix != '.sql': _.unlink()
-        elif _.is_dir(): shutil.rmtree(_)
+        if _.suffix == '.html' or _.suffix == '.js' or _.suffix == '.sql': shutil.move(str(_), static.parent)
+    shutil.rmtree(static)
