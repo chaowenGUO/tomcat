@@ -1,6 +1,6 @@
 FROM gradle:jdk14
-COPY java static gradle.build /usr/local/src/
-WORKDIR /usr/local/src
+COPY java static build.gradle /usr/local/src/
+WORKDIR /usr/local/src/
 RUN ["gradle", "build"]
 RUN ["unzip", "app-1.0.jar"]
 WORKDIR /usr/local/src/BOOT-INF/classes
