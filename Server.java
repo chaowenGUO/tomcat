@@ -147,8 +147,8 @@ public class Server
 {
     public static void main(final String[] args)
     {
-	final var dbUri = java.net.URI.create(System.getenv("DATABASE_URL"));
-	final var connectionMono = Mono.from(io.r2dbc.spi.ConnectionFactories.get(String.join("", "r2dbc:postgresql://", dbUri.getHost(), ":", String.valueOf(dbUri.getPort()), dbUri.getPath())).create());
+	//final var dbUri = java.net.URI.create(System.getenv("DATABASE_URL"));
+	//final var connectionMono = Mono.from(io.r2dbc.spi.ConnectionFactories.get(String.join("", "r2dbc:postgresql://", dbUri.getHost(), ":", String.valueOf(dbUri.getPort()), dbUri.getPath())).create());
 	final var current = java.nio.file.Paths.get("").toAbsolutePath();
         final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).route(
 		routes -> routes.file("/", java.nio.file.Paths.get(current.toString(), "login.html").toAbsolutePath())
