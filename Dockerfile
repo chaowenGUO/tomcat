@@ -1,7 +1,7 @@
 FROM gradle:jdk14
-COPY . /app
-WORKDIR /app
+COPY java static gradle.build /usr/local/src/
+WORKDIR /usr/local/src
 RUN ["gradle", "build"]
 RUN ["unzip", "app-1.0.jar"]
-WORKDIR /app/BOOT-INF/classes
-ENTRYPOINT ["java", "-cp", "/app/BOOT-INF/lib/*:.", "Server"]
+WORKDIR /usr/local/src/BOOT-INF/classes
+ENTRYPOINT ["java", "-cp", "/usr/local/src/BOOT-INF/lib/*:.", "Server"]
