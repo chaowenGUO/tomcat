@@ -26,17 +26,6 @@ dependencyManagement {
 	}
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ['java']
-        }
-	resources {
-            srcDirs = ['static']
-        }
-    }
-}
-
-bootJar {
-    destinationDirectory = file('.')
+task copyDependencies(type: Copy) {
+        from configurations.default into 'lib'
 }
