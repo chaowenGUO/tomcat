@@ -13,11 +13,11 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'io.vertx:vertx-core'
 	//implementation 'org.springframework.boot:spring-boot-starter-websocket'
-	implementation 'org.springframework.boot.experimental:spring-boot-starter-data-r2dbc'
+	//implementation 'org.springframework.boot.experimental:spring-boot-starter-data-r2dbc'
 	//implementation 'com.zaxxer:HikariCP'
-	runtimeOnly 'io.r2dbc:r2dbc-postgresql'
+	//runtimeOnly 'io.r2dbc:r2dbc-postgresql'
 }
 
 dependencyManagement {
