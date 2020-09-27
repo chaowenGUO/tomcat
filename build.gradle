@@ -1,20 +1,36 @@
 plugins {
-    id 'java'
-    id 'application'
-    id 'com.github.johnrengelman.shadow' version '1.2.3'
+  id 'java'
+  id 'application'
+  id 'com.github.johnrengelman.shadow' version '1.2.3'
 }
 
 repositories {
-    jcenter()
-    maven {
-        url 'https://oss.sonatype.org/content/repositories/iovertx-3868/'
-    }
+  jcenter()
+  maven {
+    url "https://oss.sonatype.org/content/repositories/iovertx-3868/"
+  }
 }
+
+version = '3.9.0'
+sourceCompatibility = '1.8'
 
 dependencies {
-    implementation 'io.vertx:vertx-web:4.0.0.Beta3'
+  compile "io.vertx:vertx-core:$version"
 }
 
-task copyDependencies(type: Copy) {
-    from configurations.default into 'copyDependencies'
+mainClassName = 'io.vertx.example.HelloWorldEmbedded'
+
+shadowJar {
+  classifier = 'fat'
+  mergeServiceFiles {
+    include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
+  }
 }
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '4.0'
+}
+
+//task copyDependencies(type: Copy) {
+//    from configurations.default into 'copyDependencies'
+//}
