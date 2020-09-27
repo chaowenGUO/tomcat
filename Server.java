@@ -147,6 +147,7 @@ public class Server
     {
         final var vertx = io.vertx.core.Vertx.vertx();
         final var router = io.vertx.ext.web.Router.router(vertx);
+        router.route("/").handler(request -> request.response().sendFile("login.html"));
         router.route("/*").handler(io.vertx.ext.web.handler.StaticHandler.create("."));
         vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
     }
