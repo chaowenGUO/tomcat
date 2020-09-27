@@ -141,25 +141,26 @@ import reactor.core.publisher.Mono;
     }
 }*/
 
-import io.vertx.core.AbstractVerticle;
-import io.vertx.example.util.Runner;
-import io.vertx.ext.web.Router;
+import io.vertx.core.Vertx;
 
-public class Server extends AbstractVerticle
-{
-    public static void main(String[] args) {
-    Runner.runExample(Server.class);
+
+/**
+ * @author <a href="http://tfox.org">Tim Fox</a>
+ */
+public class HelloWorldEmbedded {
+
+  public static void main(String[] args) {
+    // Create an HTTP server which simply returns "Hello World!" to each request.
+    Vertx.vertx()
+      .createHttpServer()
+      .requestHandler(req -> req.response().end("Hello World!"))
+      .listen(Integer.parseInt(System.env("PORT")), handler -> {
+        if (handler.succeeded()) {
+          System.out.println("http://localhost:8080/");
+        } else {
+          System.err.println("Failed to listen on port 8080");
+        }
+      });
   }
 
-  @Override
-  public void start() throws Exception {
-
-    Router router = Router.router(vertx);
-
-    router.route().handler(routingContext -> {
-      routingContext.response().putHeader("content-type", "text/html").end("Hello World!");
-    });
-
-    vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
-  }
 }
