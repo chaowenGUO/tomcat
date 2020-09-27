@@ -1,17 +1,20 @@
 plugins {
-        id 'java'
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
 }
 
-version = 1.0
-
 repositories {
-        mavenCentral()
+    jcenter()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/iovertx-3868/'
+    }
 }
 
 dependencies {
-        implementation("io.vertx:vertx-web:3.9.3")
+    implementation 'io.vertx:vertx-web:4.0.0.Beta3'
 }
 
 task copyDependencies(type: Copy) {
-        from configurations.default into 'copyDependencies'
+    from configurations.default into 'copyDependencies'
 }
