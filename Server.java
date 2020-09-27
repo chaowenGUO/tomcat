@@ -145,13 +145,6 @@ public class Server
 {
     public static void main(final String[] args)
     {
-        io.vertx.core.Vertx.vertx().createHttpServer().requestHandler(req -> req.response().end("Hello World!")).listen(Integer.parseInt(System.getenv("PORT")), handler -> {
-        if (handler.succeeded()) {
-          System.out.println("http://localhost:8080/");
-        } else {
-          System.err.println("Failed to listen on port 8080");
-        }
-      });
-  }
-
+        io.vertx.core.Vertx.vertx().createHttpServer().requestHandler(req -> req.response().end("Hello World!")).listen(Integer.parseInt(System.getenv("PORT")));
+    }
 }
