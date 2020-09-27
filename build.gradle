@@ -6,10 +6,8 @@ repositories {
     jcenter()
 }
 
-version = '3.9.0'
-
 dependencies {
-    compile "io.vertx:vertx-core:$version"
+    compile 'io.vertx:vertx-core:3.9.3'
 }
 
 task copyDependencies(type: Copy) {
