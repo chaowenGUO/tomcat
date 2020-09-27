@@ -145,12 +145,11 @@ public class Server
 {
     public static void main(final String[] args)
     {
-        System.out.println(System.getenv("DATABASE_URL").replace("postgre", "postgresql"));
         final var vertx = io.vertx.core.Vertx.vertx();
         final var router = io.vertx.ext.web.Router.router(vertx);
         router.route("/").handler(request -> request.response().sendFile("login.html"));
         router.route("/*").handler(io.vertx.ext.web.handler.StaticHandler.create("."));
-        final var client = io.vertx.pgclient.PgPool.pool(vertx, System.getenv("DATABASE_URL").replace("postgre", "postgresql"));
+        final var client = io.vertx.pgclient.PgPool.pool(vertx, System.getenv("DATABASE_URL").replace("postgres", "postgresql"));
         vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
     }
 }
