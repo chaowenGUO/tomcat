@@ -8,6 +8,7 @@ repositories {
 
 dependencies {
     compile 'io.vertx:vertx-web:3.9.3'
+    compile 'io.vertx:vertx-pg-client:3.9.3'
 }
 
 task copyDependencies(type: Copy) {
