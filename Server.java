@@ -145,6 +145,8 @@ public class Server
 {
     public static void main(final String[] args)
     {
+        final var dbUri = java.net.URI.create(System.getenv("DATABASE_URL"));
+        final connectOptions = new io.vertx.pgclient.PgConnectOptions().setPort(dbUri.getPort()).setHost(dbUri.getHost()).setDatabase(dbUri.getPath()).setUser(dbUri.getUserInfo().split(":")[0]).setPassword(dbUri.getUserInfo().split(":")[1]);
         final var vertx = io.vertx.core.Vertx.vertx();
         final var router = io.vertx.ext.web.Router.router(vertx);
         router.route("/").handler(request -> request.response().sendFile("login.html"));
