@@ -143,18 +143,11 @@ import reactor.core.publisher.Mono;
 
 import io.vertx.core.Vertx;
 
-
-/**
- * @author <a href="http://tfox.org">Tim Fox</a>
- */
-public class HelloWorldEmbedded {
-
-  public static void main(String[] args) {
-    // Create an HTTP server which simply returns "Hello World!" to each request.
-    Vertx.vertx()
-      .createHttpServer()
-      .requestHandler(req -> req.response().end("Hello World!"))
-      .listen(Integer.parseInt(System.env("PORT")), handler -> {
+public class Server
+{
+    public static void main(final String[] args)
+    {
+        Vertx.vertx().createHttpServer().requestHandler(req -> req.response().end("Hello World!")).listen(Integer.parseInt(System.env("PORT")), handler -> {
         if (handler.succeeded()) {
           System.out.println("http://localhost:8080/");
         } else {
