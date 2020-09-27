@@ -13,7 +13,7 @@ jobs:
         - uses: akhileshns/heroku-deploy@v3.5.6
           with:
               heroku_api_key: ${{secrets.HEROKU}}
-              heroku_app_name: sspringboot
+              heroku_app_name: vertx
               heroku_email: chaowen.guo1@gmail.com
               usedocker: true
         - uses: docker/login-action@v1 
@@ -23,9 +23,9 @@ jobs:
         - uses: docker/build-push-action@v2
           with:
               #push: true            
-              tags: chaowenguo/springboot:latest
+              tags: chaowenguo/vertx:latest
         - run: |
-              docker image push chaowenguo/springboot:latest
+              docker image push chaowenguo/vertx:latest
         #- run: |
         #     curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
         #      ibmcloud cf install
