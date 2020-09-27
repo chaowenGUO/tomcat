@@ -1,29 +1,22 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.gradle.api.tasks.testing.logging.TestLogEvent.*
+
 plugins {
-    id 'org.springframework.boot' version '2.3.3.RELEASE'
+  java
+  application
+  id("com.github.johnrengelman.shadow") version "5.2.0"
 }
 
-apply plugin: 'java'
-apply plugin: 'io.spring.dependency-management'
-
-version = '1.0'
+version = 1.0
 
 repositories {
-	mavenCentral()
-	maven { url 'https://repo.spring.io/milestone' }
+  mavenCentral()
 }
+
+val vertxVersion = "3.9.3"
 
 dependencies {
-	implementation 'io.vertx:vertx-core'
-	//implementation 'org.springframework.boot:spring-boot-starter-websocket'
-	//implementation 'org.springframework.boot.experimental:spring-boot-starter-data-r2dbc'
-	//implementation 'com.zaxxer:HikariCP'
-	//runtimeOnly 'io.r2dbc:r2dbc-postgresql'
-}
-
-dependencyManagement {
-	imports {
-		mavenBom 'org.springframework.boot.experimental:spring-boot-bom-r2dbc:0.1.0.M3'
-	}
+        implementation("io.vertx:vertx-web:$vertxVersion")
 }
 
 task copyDependencies(type: Copy) {
