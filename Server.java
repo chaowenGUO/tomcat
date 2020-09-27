@@ -141,13 +141,11 @@ import reactor.core.publisher.Mono;
     }
 }*/
 
-import io.vertx.core.Vertx;
-
 public class Server
 {
     public static void main(final String[] args)
     {
-        Vertx.vertx().createHttpServer().requestHandler(req -> req.response().end("Hello World!")).listen(Integer.parseInt(System.getenv("PORT")), handler -> {
+        io.vertx.core.Vertx.vertx().createHttpServer().requestHandler(req -> req.response().end("Hello World!")).listen(Integer.parseInt(System.getenv("PORT")), handler -> {
         if (handler.succeeded()) {
           System.out.println("http://localhost:8080/");
         } else {
