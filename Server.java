@@ -141,18 +141,25 @@ import reactor.core.publisher.Mono;
     }
 }*/
 
-import reactor.core.publisher.Mono;
+import io.vertx.core.AbstractVerticle;
+import io.vertx.example.util.Runner;
+import io.vertx.ext.web.Router;
 
-public class Server
+public class Server extends AbstractVerticle
 {
-    public static void main(final String[] args)
-    {
-	//final var dbUri = java.net.URI.create(System.getenv("DATABASE_URL"));
-	//final var connectionMono = Mono.from(io.r2dbc.spi.ConnectionFactories.get(String.join("", "r2dbc:postgresql://", dbUri.getHost(), ":", String.valueOf(dbUri.getPort()), dbUri.getPath())).create());
-	final var current = java.nio.file.Paths.get("").toAbsolutePath();
-        final var server = reactor.netty.http.server.HttpServer.create().port(Integer.parseInt(System.getenv("PORT"))).route(
-		routes -> routes.file("/", java.nio.file.Paths.get(current.toString(), "login.html").toAbsolutePath())
-		                .directory("/", current)).bindNow();
-        server.onDispose().block();
-    }
+    public static void main(String[] args) {
+    Runner.runExample(Server.class);
+  }
+
+  @Override
+  public void start() throws Exception {
+
+    Router router = Router.router(vertx);
+
+    router.route().handler(routingContext -> {
+      routingContext.response().putHeader("content-type", "text/html").end("Hello World!");
+    });
+
+    vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
+  }
 }
