@@ -143,7 +143,7 @@ import reactor.core.publisher.Mono;
 
 public class Server
 {
-    public static void main(final String[] args)
+    public static void main(final String[] args) throws Exception
     {
         final var vertx = io.vertx.core.Vertx.vertx();
         final var router = io.vertx.ext.web.Router.router(vertx);
