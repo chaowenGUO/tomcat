@@ -145,6 +145,9 @@ public class Server
 {
     public static void main(final String[] args)
     {
-        io.vertx.core.Vertx.vertx().createHttpServer().requestHandler(req -> req.response().end("Hello World!")).listen(Integer.parseInt(System.getenv("PORT")));
+        final var vertx = io.vertx.core.Vertx.vertx();
+        final var router = io.vertx.ext.web.Router.router(vertx);
+        router.route().handler(routingContext -> routingContext.response().putHeader("content-type", "text/html").end("Hello World!"));
+        vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
     }
 }
