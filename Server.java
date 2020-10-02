@@ -158,7 +158,7 @@ public class Server
   //  System.out.println("Failure: " + ar.cause().getMessage());
   //}
   //client.close();
-});
+//});
         vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
         System.out.println("haha");
     }
