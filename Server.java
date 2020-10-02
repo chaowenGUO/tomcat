@@ -154,7 +154,7 @@ public class Server
         Runtime.getRuntime().addShutdownHook(new Thread(() -> client.query("drop table productItem, productUnit, productReview").execute()));
         client.query("select * from productItem").execute(ar -> {
   if (ar.succeeded()) {
-    RowSet<Row> result = ar.result();
+    var result = ar.result();
     System.out.println("Got " + result.size() + " rows ");
   } else {
     System.out.println("Failure: " + ar.cause().getMessage());
