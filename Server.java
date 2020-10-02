@@ -150,14 +150,14 @@ public class Server
         router.route("/").handler(request -> request.response().sendFile("login.html"));
         router.route("/*").handler(io.vertx.ext.web.handler.StaticHandler.create("."));
         final var client = io.vertx.pgclient.PgPool.pool(vertx, System.getenv("DATABASE_URL").replace("postgres", "postgresql"));
-        client.query(vertx.fileSystem().readFile("database.sql")).execute();
-        client.query("select * from productItem").execute(ar -> {
-  if (ar.succeeded()) {
-    System.out.println("Got " + ar.result() + " rows ");
-  } else {
-    System.out.println("Failure: " + ar.cause().getMessage());
-  }
-  client.close();
+        //client.query(vertx.fileSystem().readFile("database.sql")).execute();
+        //client.query("select * from productItem").execute(ar -> {
+  //if (ar.succeeded()) {
+  //  System.out.println("Got " + ar.result() + " rows ");
+  //} else {
+  //  System.out.println("Failure: " + ar.cause().getMessage());
+  //}
+  //client.close();
 });
         vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
         System.out.println("haha");
