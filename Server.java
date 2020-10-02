@@ -152,7 +152,7 @@ public class Server
         final var client = io.vertx.pgclient.PgPool.pool(vertx, System.getenv("DATABASE_URL").replace("postgres", "postgresql"));
         client.query(vertx.fileSystem().readFileBlocking("database.sql").toString()).execute();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> client.query("drop table productItem, productUnit, productReview").execute()));
-        router.route("/ajax").handler(request -> request.response().end(client.query("select * from productItem").execute().result().toString()));
+        router.route("/ajax").handler(request -> request.response().end(client.query("select * from productItem").execute().result().next().toJson().toString()));
         //client.query("select * from productItem").execute(ar -> {
   //if (ar.succeeded()) {
   //  System.out.println("Got " + ar.result() + " rows ");
