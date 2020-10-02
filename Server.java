@@ -151,10 +151,10 @@ public class Server
         final var client = io.vertx.pgclient.PgPool.pool(vertx, System.getenv("DATABASE_URL").replace("postgres", "postgresql"));
         client.query(vertx.fileSystem().readFileBlocking("database.sql").toString()).execute().toCompletionStage().toCompletableFuture().join();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> client.query("drop table productItem, productUnit, productReview").execute().toCompletionStage().toCompletableFuture().join()));
-        router.route("/ajax").handler(request -> {
+        client.query("select * from productItem").execute(ar -> {
             final var json = new io.vertx.core.json.JsonArray();
-            for (final var $: client.query("select * from productItem").execute().toCompletionStage().toCompletableFuture().join()) json.add($.toJson());
-            request.json(json);
+            for (final var $: ar.result()) json.add($.toJson());
+            router.route("/ajax").handler(request -> request.json(json));
         });
         router.route("/*").handler(io.vertx.ext.web.handler.StaticHandler.create("."));
         vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
