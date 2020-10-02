@@ -160,6 +160,5 @@ public class Server
   //client.close();
 //});
         vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
-        System.out.println("haha");
     }
 }
