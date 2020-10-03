@@ -157,6 +157,8 @@ public class Server
                 final var json = new io.vertx.core.json.JsonArray();
                 for (final var $: ar.result()) json.add($.toJson());
                 request.json(json);});});
+        router.route("/ws").handler(request -> request.request().toWebSocket(ar -> {
+            ar.result().writeTextMessage("fuck you");}));
         router.route("/*").handler(io.vertx.ext.web.handler.StaticHandler.create("."));
         vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
     }
