@@ -1,10 +1,23 @@
-import git, pathlib, shutil
-with git.Repo(pathlib.Path(__file__).resolve().parent) as repository:
-    repository.config_writer().set_value('user', 'name', 'Your Name').release()
-    repository.config_writer().set_value('user', 'email', 'you@example.com').release()
-    static = pathlib.Path('static')
-    repository.git.subtree('add', '--prefix=' + str(static), 'https://github.com/chaowenGUO/aiohttp', 'master', '--squash')
-    static = static.resolve()
-    for _  in static.iterdir():
-        if _.suffix == '.html' or _.suffix == '.js' or _.suffix == '.sql': shutil.move(str(_), static.parent)
-    shutil.rmtree(static)
+import aiohttp, asyncio, io, zipfile, pathlib, fileinput
+async def f():
+    async with aiohttp.ClientSession() as session:
+        async with session.get('https://github.com/chaowenGUOorg/aiohttp/archive/main.zip') as response:
+            with io.BytesIO(await response.content.read()) as _:
+                def f(tar):
+                    for _ in tar.infolist():
+                        if _.filename.endswith('chat/index.html'):
+                            _.filename = 'chat.html'
+                            yield _
+                        elif _.filename.endswith('chat/index.js'):
+                            _.filename = 'chat.js'
+                            yield _
+                        else:
+                            path = pathlib.Path(_.filename)
+                            if path.suffix == '.html' or path.suffix == '.js' or path.suffix == '.sql':
+                                _.filename = path.name
+                                yield _
+                with zipfile.ZipFile(_) as tar: tar.extractall(members=f(tar))
+asyncio.run(f())
+with fileinput.FileInput('chat.html', inplace=True) as file:
+    for line in file:
+        print(line.replace('index.js', 'chat.js'), end='')
