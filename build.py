@@ -18,6 +18,5 @@ async def f():
                                 yield _
                 with zipfile.ZipFile(_) as tar: tar.extractall(members=f(tar))
 asyncio.run(f())
-with fileinput.FileInput('chat.html', inplace=True) as file:
-    for line in file:
-        print(line.replace('index.js', 'chat.js'), end='')
+with fileinput.FileInput('chat.html', inplace=True) as _:
+    for line in _: print(line.replace('index.js', 'chat.js'), end='')
