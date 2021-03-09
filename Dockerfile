@@ -1,4 +1,4 @@
-FROM gradle:jdk14
+FROM gradle:jdk15
 COPY *.html *.js *.sql Server.java build.gradle /usr/local/src/
 WORKDIR /usr/local/src/
 RUN ["gradle", "copyDependencies"]
