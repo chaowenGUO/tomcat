@@ -4,9 +4,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@main
-        - uses: actions/setup-python@main
+        - uses: actions/setup-java@main
           with:
-              python-version: 3.x
+              java-version: 3.x
         - run: |
             pip install aiohttp
             python build.py
