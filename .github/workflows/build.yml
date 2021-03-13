@@ -7,9 +7,7 @@ jobs:
         - uses: actions/setup-java@main
           with:
               java-version: 3.x
-        - run: |
-            pip install aiohttp
-            python build.py
+        - run: java Version.java
         - uses: docker/login-action@master
           with:
               username: chaowenguo
