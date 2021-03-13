@@ -11,6 +11,9 @@ jobs:
         - uses: actions/setup-java@main
           with:
               java-version: ${{env.JAVA}}
+        - run: |
+              gradle copyDependencies
+              javac -cp copyDependencies/*:. Server.java
         - uses: docker/login-action@master
           with:
               username: chaowenguo
