@@ -10,12 +10,6 @@ jobs:
         - run: |
             pip install aiohttp
             python build.py
-        - uses: akhileshns/heroku-deploy@master
-          with:
-              heroku_api_key: ${{secrets.HEROKU}}
-              heroku_app_name: vvertx
-              heroku_email: chaowen.guo1@gmail.com
-              usedocker: true
         - uses: docker/login-action@master
           with:
               username: chaowenguo
