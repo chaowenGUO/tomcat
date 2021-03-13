@@ -6,7 +6,7 @@ jobs:
         - uses: actions/checkout@main
         - uses: actions/setup-python@main
           with:
-              python-version: '3.x'
+              python-version: 3.x
         - run: |
             pip install aiohttp
             python build.py
@@ -26,10 +26,3 @@ jobs:
               context: .
               push: true            
               tags: chaowenguo/vertx:latest
-        #- run: |
-        #     curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
-        #      ibmcloud cf install
-        #      ibmcloud login -r us-south -g chaowenGuo --apikey ${{secrets.IBM}}
-        #      ibmcloud target --cf-api api.us-south.cf.cloud.ibm.com  -o chaowen.guo1@gmail.com -s chaowenGuo
-        #      ibmcloud cf push
-        #      ibmcloud logout
