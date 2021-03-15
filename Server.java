@@ -1,6 +1,6 @@
 public class Server
 {
-    public static void main(final String[] args) throws Exception
+    public static void main(final java.lang.String[] args) throws java.lang.Exception
     {
         final var vertx = io.vertx.core.Vertx.vertx();
         final var router = io.vertx.ext.web.Router.router(vertx);
