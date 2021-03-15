@@ -17,7 +17,7 @@ public class Server
         router.route("/ws").handler(request -> request.request().toWebSocket(ar -> {
             ar.result().writeTextMessage("fuck you");}));
         router.route("/*").handler(io.vertx.ext.web.handler.StaticHandler.create("."));
-        vertx.createHttpServer().requestHandler(router).listen(Integer.parseInt(System.getenv("PORT")));
+        vertx.createHttpServer().requestHandler(router).listen(80);
     }
 }
 
